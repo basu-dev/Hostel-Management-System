@@ -12,7 +12,7 @@ export class RoomsService {
 constructor(private db: AngularFireDatabase) { }
 
   getRoomsList() {
-    this.roomsList = this.db.list('College/roomsList');
+    this.roomsList = this.db.list('HostelManagementSystem/roomsList');
     return this.roomsList;
   }
 
@@ -25,7 +25,7 @@ constructor(private db: AngularFireDatabase) { }
   }
 
   allocateUser(key, roomNO) {
-    return this.db.object('College/userList/' + key + '/roomNo').set(roomNO);
+    return this.db.object('HostelManagementSystem/userList/' + key + '/roomNo').set(roomNO);
   }
 
   updateRoom(room: Room) {

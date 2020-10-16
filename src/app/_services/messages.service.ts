@@ -10,7 +10,7 @@ private messageList: AngularFireList<any>;
 constructor(private db: AngularFireDatabase) { }
 
 getAllMessages() {
-  this.messageList = this.db.list('College/messageList');
+  this.messageList = this.db.list('HostelManagementSystem/messageList');
   return this.messageList;
 }
 

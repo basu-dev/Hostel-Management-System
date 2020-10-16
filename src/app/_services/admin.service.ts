@@ -12,7 +12,7 @@ export class AdminService {
 constructor(private db: AngularFireDatabase) { }
 
 getAllAdmins() {
-  this.allAdmins = this.db.list('College/adminList');
+  this.allAdmins = this.db.list('HostelManagementSystem/adminList');
   return this.allAdmins;
 }
 

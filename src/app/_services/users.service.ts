@@ -11,7 +11,7 @@ usersList: AngularFireList<any>;
 constructor(private db: AngularFireDatabase) { }
 
 getUsersList() {
-  this.usersList = this.db.list('College/userList');
+  this.usersList = this.db.list('/userList');
   return this.usersList;
 }
 
@@ -23,7 +23,7 @@ insertUsers(user: User) {
 }
 
 getUserById(id) {
-  return this.db.object('College/userList/' + id);
+  return this.db.object('userList/' + id);
 }
 
 editUser(id, user) {

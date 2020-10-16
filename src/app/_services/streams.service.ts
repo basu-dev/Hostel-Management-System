@@ -11,7 +11,7 @@ streamsList: AngularFireList<any>;
 constructor(private db: AngularFireDatabase) { }
 
 getStreamList() {
-  this.streamsList =  this.db.list('College/streamList');
+  this.streamsList =  this.db.list('HostelManagementSystem/streamList');
   return this.streamsList;
 }
 

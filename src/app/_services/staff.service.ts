@@ -11,7 +11,7 @@ staffList: AngularFireList<any>;
 constructor(private db: AngularFireDatabase) { }
 
 getStaffList() {
-  this.staffList = this.db.list('College/staffList');
+  this.staffList = this.db.list('HostelManagementSystem/staffList');
   return this.staffList;
 }
 
@@ -28,6 +28,6 @@ deleteStaff(key) {
 }
 
 getStaff(key) {
-  return this.db.object('College/staffList/' + key).valueChanges();
+  return this.db.object('HostelManagementSystem/staffList/' + key).valueChanges();
 }
 }

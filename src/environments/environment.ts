@@ -4,13 +4,15 @@
 
 export const environment = {
   production: false,
-  firebase: {
-    apiKey: 'AIzaSyCjm0vEc7UewJ3wUoVGnnQyoQKoQ6Ldxmc',
-    authDomain: 'hostelmanagement-af284.firebaseapp.com',
-    databaseURL: 'https://hostelmanagement-af284.firebaseio.com',
-    projectId: 'hostelmanagement-af284',
-    storageBucket: 'hostelmanagement-af284.appspot.com',
-    messagingSenderId: '786370062443'
+     firebase : {
+      apiKey: "AIzaSyDXceT246bJMToP8ZBRxrzzhzbiKrKbzYY",
+      authDomain: "hostelmanagement-1fb2a.firebaseapp.com",
+      databaseURL: "https://hostelmanagement-1fb2a.firebaseio.com",
+      projectId: "hostelmanagement-1fb2a",
+      storageBucket: "hostelmanagement-1fb2a.appspot.com",
+      messagingSenderId: "362564392651",
+      appId: "1:362564392651:web:ef9ddb46d8be732c8cad4e",
+      measurementId: "G-6J9HC9M428"
   }
 };
 

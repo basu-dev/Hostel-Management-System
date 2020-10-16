@@ -29,6 +29,7 @@ import { AdminRegisterComponent } from './pages/admin-login/admin-register/admin
 import { HomeComponent } from './pages/home/home.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -64,9 +65,10 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
       positionClass: 'toast-top-right',
       preventDuplicates: false
     }),
-    AngularFireModule.initializeApp(environment.firebase, 'HostelManagement'),
-    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule.enablePersistence(),
     AngularFireDatabaseModule,
+    AngularFirestoreModule,
     NgxPaginationModule
   ],
   providers: [],
