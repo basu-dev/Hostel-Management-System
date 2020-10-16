@@ -1,0 +1,55 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class="card border-primary">
+        <div class="card-header">
+          <h4><i class="fa fa-plus"></i>&nbsp; Create Room</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="roomsForm" (ngSubmit)="onSubmit()" >
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+              <label for="roomno">Room Number*</label>
+              <input type="text" class="form-control" id="roomno" formControlName="roomNo">
+              <div class="form-text text-danger" *ngIf="roomsForm.get('roomNo').invalid && roomsForm.get('roomNo').touched">
+                Room number cannot be blank
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+              <label for="tc">Total Capicity*</label>
+              <input type="number" class="form-control" id="tc" formControlName="totalCapacity">
+              <div class="form-text text-danger" *ngIf="roomsForm.get('totalCapacity').invalid && roomsForm.get('totalCapacity').touched">
+               Please provide a value
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+              <label for="rc">Remaining Capicity*</label>
+              <input type="number" class="form-control" id="rc" formControlName="remainingCapacity">
+              <div class="form-text text-danger" *ngIf="roomsForm.get('remainingCapacity').invalid && roomsForm.get('remainingCapacity').touched">
+                Please provide a value
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-2 col-sm-3 offset-md-4 offset-sm-3">
+                <button class="btn btn-primary btn-block" type="submit" *ngIf="!showLoader" [disabled]="!roomsForm.valid">
+                  <i class="fa fa-save"></i>&nbsp; Submit
+                </button>
+
+                <button class="btn btn-primary btn-block" type="button" disabled *ngIf="showLoader">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Please wait...
+                </button>
+
+              </div>
+              <div class="form-group col-md-2 col-sm-3">
+                <button class="btn btn-secondary btn-block" type="button" (click)="onCancel()">
+                  <i class="fa fa-ban"></i>&nbsp; Cancel
+                </button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

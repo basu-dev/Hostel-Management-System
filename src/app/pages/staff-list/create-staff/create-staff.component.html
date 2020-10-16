@@ -1,0 +1,66 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card border-primary">
+        <div class="card-header text-center">
+          <h4><i class="fa fa-pen mr-2"></i> Create Staff</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="staffForm" (ngSubmit)="onSubmit()" >
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+              <label for="name">Full name*</label>
+              <input type="text" class="form-control" id="name" formControlName="name">
+              <div class="form-text text-danger" *ngIf="!staffForm.get('name').valid && staffForm.get('name').touched">
+                Name cannot be blank.
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+                <label for="Contact">Contact*</label>
+                <input type="text" class="form-control" id="Contact" formControlName="contact">
+                <div class="form-text text-danger" *ngIf="staffForm.get('contact').hasError('required') && staffForm.get('contact').touched">
+                  contact cannot be blank.
+                </div>
+                <div class="form-text text-danger" *ngIf="staffForm.get('contact').hasError('minlength') && staffForm.get('contact').touched ||
+                staffForm.get('contact').hasError('maxlength') && staffForm.get('contact').touched">
+                  contact should not be more or less than 10 characters.
+                </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+                  <label for="Address">Address*</label>
+                  <textarea class="form-control" id="Address" formControlName="address"></textarea>
+                  <div class="form-text text-danger" *ngIf="!staffForm.get('address').valid && staffForm.get('address').touched">
+                    Address cannot be blank.
+                  </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+                    <label for="Department">Department*</label>
+                    <input type="text" class="form-control" id="Department" formControlName="department">
+                    <div class="form-text text-danger" *ngIf="!staffForm.get('department').valid && staffForm.get('department').touched">
+                      Address cannot be blank.
+                    </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-2 col-sm-6 offset-md-4 offset-sm-3">
+                <button class="btn btn-primary btn-block" type="submit" *ngIf="!showLoader" [disabled]="!staffForm.valid">
+                  <i class="fa fa-save mr-2"></i>Submit
+                </button>
+
+                <div class="text-center" *ngIf="showLoader">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="form-group col-md-2 col-sm-6">
+                  <button class="btn btn-secondary btn-block" type="button" (click)="onCancel();">
+                      <i class="fa fa-ban mr-2"></i>Cancel
+                    </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

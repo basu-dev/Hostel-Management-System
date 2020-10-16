@@ -1,0 +1,57 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card border-primary">
+        <div class="card-header bg-primary text-white">
+          <h4><i class="far fa-edit mr-2"></i>Leave a message</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="messageForm" (ngSubmit)="onSubmit()" >
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+              <label for="subject">Subject*</label>
+              <input type="text" class="form-control" id="Subject" formControlName="subject">
+              <div class="form-text text-danger" *ngIf="!messageForm.get('subject').valid && messageForm.get('subject').touched">
+                Subject cannot be blank
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+                <label for="Name">Name*</label>
+                <input type="text" class="form-control" id="Name" formControlName="name">
+                <div class="form-text text-danger" *ngIf="!messageForm.get('name').valid && messageForm.get('name').touched">
+                    Name cannot be blank
+                </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+                <label for="Email">Email*</label>
+                <input type="text" class="form-control" id="Email" formControlName="email">
+                <div class="form-text text-danger" *ngIf="messageForm.get('email').hasError('required') && messageForm.get('email').touched">
+                    Email cannot be blank
+                </div>
+                <div class="form-text text-danger" *ngIf="messageForm.get('email').hasError('email') && messageForm.get('email').touched">
+                    Please enter a valid email
+                </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+                <label for="Message">Message</label>
+                <textarea class="form-control" id="Message" formControlName="message"></textarea>
+                <div class="form-text text-danger" *ngIf="!messageForm.get('message').valid && messageForm.get('message').touched">
+                    Name cannot be blank
+                </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+                <button class="btn btn-primary btn-block" type="submit" [disabled]="!messageForm.valid" *ngIf="!showLoader">
+                  <i class="fa fa-save mr-2"></i>Submit
+                </button>
+
+                <div class="d-flex justify-content-center" *ngIf="showLoader">
+                    <div class="spinner-border text-primary" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

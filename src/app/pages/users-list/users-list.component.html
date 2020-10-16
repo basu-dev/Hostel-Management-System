@@ -1,0 +1,102 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-10 col-sm-6">
+      <h3> <i class="fas fa-users"></i> &nbsp; Users List</h3>
+    </div>
+    <div class="col-md-2 col-sm-6">
+      <button class="btn btn-primary btn-block" (click)="onCreateUser()">
+          <i class="fas fa-user-plus"></i>&nbsp; Add
+      </button>
+    </div>
+  </div><br/>
+  <div class="row" *ngIf="!showLoader">
+    <div class="col-md-12 col-sm-12">
+      <div class="card border-primary">
+        <div class="card-body text-dark">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Sr No</th>
+                  <th>Name</th>
+                  <th>Stream</th>
+                  <th>Contact</th>
+                  <th>Room No</th>
+                  <th>Details</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of userList; let i = index;">
+                  <td>{{i+1}}</td>
+                  <td>{{item.name}}</td>
+                  <td>{{item.streamName}}</td>
+                  <td>{{item.contact}}</td>
+                  <td>{{item.roomNo}}</td>
+                  <td><i class="fas fa-eye" style="cursor: pointer" data-target="#exampleModal" data-toggle="modal" (click)="onDetails(item)"></i></td>
+                  <td><i class="fas fa-user-edit" (click)="onUserEdit(item.$key)" style="cursor: pointer"></i></td>
+                  <td><i class="fas fa-user-times text-danger" style="cursor: pointer" (click)="onDeleteUser(item.$key)"></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/><br/>
+  <div class="row" *ngIf="showLoader">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem;">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control text-dark" id="name" disabled value="{{detailedUser?.name}}">
+          </div>
+          <div class="form-group">
+            <label for="Contact">Contact</label>
+            <input type="text" class="form-control text-dark" id="Contact" disabled value="{{detailedUser?.contact}}">
+          </div>
+          <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="text" class="form-control text-dark" id="Email" disabled value="{{detailedUser?.email}}">
+          </div>
+          <div class="form-group">
+            <label for="room">Room No.</label>
+            <input type="text" class="form-control text-dark" id="room" disabled value="{{detailedUser?.roomNo}}">
+          </div>
+          <div class="form-group">
+            <label for="Stream">Stream</label>
+            <input type="text" class="form-control text-dark" id="Stream" disabled value="{{detailedUser?.streamName}}">
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <textarea class="form-control text-dark" disabled id="address" value="{{detailedUser?.address}}">
+
+            </textarea>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

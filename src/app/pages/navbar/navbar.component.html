@@ -1,0 +1,112 @@
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-primary border-right text-white" id="sidebar-wrapper">
+      <div class="sidebar-heading">
+          <p class="text-center" style="font-size: 20px; margin: 0">
+            <i class="fas fa-city"></i>
+          </p>
+          Hostel Management
+      </div>
+      <div class="list-group list-group-flush">
+         <a [routerLink]="['/home']" routerLinkActive="active"  class="list-group-item list-group-item-action bg-primary text-white">
+          <i class="fas fa-hotel mr-3"></i>Home
+        </a>
+
+        <!--Admin Access-->
+
+        <a  class="list-group-item list-group-item-action bg-primary text-white" [routerLink]="['/usersList']" routerLinkActive="active"
+        *ngIf="authService.isAdminLoggedIn()" >
+          <i class="fas fa-users mr-3"></i> Users
+        </a>
+        <a [routerLink]="['/streamList']" routerLinkActive="active"  class="list-group-item list-group-item-action bg-primary text-white"
+        *ngIf="authService.isAdminLoggedIn()">
+          <i class="fab fa-megaport mr-3"></i>Manage Streams</a>
+        <a [routerLink]="['/roomsList']" routerLinkActive="active"  class="list-group-item list-group-item-action bg-primary text-white"
+        *ngIf="authService.isAdminLoggedIn()">
+          <i class="fas fa-home mr-3"></i>Manage Rooms
+        </a>
+        <a [routerLink]="['/unallocatedUsers']" routerLinkActive="active"  class="list-group-item list-group-item-action bg-primary text-white"
+        *ngIf="authService.isAdminLoggedIn()">
+            <i class="fas fa-allergies mr-3"></i>Room Allocation
+        </a>
+        <a [routerLink]="['/staffList']" routerLinkActive="active"  class="list-group-item list-group-item-action bg-primary text-white"
+        *ngIf="authService.isAdminLoggedIn()">
+          <i class="fas fa-hands-helping mr-3"></i>Staff
+        </a>
+        <a [routerLink]="['/messages']" routerLinkActive="active"  class="list-group-item list-group-item-action bg-primary text-white"
+        *ngIf="authService.isAdminLoggedIn()">
+          <i class="fas fa-comment mr-3"></i>Messages
+        </a>
+
+          <!--Admin Access-->
+
+            <!--User Access-->
+            <a [routerLink]="['/userDetails']" routerLinkActive="active"  class="list-group-item list-group-item-action bg-primary text-white"
+            *ngIf="authService.isUserLoggedIn()">
+              <i class="fas fa-user-circle mr-3"></i>User Profile
+            </a>
+            <!--User Access-->
+
+
+
+        <a [routerLink]="['/createMessage']" routerLinkActive="active"  class="list-group-item list-group-item-action bg-primary text-white">
+          <i class="fas fa-file-signature mr-3"></i>Contact Admin
+        </a>
+
+        <a [routerLink]="['/userLogin']" routerLinkActive="active"  class="list-group-item list-group-item-action bg-primary text-white"
+        *ngIf="!authService.isUserLoggedIn() && !authService.isAdminLoggedIn()">
+          <i class="fas fa-sign-in-alt mr-3"></i>User Login
+        </a>
+        <a [routerLink]="['/adminLogin']" routerLinkActive="active"  class="list-group-item list-group-item-action bg-primary text-white"
+        *ngIf="!authService.isUserLoggedIn() && !authService.isAdminLoggedIn()">
+          <i class="fas fa-cog mr-3"></i>Admin Login
+        </a>
+        <a routerLinkActive="active"  class="list-group-item list-group-item-action bg-primary text-white" (click)="authService.logout()" style="cursor: pointer"
+        *ngIf="authService.isUserLoggedIn() || authService.isAdminLoggedIn()">
+          <i class="fas fa-sign-out-alt mr-3"></i>Logout
+        </a>
+
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand navbar-dark bg-primary border-bottom">
+        <button class="btn btn-primary" id="menu-toggle"><i class="fas fa-bars"></i></button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+              <li class="nav-item">
+                  <a routerLinkActive="active"  class="list-group-item list-group-item-action bg-primary text-white border-0"
+                  *ngIf="authService.isUserLoggedIn() || authService.isAdminLoggedIn()">
+                    <i class="fas fa-user mr-3"></i>Welcome {{username}}
+                  </a>
+                </li>
+            <!-- <li class="nav-item">
+              <a routerLinkActive="active"  class="list-group-item list-group-item-action bg-dark text-white" (click)="authService.logout()" style="cursor: pointer"
+              *ngIf="authService.isUserLoggedIn() || authService.isAdminLoggedIn()">
+                <i class="fas fa-sign-out-alt mr-3"></i>Logout
+              </a>
+            </li> -->
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid" style="padding: 0;">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+
+</body>

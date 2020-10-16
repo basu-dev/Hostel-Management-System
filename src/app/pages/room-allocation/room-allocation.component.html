@@ -1,0 +1,94 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-10 col-sm-6">
+      <h3><i class="fas fa-user-friends ml-2"></i> Unallocated Users</h3>
+    </div>
+    <div class="col-md-2 col-sm-6">
+      <button class="btn btn-primary btn-block" (click)="onEditAllocation()">
+          <i class="fab fa-medrt mr-1"></i>Edit Allocation
+      </button>
+    </div>
+  </div>
+  <br/>
+  <div class="row" *ngIf="!showLoader">
+    <div class="col-md-12">
+      <div class="card border-primary">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Sr No.</th>
+                  <th>User Name</th>
+                  <th>Stream</th>
+                  <th>Email</th>
+                  <th>Contact</th>
+                  <th>Allocate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of unallocatedUsers; let i = index;">
+                  <td>{{i+1}}</td>
+                  <td>{{item.name}}</td>
+                  <td>{{item.streamName}}</td>
+                  <td>{{item.email}}</td>
+                  <td>{{item.contact}}</td>
+                  <td><i class="fas fa-thumbtack text-primary" style="cursor: pointer"
+                    data-toggle="modal" data-target="#exampleModal" (click)="initAllocate(item.$key)"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/><br/>
+  <div class="row" *ngIf="showLoader">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem;">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Allocate User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="allocationForm" (ngSubmit)="onSubmit()" >
+            <div class="form-group">
+              <label for="Room">Available Rooms*</label>
+              <select class="form-control" id="Room" formControlName="roomNo">
+                <option [ngValue]="null" selected>Select Room</option>
+                <option *ngFor="let item of availaibleRooms" [value]="item.roomNo">{{item.roomNo}} - ({{item.remainingCapacity}}) available</option>
+              </select>
+              <div class="form-text text-danger" *ngIf="allocationForm.get('roomNo').invalid && allocationForm.get('roomNo').touched">
+                Please select a room
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-block" type="submit" [disabled]="!allocationForm.valid" *ngIf="!showModalLoader">
+                  <i class="fas fa-thumbtack mr-2"></i>Allocate
+              </button>
+              <button class="btn btn-primary btn-block" type="button" disabled *ngIf="showModalLoader">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Please wait...
+                </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
