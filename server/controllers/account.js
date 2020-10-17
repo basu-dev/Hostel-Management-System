@@ -1,27 +1,29 @@
-const { json } = require("body-parser");
-const mongoose = require("mongoose");
-const userSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    required: "Email is missing.",
-  },
-  passowrd: {
-    type: String,
-    minlength: [5, "Minimum 5 characters are needed"],
-  },
-});
-mongoose.model("User", userSchema);
+const mongoose = require("../model/db");
+
+const User = mongoose.model("User");
 
 module.exports = {
-  register: (req, res) => {
-    let User = mongoose.model("User");
-    let user = new User();
-    user = { email, password, confirmPassword } = req.body;
-    if (password == confirmPassword) {
-    //   user.save();
-      return res.json(User);
+    
+  register: async (req, res,next) => {
+      let user = new User();
+    let {email,password,confirmpassword}=req.body;
+    Object.keys(req.body).forEach(k=>{
+        user[k]=req.body[k]
+    })
+    if(password === confirmpassword){
+       await user.save((err, doc) => {
+            if (!err) res.send(doc);
+            else {
+              if (err.code == 11000)
+                res.status(422).send({message:"Duplicate Email or USN found."});
+              else res.status(400).send({message:err.message})
+            }
+          });
     }
-    return res.status(500).send({ msg: "Two Passwords do not match" });
-    // user.save();
-  },
+    else{
+
+        return res.status(400).json({msg:"Two Passwords do not match"})
+    }
+
+  }
 };
