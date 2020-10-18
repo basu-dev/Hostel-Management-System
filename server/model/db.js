@@ -12,5 +12,4 @@ mongoose.connect(
         else console.log(JSON.stringify(err))
     });
     require("./user.js");
-    require("./admin.js")
     module.exports = mongoose;

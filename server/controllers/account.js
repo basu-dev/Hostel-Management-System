@@ -1,18 +1,17 @@
 const mongoose = require("../model/db");
-
+const jwtHelper = require("../config/jwtHelper.js");
 const User = mongoose.model("User");
 const generateJWt = 
 module.exports = {
   register: async (req, res,next) => {
       let user = new User();
-    let {email,password,confirmpassword}=req.body;
+    let {email,password,confirmpassword,type}=req.body;
     Object.keys(req.body).forEach(k=>{
         user[k]=req.body[k]
     })
     if(password === confirmpassword){
-        user.save((err, doc) => {
-            if (!err) res.send({token: user.generateJWt()});
-            
+        user.save(async (err, doc) => {
+            if (!err) res.send({token: await jwtHelper.generateToken(user)});
             else {
               if (err.code == 11000)
                 res.status(422).send({message:"Duplicate Email or USN found."});
