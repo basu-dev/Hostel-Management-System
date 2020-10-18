@@ -10,8 +10,8 @@ module.exports = {
         user[k]=req.body[k]
     })
     if(password === confirmpassword){
-       await user.save((err, doc) => {
-            if (!err) res.send(user.generateJWt());
+        user.save((err, doc) => {
+            if (!err) res.send({token: user.generateJWt()});
             
             else {
               if (err.code == 11000)
@@ -24,5 +24,11 @@ module.exports = {
         return res.status(400).json({msg:"Two Passwords do not match"})
     }
 
+  },
+  list: (req,res)=>{
+      User.find((err,result)=>{
+          if(!err) res.json(result)
+          else res.status(500).send(err)
+      }).sort("descending");
   }
 };
