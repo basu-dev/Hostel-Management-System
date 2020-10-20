@@ -1,7 +1,7 @@
 const mongoose = require("../model/db");
 const jwtHelper = require("../config/jwtHelper.js");
+const _ = require("lodash");
 const User = mongoose.model("User");
-const generateJWt = 
 module.exports = {
   register: async (req, res,next) => {
       let user = new User();
@@ -29,5 +29,16 @@ module.exports = {
           if(!err) res.json(result)
           else res.status(500).send(err)
       }).sort("descending");
+  },
+  prifile: (req, res) =>{
+    User.findOne({email:req.email},async (err,result)=>{
+      if(!err){ res.json({
+        status: true,
+        user: await _.pick(result, [ "email", "role"])
+      });
+    }
+      else res.status(404).json({message:"User not found"})
+    })
   }
+
 };
