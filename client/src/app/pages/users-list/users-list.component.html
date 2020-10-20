@@ -35,8 +35,8 @@
                   <td>{{item.contact}}</td>
                   <td>{{item.roomNo}}</td>
                   <td><i class="fas fa-eye" style="cursor: pointer" data-target="#exampleModal" data-toggle="modal" (click)="onDetails(item)"></i></td>
-                  <td><i class="fas fa-user-edit" (click)="onUserEdit(item.$key)" style="cursor: pointer"></i></td>
-                  <td><i class="fas fa-user-times text-danger" style="cursor: pointer" (click)="onDeleteUser(item.$key)"></i></td>
+                  <td><i class="fas fa-user-edit" (click)="onUserEdit(item._id)" style="cursor: pointer"></i></td>
+                  <td><i class="fas fa-user-times text-danger" style="cursor: pointer" (click)="onDeleteUser(item._id)"></i></td>
                 </tr>
               </tbody>
             </table>

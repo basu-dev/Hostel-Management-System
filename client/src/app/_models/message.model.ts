@@ -1,5 +1,5 @@
 export class Message {
-  $key: string;
+  _id: string;
   subject: string;
   name: string;
   email: string;

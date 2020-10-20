@@ -26,7 +26,7 @@
                 <tr *ngFor="let item of allStreams; let i = index;">
                   <td>{{i+1}}</td>
                   <td>{{item.streamName}}</td>
-                  <td><i class="fas fa-trash text-danger" style="cursor: pointer" (click)="onDelete(item.$key)"></i></td>
+                  <td><i class="fas fa-trash text-danger" style="cursor: pointer" (click)="onDelete(item._id)"></i></td>
                 </tr>
               </tbody>
             </table>

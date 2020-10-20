@@ -19,20 +19,9 @@ export class AdminLoginComponent implements OnInit {
               private router: Router, private adminService: AdminService) { }
 
   ngOnInit() {
-    this.getAllUsers();
+    this.adminService.getAllAdmins();
     this.initLoginForm();
-  }
-
-  getAllUsers() {
-    this.adminService.getAllAdmins().snapshotChanges().subscribe(
-      ((item) => {
-        item.forEach(element => {
-          const x = element.payload.toJSON();
-          x['$key'] = element.key;
-          this.allAdmins.push(x as Admin);
-        });
-      })
-    );
+    this.allAdmins = this.adminService.allAdmins;
   }
 
   initLoginForm() {

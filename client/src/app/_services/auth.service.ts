@@ -12,12 +12,12 @@ export class AuthService {
 constructor(private alertify: AlertifyService, private router: Router) { }
 
   userLogin(user: User) {
-    localStorage.setItem('userId', user.$key);
+    localStorage.setItem('userId', user._id);
     localStorage.setItem('userName', user.name);
   }
 
   adminLogin(admin: Admin) {
-    localStorage.setItem('adminId', admin.$key);
+    localStorage.setItem('adminId', admin._id);
     localStorage.setItem('userName', admin.email);
   }
 

@@ -42,7 +42,7 @@ export class RoomAllocationComponent implements OnInit {
         this.showLoader = false;
         item.forEach(element => {
           const x = element.payload.toJSON();
-          x['$key'] = element.key;
+          x['_id'] = element.key;
           if (x['roomNo'] === 'Not Allocated') {
             this.unallocatedUsers.push(x as User);
           }
@@ -60,7 +60,7 @@ export class RoomAllocationComponent implements OnInit {
       ((item) => {
         item.forEach(element => {
           const x = element.payload.toJSON();
-          x['$key'] = element.key;
+          x['_id'] = element.key;
           if(x['remainingCapacity'] > 0) {
             this.availaibleRooms.push(x as Room);
           }

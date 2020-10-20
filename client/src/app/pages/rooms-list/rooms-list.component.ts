@@ -26,7 +26,7 @@ export class RoomsListComponent implements OnInit {
         this.showLoader = false;
         item.forEach(element => {
           const x = element.payload.toJSON();
-          x['$key'] = element.key;
+          x['_id'] = element.key;
           this.roomsList.push(x as Room);
         });
       }),((err) => {

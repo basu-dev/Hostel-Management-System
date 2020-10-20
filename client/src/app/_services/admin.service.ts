@@ -1,23 +1,34 @@
 import { Admin } from './../_models/admin.model';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {URL} from "./urls";
+import { Subject } from 'rxjs';
+// import {catchError } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
-  allAdmins: AngularFireList<any>;
+  allAdmins: any;
 
-constructor(private db: AngularFireDatabase) { }
-
+constructor(private http:HttpClient) { }
+public adminSub = new Subject<Admin[]>();
 getAllAdmins() {
-  this.allAdmins = this.db.list('HostelManagementSystem/adminList');
-  return this.allAdmins;
+  this.http.get(`${URL.base}${URL.adminList}`).subscribe(
+   res=>{this.allAdmins=res,
+          this.adminSub.next(this.allAdmins);
+  },
+   err=>console.log(err)
+  )
+}
+handleError(){
+  
 }
 
 insertAllAdmin(admin: Admin) {
-  return this.allAdmins.push(admin);
+  return this.http.post("/register",admin);
 }
 
 }

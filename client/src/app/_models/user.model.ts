@@ -1,5 +1,5 @@
 export class User {
-  $key: string;
+  _id: string;
   name: string;
   streamName: string;
   email: string;

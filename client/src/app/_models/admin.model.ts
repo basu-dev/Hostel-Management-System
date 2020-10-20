@@ -1,5 +1,5 @@
 export class Admin {
-  $key: string;
+  _id: string;
   email: string;
   password: string;
 }

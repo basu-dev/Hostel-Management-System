@@ -39,7 +39,7 @@ export class AllocateUserComponent implements OnInit {
         this.showLoader = false;
         item.forEach(element => {
           const x = element.payload.toJSON();
-          x['$key'] = element.key;
+          x['_id'] = element.key;
           if (x['roomNo'] !== 'Not Allocated') {
             this.allocatedUsers.push(x as User);
           }
@@ -57,7 +57,7 @@ export class AllocateUserComponent implements OnInit {
       ((item) => {
         item.forEach(element => {
           const x = element.payload.toJSON();
-          x['$key'] = element.key;
+          x['_id'] = element.key;
           if(x['remainingCapacity'] > 0) {
             this.availableRooms.push(x as Room);
           }
@@ -74,10 +74,10 @@ export class AllocateUserComponent implements OnInit {
 
   initEdit(item: User) {
     this.previousAllocatedRoom = item.roomNo;
-    this.allocatedUserKey = item.$key;
+    this.allocatedUserKey = item._id;
     for (let ob of this.availableRooms) {
       if(ob.roomNo === this.previousAllocatedRoom) {
-        this.previousAllocatedRoomKey = ob.$key;
+        this.previousAllocatedRoomKey = ob._id;
         this.previousRoom = ob;
         const index = this.availableRooms.indexOf(ob);
         this.availableRooms.splice(index, 1);

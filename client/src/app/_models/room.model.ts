@@ -1,5 +1,5 @@
 export class Room {
-  $key: string;
+  _id: string;
   roomNo: string;
   totalCapacity: number;
   remainingCapacity: number;

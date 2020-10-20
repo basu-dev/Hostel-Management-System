@@ -1,5 +1,5 @@
 export class Staff {
-  $key: string;
+  _id: string;
   name: string;
   contact: string;
   address: string;

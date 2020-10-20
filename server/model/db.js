@@ -11,5 +11,8 @@ mongoose.connect(
         if(!err) console.log("MONgoDB setup")
         else console.log(JSON.stringify(err))
     });
+    require("./stream.js");
     require("./user.js");
+    require("./message.js");
+    require("./room.js");
     module.exports = mongoose;

@@ -26,7 +26,7 @@ export class StreamListComponent implements OnInit {
         this.showLoader = false;
         item.forEach(element => {
           const y = element.payload.toJSON();
-          y['$key'] = element.key;
+          y['_id'] = element.key;
           this.allStreams.push(y as Stream);
         });
         console.log(this.allStreams);

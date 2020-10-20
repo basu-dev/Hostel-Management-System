@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
 const userSchema = new mongoose.Schema({
     email:{
         type:String,
@@ -15,14 +14,27 @@ const userSchema = new mongoose.Schema({
     },
     role : {
         type: String,
-        match: /^admin$|^user$/,
+        match: /^admin$|^user$|^staff$/,
         required: true
     },
     createdAt :{
         type: Date,
         default: Date.now()
+    },
+    address:{
+        type:String,
+        required:true
+    },
+    contact:{
+        type:String,
+        required:true
+    },
+    department:{
+        type:String,
+        required:true
     }
 });
+
 //Custom Validations
 userSchema.path("email").validate (val=> /.@[aA-zZ0-9]+\.[aA-zZ]+/.test(val),"Invalid Email Address");
 //Events

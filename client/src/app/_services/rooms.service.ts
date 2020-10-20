@@ -29,8 +29,8 @@ constructor(private db: AngularFireDatabase) { }
   }
 
   updateRoom(room: Room) {
-    const key = room.$key;
-    delete room.$key;
+    const key = room._id;
+    delete room._id;
     return this.roomsList.update(key, room);
   }
 

@@ -30,6 +30,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 500,
       positionClass: 'toast-top-right',

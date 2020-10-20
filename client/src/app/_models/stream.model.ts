@@ -1,4 +1,4 @@
 export class Stream {
-  $key: string;
+  _id: string;
   streamName: string;
 }

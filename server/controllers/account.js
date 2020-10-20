@@ -30,6 +30,22 @@ module.exports = {
           else res.status(500).send(err)
       }).sort("descending");
   },
+  listAdmin:(req,res)=>{
+    User.find((err,users)=>{
+      if(!err){
+        let admins = [];
+        users.forEach(x=>{
+          if(x.role = "admin"){
+            admins.push(x);
+          }
+          res.json(admins);
+        })
+      }
+      else{
+        res.status(404).send({message:"Not Found"});
+      }
+    })
+  },
   prifile: (req, res) =>{
     User.findOne({email:req.email},async (err,result)=>{
       if(!err){ res.json({
