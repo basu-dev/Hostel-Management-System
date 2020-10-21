@@ -71,7 +71,7 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFirestoreModule.enablePersistence(),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
-    NgxPaginationModule
+    // NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

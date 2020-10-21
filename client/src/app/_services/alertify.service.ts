@@ -7,7 +7,6 @@ declare let alertify: any;
   providedIn: 'root'
 })
 export class AlertifyService {
-
 constructor() { }
 
 confirm(title: string, message: string, funC: () => any, funCan: () => any) {
@@ -27,6 +26,7 @@ warning(message: string) {
 }
 
 message(message: string) {
+  console.log(message);
   alertify.message(message);
 }
 }
