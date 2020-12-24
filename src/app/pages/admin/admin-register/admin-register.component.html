@@ -1,0 +1,64 @@
+<div class="conatier mt-5">
+  <div class="row">
+    <div class="col-md-8 col-sm-12 offset-md-2">
+      <div class="card border-primary">
+        <div class="card-header bg-primary text-white">
+          <h4><i class="fas fa-user-cog mr-2"></i> Admin Registration</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" >
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+              <label for="username">Username*</label>
+              <input type="text" class="form-control" id="username" formControlName="username">
+              <div class="form-text text-danger" *ngIf="adminForm.get('username').hasError('required') && adminForm.get('username').touched">
+                Username cannot be blank
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+              <label for="email">Email*</label>
+              <input type="email" class="form-control" id="email" formControlName="email">
+              <div class="form-text text-danger" *ngIf="adminForm.get('email').hasError('required') && adminForm.get('email').touched">
+                Email cannot be blank
+              </div>
+              <div class="form-text text-danger" *ngIf="adminForm.get('email').hasError('email') && adminForm.get('email').touched">
+                  Enter a valid email
+                </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+                <label for="Password">Password*</label>
+                <input type="password" class="form-control" id="Password" formControlName="password">
+                <div class="form-text text-danger" *ngIf="adminForm.get('password').hasError('required') && adminForm.get('password').touched">
+                    Password cannot be blank
+                </div>
+                <div class="form-text text-danger" *ngIf="adminForm.get('password').hasError('minlength') && adminForm.get('password').touched">
+                    Password should be minimum 6 characters
+                </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+              <label for="contact">Contact No.*</label>
+              <input type="contact" class="form-control" id="contact" formControlName="contact">
+              <div class="form-text text-danger" *ngIf="adminForm.get('contact').hasError('required') && adminForm.get('contact').touched">
+                Contact Field cannot be blank
+              </div>
+              <div class="form-text text-danger" *ngIf="adminForm.get('contact').hasError('minlength') && adminForm.get('contact').touched">
+                  Contact No. should be 10 digits long.
+                </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+                <button class="btn btn-primary btn-block" type="submit" *ngIf=!showLoader [disabled]="!adminForm.valid">
+                  <i class="fa fa-save mr-2"></i>Register
+                </button>
+
+                <div class="text-center" *ngIf="showLoader">
+                    <div class="spinner-border text-primary" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
