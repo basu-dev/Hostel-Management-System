@@ -21,4 +21,13 @@ export class AuthService{
         console.log(student);
         return this.http.post(Url.rootUrl+Url.registerStudent,student)
     }
+    get isUserLoggedIn():boolean{
+        return false;
+    }
+    get isAdminLoggedIn():boolean{
+        return false;
+    }
+    logout():void{
+        console.log("Logging out")
+    }
 }

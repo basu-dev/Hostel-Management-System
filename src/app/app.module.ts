@@ -10,13 +10,20 @@ import { AppComponent } from './app.component';
 import { AdminRegisterComponent } from './pages/admin/admin-register/admin-register.component';
 import { StudentRegisterComponent } from './pages/admin/student-register/student-register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TestComponent } from './components/test/test.component';
+import { NoticesComponent } from './pages/common/notices/notices.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminRegisterComponent,
     StudentRegisterComponent,
-    RoomRegisterComponent
+    RoomRegisterComponent,
+    TestComponent,
+    NoticesComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
