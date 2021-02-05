@@ -13,7 +13,7 @@ export class UserGuard implements CanActivateChild {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot){
       return true
-    // if (this.authService.isUserLoggedIn()) {
+    // if (this.authService.isStudentLoggedIn()) {
     //   return true;
     // } else {
     //   this.router.navigate(['/']);

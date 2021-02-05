@@ -13,6 +13,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TestComponent } from './components/test/test.component';
 import { NoticesComponent } from './pages/common/notices/notices.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { AdminLoginComponent } from './pages/common/admin-login/admin-login.component';
+import { StudentLoginComponent } from './pages/common/student-login/student-login.component';
+import { ManageUserComponent } from './pages/admin/manage-user/manage-user.component';
+import { ManageStreamComponent } from './pages/admin/manage-stream/manage-stream.component';
+import { ManageRoomComponent } from './pages/admin/manage-room/manage-room.component';
+import { ContactAdminComponent } from './pages/common/contact-admin/contact-admin.component';
 
 
 @NgModule({
@@ -23,7 +29,13 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     RoomRegisterComponent,
     TestComponent,
     NoticesComponent,
-    SidenavComponent
+    SidenavComponent,
+    AdminLoginComponent,
+    StudentLoginComponent,
+    ManageUserComponent,
+    ManageStreamComponent,
+    ManageRoomComponent,
+    ContactAdminComponent
   ],
   imports: [
     BrowserModule,

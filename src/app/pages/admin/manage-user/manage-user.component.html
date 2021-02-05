@@ -1,0 +1,36 @@
+
+        <div class="card-header bg-primary text-white">
+            <h4><i class="fas fa-user-cog mr-2"></i> Student List</h4>
+          </div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Full Name</th>
+        <th scope="col">Batch</th>
+        <th scope="col">Faculty</th>
+        <th scope="col">RoomNo</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Email </th>
+        <th scope="col">Address</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of students;let i=index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{student.fullName}}</td>
+        <td>{{student.batch}}</td>
+        <td>{{student.faculty}}</td>
+        <td>{{student.roomNo}}</td>
+        <td>{{student.contact}}</td>
+        <td>{{student.email}}</td>
+        <td>{{student.address}}</td>
+        <th scope="row">
+            <div class="col-md-6">Edit</div>
+            <div class="col-md-6">Delete</div>
+        </th>
+      </tr>
+
+    </tbody>
+   </table>

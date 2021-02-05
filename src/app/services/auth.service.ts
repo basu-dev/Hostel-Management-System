@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Url } from './../urls';
 import { Admin } from './../model/admin';
 import { Injectable } from "@angular/core";
@@ -17,15 +17,18 @@ export class AuthService{
         console.log(admin);
         return this.http.post(Url.rootUrl+Url.registerAdmin,admin)
     }
+    studentLogin(student:Student):Observable<any>{
+        return of(true);
+    }
     registerStudent(student:Student):Observable<any>{
         console.log(student);
         return this.http.post(Url.rootUrl+Url.registerStudent,student)
     }
-    get isUserLoggedIn():boolean{
+    get isStudentLoggedIn():boolean{
         return false;
     }
     get isAdminLoggedIn():boolean{
-        return false;
+        return true;
     }
     logout():void{
         console.log("Logging out")
