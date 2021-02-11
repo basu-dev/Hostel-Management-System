@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SidenavComponent implements OnInit {
 
-  username:String | null='';
+  userName:String | null='';
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
@@ -17,11 +17,11 @@ export class SidenavComponent implements OnInit {
     //   $('#wrapper').toggleClass('toggled');
     // });
 
-    this.username = localStorage.getItem('userName');
+    this.userName = localStorage.getItem('userName');
   }
 
   ngDoCheck() {
-    this.username = localStorage.getItem('userName');
+    this.userName = localStorage.getItem('userName');
   }
 
 }

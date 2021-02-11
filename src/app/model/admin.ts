@@ -1,6 +1,6 @@
 export interface Admin{
-    username:String,
-    contact:Number,
+    userName:String,
+    contactNo:Number,
     email:String,
     password:String
 }

@@ -10,6 +10,7 @@ export class ManageStreamComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

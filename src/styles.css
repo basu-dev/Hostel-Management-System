@@ -1,3 +1,7 @@
+:root{
+    --primary-color:#6200ee;
+}
+
 .bg-primary,.btn-primary{
-    background-color:#6200ee !important;
+    background-color:var(--primary-color) !important;
 }

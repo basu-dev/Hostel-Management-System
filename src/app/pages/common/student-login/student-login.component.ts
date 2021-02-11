@@ -27,15 +27,14 @@ export class StudentLoginComponent implements OnInit {
   }
 
   getAllStudents() {
-    this.studentService.getStudentsList().subscribe(
-      resutl=>this.allStudents=resutl,
-      err=>console.log(err)
+    this.studentService.studentSub.subscribe(
+      data=>this.allStudents=data
     )
   }
 
   initLoginForm() {
     this.loginForm = this.builder.group({
-      username:['073bex412',[Validators.required]],
+      userName:['073bex412',[Validators.required]],
       password:['Nice at nice',[Validators.required]]
     })
   }

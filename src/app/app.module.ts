@@ -1,4 +1,4 @@
-import { RoomRegisterComponent } from './pages/admin/room-register/room-register.component';
+import { RoomRegisterComponent } from './pages/admin/manage-room/room-register/room-register.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,9 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AdminRegisterComponent } from './pages/admin/admin-register/admin-register.component';
-import { StudentRegisterComponent } from './pages/admin/student-register/student-register.component';
+import { StudentRegisterComponent } from './pages/admin/manage-user/student-register/student-register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TestComponent } from './components/test/test.component';
 import { NoticesComponent } from './pages/common/notices/notices.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { AdminLoginComponent } from './pages/common/admin-login/admin-login.component';
@@ -19,6 +18,11 @@ import { ManageUserComponent } from './pages/admin/manage-user/manage-user.compo
 import { ManageStreamComponent } from './pages/admin/manage-stream/manage-stream.component';
 import { ManageRoomComponent } from './pages/admin/manage-room/manage-room.component';
 import { ContactAdminComponent } from './pages/common/contact-admin/contact-admin.component';
+import { AddIconComponent } from './components/add.component';
+import { EditIconComponent } from './components/edit.component';
+import { ManageStaffComponent } from './pages/admin/manage-staff/manage-staff.component';
+import { StudentDetailComponent } from './pages/common/student-detail/student-detail.component';
+import { StaffRegisterComponent } from './pages/admin/manage-staff/staff-register/staff-register.component';
 
 
 @NgModule({
@@ -27,7 +31,6 @@ import { ContactAdminComponent } from './pages/common/contact-admin/contact-admi
     AdminRegisterComponent,
     StudentRegisterComponent,
     RoomRegisterComponent,
-    TestComponent,
     NoticesComponent,
     SidenavComponent,
     AdminLoginComponent,
@@ -35,7 +38,13 @@ import { ContactAdminComponent } from './pages/common/contact-admin/contact-admi
     ManageUserComponent,
     ManageStreamComponent,
     ManageRoomComponent,
-    ContactAdminComponent
+    ContactAdminComponent,
+    AddIconComponent,
+    EditIconComponent,
+    ManageStaffComponent,
+    StudentDetailComponent,
+    StaffRegisterComponent,
+    ManageStaffComponent,
   ],
   imports: [
     BrowserModule,

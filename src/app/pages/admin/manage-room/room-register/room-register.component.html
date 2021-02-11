@@ -18,11 +18,7 @@
             <div class="form-group    ">
               <label for="block">Block*</label>
               <select type="block" class="form-control" value="A" id="block" formControlName="block">
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-                <option value="E">E</option>
+               <option *ngFor="let key of keys" [value]="key">{{key}}</option>
               </select>
               <!-- <div class="form-text text-danger"
                 *ngIf="roomForm.get('block').hasError('required') && roomForm.get('block').touched">
@@ -63,8 +59,16 @@
                   Beds Field cannot be blank
                 </div> -->
               </div>
+              <div class="form-group    ">
+                <label for="wardrobe">Wardrobe*</label>
+                <input type="number" class="form-control" id="wardrobe" formControlName="wardrobe">
+                <!-- <div class="form-text text-danger"
+                  *ngIf="roomForm.assets.get('wardrobe').hasError('required') && roomForm.assets.get('wardrobe').touched">
+                  Wardrobe Field cannot be blank
+                </div> -->
+              </div>
             </div>
-            <div formGroupName="student">
+            <div formGroupName="students">
               <div class="form-group    ">
                 <label for="student1">Student1*</label>
                 <input type="text" class="form-control" id="student1" formControlName="student1">
@@ -72,17 +76,17 @@
                    cannot be blank
                 </div> -->
               </div>
-              <div class="form-group    ">
+              <div class="form-group">
                 <label for="student2">Student2*</label>
                 <input type="text" class="form-control" id="student2" formControlName="student2">
                 <!-- <div class="form-text text-danger" *ngIf="roomForm.get('student2').hasError('required') && roomForm.get('student2').touched">
-                  Username cannot be blank
+                  userName cannot be blank
                 </div> -->
               </div>
             </div>
             <div class="form-group    ">
               <button class="btn btn-primary btn-block" type="submit" >
-                <i class="fa fa-save mr-2"></i>Register
+                <i class="fa fa-save mr-2">{{isEditform?"Submit":"Register"}}</i>
               </button>
 
               <!-- <div class="text-center" *ngIf="showLoader">

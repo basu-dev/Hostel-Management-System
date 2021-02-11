@@ -1,6 +1,7 @@
 
         <div class="card-header bg-primary text-white">
             <h4><i class="fas fa-user-cog mr-2"></i> Student List</h4>
+            <add-icon [routerLink]="['/admin/studentRegister']"></add-icon>
           </div>
 <table class="table">
     <thead>
@@ -10,7 +11,7 @@
         <th scope="col">Batch</th>
         <th scope="col">Faculty</th>
         <th scope="col">RoomNo</th>
-        <th scope="col">Contact</th>
+        <th scope="col">contactNo</th>
         <th scope="col">Email </th>
         <th scope="col">Address</th>
         <th scope="col">Actions</th>
@@ -23,12 +24,11 @@
         <td>{{student.batch}}</td>
         <td>{{student.faculty}}</td>
         <td>{{student.roomNo}}</td>
-        <td>{{student.contact}}</td>
+        <td>{{student.contactNo}}</td>
         <td>{{student.email}}</td>
         <td>{{student.address}}</td>
         <th scope="row">
-            <div class="col-md-6">Edit</div>
-            <div class="col-md-6">Delete</div>
+            <edit-icon (click)="editStudent(student.id)"></edit-icon>
         </th>
       </tr>
 

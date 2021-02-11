@@ -1,0 +1,80 @@
+<div >
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card border-primary">
+          <div class="card-header bg-primary text-white">
+            <h4><i class="fas fa-user-cog mr-2"></i> {{componentName}}</h4>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" >
+              <div class="form-group">
+                <label for="userName">userName*</label>
+                <input type="text" class="form-control" id="userName" formControlName="userName">
+                <div class="form-text text-danger" *ngIf="adminForm.get('userName').hasError('required') && adminForm.get('userName').touched">
+                  userName cannot be blank
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="fullName">Full Name*</label>
+                <input type="text" class="form-control" id="fullName" formControlName="fullName">
+                <div class="form-text text-danger" *ngIf="adminForm.get('fullName').hasError('required') && adminForm.get('fullName').touched">
+                  Full Name is required.
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email*</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+                <div class="form-text text-danger" *ngIf="adminForm.get('email').hasError('required') && adminForm.get('email').touched">
+                  Email cannot be blank
+                </div>
+                <div class="form-text text-danger" *ngIf="adminForm.get('email').hasError('email') && adminForm.get('email').touched">
+                    Enter a valid email
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="batch">Staff Type*</label>
+                <select type="number" class="form-control"  id="staffType" formControlName="staffType">
+                  <option id="bex" value="bex">Electronics And Communication</option>
+                  <option id="bel" value="bel">Electrical Engineering</option>
+                  <option id="bct" value="bct">Computer Engineering</option>
+                </select>
+                <div class="form-text text-danger" *ngIf="adminForm.get('staffType').hasError('required') && adminForm.get('staffType').touched">
+                  Staff Type field is required
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="address">Address*</label>
+                <input type="text" class="form-control" id="address" formControlName="address">
+                <div class="form-text text-danger" *ngIf="adminForm.get('address').hasError('required') && adminForm.get('address').touched">
+                  Address field is required
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contactNo">contactNo No.*</label>
+                <input type="contactNo" class="form-control" id="contactNo" formControlName="contactNo">
+                <div class="form-text text-danger" *ngIf="adminForm.get('contactNo').hasError('required') && adminForm.get('contactNo').touched">
+                  contactNo Field cannot be blank
+                </div>
+                <div class="form-text text-danger" *ngIf="adminForm.get('contactNo').hasError('minlength') && adminForm.get('contactNo').touched">
+                    contactNo No. should be 10 digits long.
+                  </div>
+              </div>
+              <div class="form-group">
+                  <button class="btn btn-primary btn-block" type="submit" *ngIf=!showLoader [disabled]="!adminForm.valid">
+                    <i class="fa fa-save mr-2"></i>{{isEditform?"Submit":"Register"}}
+                  </button>
+                  <div class="text-center" *ngIf="showLoader">
+                      <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+  
+  

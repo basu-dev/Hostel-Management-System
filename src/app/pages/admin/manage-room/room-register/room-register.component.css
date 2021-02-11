@@ -8,3 +8,10 @@ form{
 input{
     width:100%;
 }
+div[formgroupname=assets]{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    width:100%;
+    justify-content: start;
+    grid-column-gap: 5px;
+}

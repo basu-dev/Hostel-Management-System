@@ -1,11 +1,16 @@
+import { Faculty } from "./faculties";
+
 export interface Student{
-    username:String,
-    contact:String,
+    userName:String,
+    contactNo:String,
     email:String,
-    password:String,
+    password?:String,
     dob:String,
-    faculty:String,
+    faculty:Faculty,
     fullName:String,
     address:String,
-    batch:Number,
+    batch:any,
+    roomNo?:any,
+    id?:any,
+    imageUrl?:String,
 }
