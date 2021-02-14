@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
+import * as alertify from "alertify";
 
-declare let alertify: any;
+// declare let alertify: any;
 
 @Injectable({
   providedIn: 'root'

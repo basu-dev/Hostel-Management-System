@@ -12,9 +12,11 @@ import { StudentLoginComponent } from './pages/common/student-login/student-logi
 import { ManageStaffComponent } from './pages/admin/manage-staff/manage-staff.component';
 import { StudentDetailComponent } from './pages/common/student-detail/student-detail.component';
 import { StaffRegisterComponent } from './pages/admin/manage-staff/staff-register/staff-register.component';
+import { LoginComponent } from './pages/common/login/login.component';
+import { AdminGuard } from './guard/admin.guard';
 
 const routes: Routes = [
-  {path:"admin",children:[
+  {path:"admin", children:[
     {path:"adminRegister",component:AdminRegisterComponent},
     {path:"studentRegister",component:StudentRegisterComponent},
     {path:"manageRooms",component:ManageRoomComponent},
@@ -26,8 +28,9 @@ const routes: Routes = [
     {path:"manageUsers",component:ManageUserComponent},
     {path:"manageStaffs",component:ManageStaffComponent},
     {path:"editRoom/:roomName",component:RoomRegisterComponent}
-  ]},
+  ],canActivate:[AdminGuard]},
   {path:"studentDetail/:id",component:StudentDetailComponent},
+  {path:"auth/login",component:LoginComponent},
   {path:"adminLogin",component:AdminLoginComponent},
   {path:"studentLogin",component:StudentLoginComponent},
   {path:"home",component:NoticesComponent},

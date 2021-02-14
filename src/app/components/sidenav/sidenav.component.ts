@@ -12,11 +12,7 @@ export class SidenavComponent implements OnInit {
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
-    // $('#menu-toggle').click(function(e) {
-    //   e.preventDefault();
-    //   $('#wrapper').toggleClass('toggled');
-    // });
-
+    
     this.userName = localStorage.getItem('userName');
   }
 

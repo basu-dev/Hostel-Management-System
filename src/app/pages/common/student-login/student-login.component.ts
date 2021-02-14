@@ -22,15 +22,9 @@ export class StudentLoginComponent implements OnInit {
                private authService: AuthService) { }
 
   ngOnInit() {
-    this.getAllStudents();
     this.initLoginForm();
   }
 
-  getAllStudents() {
-    this.studentService.studentSub.subscribe(
-      data=>this.allStudents=data
-    )
-  }
 
   initLoginForm() {
     this.loginForm = this.builder.group({
@@ -43,19 +37,19 @@ export class StudentLoginComponent implements OnInit {
     this.showLoader = true;
     const email: string = this.loginForm.value.email;
     const password: string = this.loginForm.value.password;
-    for (let item of this.allStudents) {
-      if (item.email === email.trim().toLowerCase() && item.password === password.trim()) {
-        this.authService.studentLogin(item);
-        if (this.authService.isStudentLoggedIn) {
-          this.alertify.success('Logged in Successfully');
-          this.showLoader = false;
-          this.router.navigate(['/studentDetails']);
-        } else {
-          this.showLoader = false;
-          this.alertify.error('Invalid Credentials');
-        }
-      }
-    }
+    // for (let item of this.allStudents) {
+    //   if (item.email === email.trim().toLowerCase() && item.password === password.trim()) {
+    //     this.authService.studentLogin(item);
+    //     if (this.authService.isStudentLoggedIn) {
+    //       this.alertify.success('Logged in Successfully');
+    //       this.showLoader = false;
+    //       this.router.navigate(['/studentDetails']);
+    //     } else {
+    //       this.showLoader = false;
+    //       this.alertify.error('Invalid Credentials');
+    //     }
+    //   }
+    // }
     if (!this.authService.isStudentLoggedIn) {
       this.alertify.error('Invalid Credentials');
       this.showLoader = false;

@@ -1,0 +1,30 @@
+<div class='login'>
+    <div class="background"></div>
+    <div class="form">
+        <form [formGroup] = "loginForm">
+            <div class="form-group">
+                <label for="username">Username*</label>
+                <input type="text" formControlName="username">
+                <div class="form-text text-danger"
+                *ngIf="username!.hasError('required') && username!.touched">
+                Username is required.
+            </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password*</label>
+                <input type="text" id='passwrod' formControlName="password">
+                <div class="form-text text-danger"
+                *ngIf="password!.hasError('required') && password!.touched">
+                Password is required.
+            </div>
+            <div class="form-text text-danger"
+            *ngIf="password!.hasError('minLength') && password!.touched && !password!.hasError('required')">
+            Invalid Password length.
+        </div>
+        <div class="form-group">
+            <button type="submit" [disabled]="!loginForm.valid" (click)="login()">Login</button>
+        </div>
+            </div>
+        </form>
+    </div>
+</div>

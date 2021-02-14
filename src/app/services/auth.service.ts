@@ -1,23 +1,31 @@
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { Url } from './../urls';
 import { Admin } from './../model/admin';
 import { Injectable } from "@angular/core";
-import { HttpClient} from "@angular/common/http";
+import { HttpClient, HttpErrorResponse} from "@angular/common/http";
 import { Student } from '../model/student';
-
-
+import { LoginModel } from '../model/login';
+import {catchError, map} from "rxjs/operators";
+import { Store } from '@ngrx/store';
+import * as ActionTypes from '../../ngrx/auth/auth.action';
+import * as fromAuth from '../../ngrx/auth/auth.reducer';
+import jwt_decode from "jwt-decode";
+import { AlertifyService } from './alertify.service';
 @Injectable({
     providedIn:'root'
 })
 export class AuthService{
 
-    constructor(private http: HttpClient){}
+    constructor(private http: HttpClient,
+      private  store:Store<{auth:fromAuth.State}>,
+      private alerfity:AlertifyService
+        ){}
 
     registerAdmin(admin:Admin):Observable<any>{
         console.log(admin);
         return this.http.post(Url.rootUrl+Url.registerAdmin,admin)
     }
-    studentLogin(student:Student):Observable<any>{
+    studentLogin(student:Student):Observable<any>{  
         return of(true);
     }
     registerStudent(student:Student):Observable<any>{
@@ -32,5 +40,34 @@ export class AuthService{
     }
     logout():void{
         console.log("Logging out")
+    }
+    login(credentials:LoginModel):any{
+       return this.http.post<{token:any}>(Url.login,credentials).pipe(
+           catchError(this.handleError),
+           map(data=>jwt_decode(data.token)),
+       ).subscribe(
+          (data:any)=>{
+               switch(data.role){
+                case "administration":
+                    this.store.dispatch({type:ActionTypes.ActionTypes.IS_ADMIN});
+                    break;
+                case "student":
+                    this.store.dispatch({type:ActionTypes.ActionTypes.IS_STUDENT})
+                    break;
+                case "staff":
+                    this.store.dispatch({type:ActionTypes.ActionTypes.IS_STAFF})
+                    break;
+                    default :
+                    this.store.dispatch({type:ActionTypes.ActionTypes.IS_UNAUTHENTICATED})
+               }
+        },
+        err=>this.alerfity.error(err)
+       )
+    }
+    public handleError(error:HttpErrorResponse){
+        return throwError(error.error);
+    }
+    authenticate(){
+        this.store.dispatch({type:ActionTypes.ActionTypes.IS_AUTHENTICATED})
     }
 }

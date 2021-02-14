@@ -23,6 +23,10 @@ import { EditIconComponent } from './components/edit.component';
 import { ManageStaffComponent } from './pages/admin/manage-staff/manage-staff.component';
 import { StudentDetailComponent } from './pages/common/student-detail/student-detail.component';
 import { StaffRegisterComponent } from './pages/admin/manage-staff/staff-register/staff-register.component';
+import { StoreModule } from '@ngrx/store';
+import { LoginComponent } from './pages/common/login/login.component';
+import { authReducer } from 'src/ngrx/auth/auth.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 @NgModule({
@@ -45,6 +49,7 @@ import { StaffRegisterComponent } from './pages/admin/manage-staff/staff-registe
     StudentDetailComponent,
     StaffRegisterComponent,
     ManageStaffComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,11 @@ import { StaffRegisterComponent } from './pages/admin/manage-staff/staff-registe
     HttpClientModule,
     FormsModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({ auth: authReducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 10
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

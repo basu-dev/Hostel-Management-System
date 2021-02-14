@@ -1,7 +1,10 @@
 
 <!-- <app-room-register></app-room-register> -->
 <!-- <app-notices></app-notices> -->
-<app-sidenav></app-sidenav>
+<app-sidenav *ngIf="isAuthenticated;else notAuthenticatedBlock"></app-sidenav>
+<ng-template #notAuthenticatedBlock>
+    <router-outlet></router-outlet>
+</ng-template>
 <!-- <app-admin-register></app-admin-register> -->
 <!-- <app-student-register></app-student-register> -->
 <!-- <router-outlet></router-outlet> -->

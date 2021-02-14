@@ -1,0 +1,201 @@
+
+
+** Register a new user--- the role is "Admin" or "Administration"****
+//@router POST URL/auth/register/administration
+
+{
+
+    "username":"santosh dev",
+    "email":"devkota549@gmail.com",
+    "password":"hostel23",
+    "phoneNo":"9845812713"
+}
+
+* Register a new Student-- the role is "Student" ****
+//@route    POST /auth/register/student
+
+{
+
+    "username":"073BEX469",
+    "email":"devkota549@gmail.com",
+    "fullName":"saroj",
+    "faculty":"bex",
+    "dob":"2054-03-08",
+    "address":"chitwan",
+    "contact":"3446455465",
+    "batch":"073"
+}
+
+* For login of any type of user student/admin/administration **
+//@route    POST /auth/login
+{
+
+    "username":"santosh",
+    "password":"hostel23"
+}
+
+
+///////////////////////////=================////////////////////////
+
+* Get all the students of database **
+//@route    GET /students
+
+Response of the servere ---
+{
+    "success": true,
+    "data": [
+        {
+            "isPasswordChanged": false,
+            "_id": "601d92dccc6bfb3d407b14f2",
+            "username": "073BEX448",
+            "email": "devkota549@gmail.com",
+            "password": "kdXLnn7wPn",
+            "fullName": "saroj",
+            "faculty": "bex",
+            "dob": "2054-03-08",
+            "address": "chitwan",
+            "contact": "3446455465",
+            "batch": "073",
+            "__v": 0
+        },
+        {
+            "isPasswordChanged": false,
+            "_id": "601d98aa67f2164690806b0c",
+            "username": "073BEX445",
+            "email": "devkota549@gmail.com",
+            "password": "kdXLnn7wPn",
+            "fullName": "saroj",
+            "faculty": "bex",
+            "dob": "2054-03-08",
+            "address": "chitwan",
+            "contact": "3446455465",
+            "batch": "073",
+            "__v": 0
+        }
+    ]
+}
+
+
+** Get student by id*******
+//@route    GET  /students/:id
+/students/601d98aa67f2164690806b0c
+
+Response is ----
+{
+    "success": true,
+    "data": {
+        "isPasswordChanged": false,
+        "_id": "601d98aa67f2164690806b0c",
+        "username": "073BEX445",
+        "email": "devkota549@gmail.com",
+        "password": "kdXLnn7wPn",
+        "fullName": "saroj",
+        "faculty": "bex",
+        "dob": "2054-03-08",
+        "address": "chitwan",
+        "contact": "3446455465",
+        "batch": "073",
+        "__v": 0
+    }
+}
+
+
+
+*** Create new student **** 
+//@route    POST /students
+
+{
+    "username": "073BEX450",
+    "email": "devkota549@gmail.com",
+    "password": "kdXLnn7wPn",
+    "fullName": "saroj",
+    "faculty": "bex",
+    "dob": "2054-03-08",
+    "address": "chitwan",
+    "contact": "3446455465",
+    "batch": "073"
+}
+
+* Update the existing student ** 
+//@route    PUT /students/:id
+
+{
+    "username": "073BE",
+    "email": "devkota549@gfdmail.com",
+    "password": "kdXLnn7wPn",
+    "fullName": "saroj",
+    "faculty": "bex",
+    "dob": "2054-03-08",
+    "address": "chitwan",
+    "contact": "3446455465",
+    "batch": "073"
+}
+
+* Delete the student from databases **
+//@route    Delete /students/:id
+/students/601d9677ee2f93371c0f9066
+
+Response can be - 
+{
+    "success": true,
+    "data": {
+        "isPasswordChanged": false,
+        "_id": "601d9677ee2f93371c0f9066",
+        "username": "073BEX449",
+        "email": "devkota549@gmail.com",
+        "password": "kdXLnn7wPn",
+        "fullName": "saroj",
+        "faculty": "bex",
+        "dob": "2054-03-08",
+        "address": "chitwan",
+        "contact": "3446455465",
+        "batch": "073",
+        "__v": 0
+    }
+}
+
+****** ROOOOM ********************
+
+* Get all the rooms **
+//@route    GET /rooms
+Response-- 
+{
+    "success": true,
+    "data": [
+        {
+            "assets": {
+                "table": 2,
+                "chair": 3,
+                "bed": 2,
+                "wadrobe": 2
+            },
+            "student": [
+                {
+                    "isPasswordChanged": false,
+                    "username": "073BEX445",
+                    "email": "devkota549@gmail.com",
+                    "password": "kdXLnn7wPn",
+                    "fullName": "saroj",
+                    "faculty": "bex",
+                    "dob": "2054-03-08",
+                    "address": "chitwan",
+                    "contact": "3446455465",
+                    "batch": "073",
+                    "__v": 0
+                }
+            ],
+            "_id": "601e16266768f84874fe9cff",
+            "roomName": "A112",
+            "block": "A",
+            "__v": 0
+        },
+        {
+            "assets": {
+                "table": 2,
+                "chair": 3,
+                "bed": 2,
+                "wadrobe": 2
+            },
+            "student": [],
+            "_id": "601e1802f077ea4420367685",
+            "roomName": "A113",
