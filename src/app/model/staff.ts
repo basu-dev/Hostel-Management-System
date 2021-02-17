@@ -1,11 +1,11 @@
 export interface Staff{
     id?:any,
-    userName:String,
+    username:String,
     fullName:String,
     staffType:StaffType,
     password?:String,
     imageUrl?:String,
-    contactNo:String,
+    contact:String,
     email:String,
     address:String
 

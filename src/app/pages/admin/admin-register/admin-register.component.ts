@@ -20,8 +20,8 @@ export class AdminRegisterComponent implements OnInit {
     this.adminForm = new FormGroup({
       email: new FormControl('a@a.com', [Validators.required, Validators.email]),
       password: new FormControl('asdf234', [Validators.required, Validators.minLength(6)]),
-      userName: new FormControl('animal32',[Validators.required]),
-      contactNo: new FormControl('5646546546546',[Validators.required,Validators.minLength(10)])
+      username: new FormControl('animal32',[Validators.required]),
+      contact: new FormControl('5646546546546',[Validators.required,Validators.minLength(10)])
     });
   }
 

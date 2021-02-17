@@ -8,7 +8,13 @@
         <p class="text-center" style="font-size: 20px; margin: 0">
           <i class="fas fa-city"></i>
         </p>
-        Paschimanchal Campus Hostel
+        <div class="hostel-name">
+          <img height="50" src="../../../assets/icons/logo.png" >
+          <div>
+  
+            Paschimanchal Campus Hostel
+          </div>
+        </div>
       </div>
       <div class="list-group list-group-flush">
         <a [routerLink]="['/home']" routerLinkActive="active"
@@ -19,26 +25,26 @@
         <!--Admin Access-->
 
         <a class="list-group-item list-group-item-action bg-primary text-white" [routerLink]="['/admin/manageUsers']"
-          routerLinkActive="active" *ngIf="authService.isAdminLoggedIn">
+          routerLinkActive="active" *ngIf="IsAdmin">
           <i class="fas fa-users mr-3"></i> Students
         </a>
         <!-- <a [routerLink]="['/admin/manageS']" routerLinkActive="active"  class="list-group-item list-group-item-action bg-primary text-white"
-          *ngIf="authService.isAdminLoggedIn">
+          *ngIf="IsAdmin">
             <i class="fab fa-megaport mr-3"></i>Manage Streams</a> -->
         <a [routerLink]="['/admin/manageRooms']" routerLinkActive="active"
-          class="list-group-item list-group-item-action bg-primary text-white" *ngIf="authService.isAdminLoggedIn">
+          class="list-group-item list-group-item-action bg-primary text-white" *ngIf="IsAdmin">
           <i class="fas fa-home mr-3"></i>Manage Rooms
         </a>
         <!-- <a [routerLink]="['/unallocatedUsers']" routerLinkActive="active"
-          class="list-group-item list-group-item-action bg-primary text-white" *ngIf="authService.isAdminLoggedIn">
+          class="list-group-item list-group-item-action bg-primary text-white" *ngIf="IsAdmin">
           <i class="fas fa-allergies mr-3"></i>Room Allocation
         </a> -->
         <a [routerLink]="['/admin/manageStaffs']" routerLinkActive="active"
-          class="list-group-item list-group-item-action bg-primary text-white" *ngIf="authService.isAdminLoggedIn">
+          class="list-group-item list-group-item-action bg-primary text-white" *ngIf="IsAdmin">
           <i class="fas fa-hands-helping mr-3"></i>Staff
         </a>
         <a [routerLink]="['/messages']" routerLinkActive="active"
-          class="list-group-item list-group-item-action bg-primary text-white" *ngIf="authService.isAdminLoggedIn">
+          class="list-group-item list-group-item-action bg-primary text-white" *ngIf="IsAdmin">
           <i class="fas fa-comment mr-3"></i>Messages
         </a>
 
@@ -46,31 +52,31 @@
 
         <!--User Access-->
         <a [routerLink]="['/userDetails']" routerLinkActive="active"
-          class="list-group-item list-group-item-action bg-primary text-white" *ngIf="authService.isStudentLoggedIn">
+          class="list-group-item list-group-item-action bg-primary text-white" *ngIf="IsStudent">
           <i class="fas fa-user-circle mr-3"></i>User Profile
         </a>
         <!--User Access-->
 
 
 
-        <a [routerLink]="['/admin/createMessage']" *ngIf="authService.isStudentLoggedIn" routerLinkActive="active"
+        <a [routerLink]="['/admin/createMessage']" *ngIf="IsStudent" routerLinkActive="active"
           class="list-group-item list-group-item-action bg-primary text-white">
-          <i class="fas fa-file-signature mr-3"></i>contactNo Admin
+          <i class="fas fa-file-signature mr-3"></i>contact Admin
         </a>
 
         <a [routerLink]="['/studentLogin']" routerLinkActive="active"
           class="list-group-item list-group-item-action bg-primary text-white"
-          *ngIf="!authService.isStudentLoggedIn && !authService.isAdminLoggedIn">
+          *ngIf="!IsStudent && !IsAdmin">
           <i class="fas fa-sign-in-alt mr-3"></i>Student Login
         </a>
         <a [routerLink]="['/adminLogin']" routerLinkActive="active"
           class="list-group-item list-group-item-action bg-primary text-white"
-          *ngIf="!authService.isStudentLoggedIn && !authService.isAdminLoggedIn">
+          *ngIf="!IsStudent && !IsAdmin">
           <i class="fas fa-cog mr-3"></i>Admin Login
         </a>
         <a routerLinkActive="active" class="list-group-item list-group-item-action bg-primary text-white"
           (click)="authService.logout()" style="cursor: pointer"
-          *ngIf="authService.isStudentLoggedIn || authService.isAdminLoggedIn">
+          *ngIf="IsStudent || IsAdmin">
           <i class="fas fa-sign-out-alt mr-3"></i>Logout
         </a>
 
@@ -93,13 +99,13 @@
           <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
             <li class="nav-item">
               <a routerLinkActive="active" class="list-group-item list-group-item-action bg-primary text-white border-0"
-                *ngIf="authService.isStudentLoggedIn|| authService.isAdminLoggedIn">
-                <i class="fas fa-user mr-3"></i>Welcome {{userName}}
+                *ngIf="IsStudent|| IsAdmin">
+                <i class="fas fa-user mr-3"></i>Welcome {{username}}
               </a>
             </li>
             <!-- <li class="nav-item">
                 <a routerLinkActive="active"  class="list-group-item list-group-item-action bg-dark text-white" (click)="authService.logout()" style="cursor: pointer"
-                *ngIf="authService.isStudentLoggedIn || authService.isAdminLoggedIn">
+                *ngIf="IsStudent || IsAdmin">
                   <i class="fas fa-sign-out-alt mr-3"></i>Logout
                 </a>
               </li> -->

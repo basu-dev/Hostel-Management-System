@@ -36,7 +36,7 @@ export class RoomRegisterComponent implements OnInit {
   isEditform = false;
   ngOnInit() {
 
-    const roomName = this.route.snapshot.paramMap.get('roomName') as String;
+    const roomName = this.route.snapshot.paramMap.get('roomname') as String;
     if(roomName){
     this.roomSub = this.roomService.getRoomByName(roomName).subscribe(data => {
       this.room = data,

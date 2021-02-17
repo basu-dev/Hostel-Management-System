@@ -1,7 +1,29 @@
 :root{
     --primary-color:#6200ee;
+    --secondary-color:#1d2f39;
+    --tertiary-color:#f5f5f5;
+    --table-color:#ebebeb;
 }
 
 .bg-primary,.btn-primary{
     background-color:var(--primary-color) !important;
+}
+.card-header{
+    background-color:var(--tertiary-color)  !important;
+    color: rgb(22, 21, 21) !important
+}
+body{
+    background-color: #fafafa !important;
+}
+.sidebar-heading{
+    padding:.2em .2em  !important;
+    background-color: var(--primary-color) !important; 
+}
+tr:nth-child(even){
+    background-color: var(--table-color);
+}
+.card-header-controls{
+    width:100px;
+    display: flex;
+    justify-content: space-between;
 }

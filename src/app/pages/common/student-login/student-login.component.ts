@@ -28,7 +28,7 @@ export class StudentLoginComponent implements OnInit {
 
   initLoginForm() {
     this.loginForm = this.builder.group({
-      userName:['073bex412',[Validators.required]],
+      username:['073bex412',[Validators.required]],
       password:['Nice at nice',[Validators.required]]
     })
   }

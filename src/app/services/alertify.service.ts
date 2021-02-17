@@ -1,8 +1,8 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import * as alertify from "alertify";
+// import * as alertify from "alertify";
 
-// declare let alertify: any;
+declare let alertify: any;
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +15,11 @@ confirm(title: string, message: string, funC: () => any, funCan: () => any) {
 }
 
 success(message: string) {
-  alertify.success(message);
+  alert(message);
 }
 
 error(message: string) {
-  alertify.error(message);
+  alert(message);
 }
 
 warning(message: string) {

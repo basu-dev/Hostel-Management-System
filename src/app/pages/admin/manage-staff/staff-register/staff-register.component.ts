@@ -59,23 +59,23 @@ export class StaffRegisterComponent implements OnInit {
   initStaffForm() {
     this.adminForm = new FormGroup({
       email: new FormControl('a@a.com', [Validators.required, Validators.email]),
-      userName: new FormControl('animal32',[Validators.required]),
+      username: new FormControl('animal32',[Validators.required]),
       staffType: new FormControl('bex',[Validators.required]),
       fullName: new FormControl('New User',[Validators.required]),
       address: new FormControl('Chitwan',[Validators.required]),
-      contactNo: new FormControl('5646546546546',[Validators.required,Validators.minLength(10)]),
+      contact: new FormControl('5646546546546',[Validators.required,Validators.minLength(10)]),
       // department: new FormControl('',Validators.required)
     });
   }
   editStaffForm(staff:Staff) {
-    let {email,userName,staffType,fullName,address,contactNo} = staff;
+    let {email,username,staffType,fullName,address,contact} = staff;
     this.adminForm = new FormGroup({
       email: new FormControl(email, [Validators.required, Validators.email]),
-      userName: new FormControl(userName,[Validators.required]),
+      username: new FormControl(username,[Validators.required]),
       staffType: new FormControl(staffType,[Validators.required]),
       fullName: new FormControl(fullName,[Validators.required]),
       address: new FormControl(address,[Validators.required]),
-      contactNo: new FormControl(contactNo,[Validators.required,Validators.minLength(10)]),
+      contact: new FormControl(contact,[Validators.required,Validators.minLength(10)]),
       // department: new FormControl('',Validators.required)
     });
   }
@@ -83,7 +83,7 @@ export class StaffRegisterComponent implements OnInit {
   onSubmit() {
     console.log(this.adminForm.value);
     if(this.isEditform){
-      this.staffService.editStaff(this.staff.userName,this.staff);
+      this.staffService.editStaff(this.staff.username,this.staff);
      return; 
     }
     this.staffService.registerStaff(this.adminForm.value)

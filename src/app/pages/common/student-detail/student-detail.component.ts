@@ -16,11 +16,10 @@ export class StudentDetailComponent implements OnInit {
       private alertify:AlertifyService
     ) { }
   student: Student;
-  studentId:String | null = '0';
+  id:String | null = '0';
   ngOnInit(): void {
-    this.studentId = this.route.snapshot.paramMap.get('id');
-    console.log(this.studentId);
-    this.studentService.getStudentById(this.studentId).subscribe(
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.studentService.getStudentByUsername(this.id!).subscribe(
       data=>this.student = data,
       err=>this.alertify.error(err)
     )

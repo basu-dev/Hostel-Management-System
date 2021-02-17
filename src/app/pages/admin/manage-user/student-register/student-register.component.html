@@ -1,17 +1,17 @@
 <div >
   <div class="row">
     <div class="col-md-12">
-      <div class="card border-primary">
+      <div class="card ">
         <div class="card-header bg-primary text-white">
           <h4><i class="fas fa-user-cog mr-2"></i> {{componentName}}</h4>
         </div>
         <div class="card-body">
           <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" >
             <div class="form-group">
-              <label for="userName">userName*</label>
-              <input type="text" class="form-control" id="userName" formControlName="userName">
-              <div class="form-text text-danger" *ngIf="adminForm.get('userName').hasError('required') && adminForm.get('userName').touched">
-                userName cannot be blank
+              <label for="username">username*</label>
+              <input type="text" class="form-control" id="username"  formControlName="username">
+              <div class="form-text text-danger" *ngIf="adminForm.get('username').hasError('required') && adminForm.get('username').touched">
+                username cannot be blank
               </div>
             </div>
             <div class="form-group">
@@ -41,9 +41,9 @@
             <div class="form-group">
               <label for="faculty">Faculty*</label>
               <select type="number" class="form-control" [selectedIndex]="1" value="1" id="faculty" formControlName="faculty">
-                <option *ngFor="let key of keys" [value]='selectedFaculty'>{{key}}</option>
+                <option *ngFor="let key of keys" [value]='"BEX"'>{{key}}</option>
               </select>
-              <div class="form-text text-danger" *ngIf="adminForm.get('batch').hasError('required') && adminForm.get('batch').touched">
+              <div class="form-text text-danger" *ngIf="adminForm.get('faculty').hasError('required') && adminForm.get('faculty').touched">
                 Batch field is required
               </div>
             </div>
@@ -62,25 +62,29 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="contactNo">contactNo No.*</label>
-              <input type="contactNo" class="form-control" id="contactNo" formControlName="contactNo">
-              <div class="form-text text-danger" *ngIf="adminForm.get('contactNo').hasError('required') && adminForm.get('contactNo').touched">
-                contactNo Field cannot be blank
+              <label for="contact">contact No.*</label>
+              <input type="contact" class="form-control" id="contact" formControlName="contact">
+              <div class="form-text text-danger" *ngIf="adminForm.get('contact').hasError('required') && adminForm.get('contact').touched">
+                contact Field cannot be blank
               </div>
-              <div class="form-text text-danger" *ngIf="adminForm.get('contactNo').hasError('minlength') && adminForm.get('contactNo').touched">
-                  contactNo No. should be 10 digits long.
+              <div class="form-text text-danger" *ngIf="adminForm.get('contact').hasError('minlength') && adminForm.get('contact').touched">
+                  contact No. should be 10 digits long.
                 </div>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary btn-block" type="submit" *ngIf=!showLoader [disabled]="!adminForm.valid">
                   <i class="fa fa-save mr-2"></i>{{isEditform?"Submit":"Register"}}
                 </button>
-
                 <div class="text-center" *ngIf="showLoader">
                     <div class="spinner-border text-primary" role="status">
                       <span class="sr-only">Loading...</span>
                     </div>
                   </div>
+            </div>
+            <div class="form-group">
+              <button *ngIf="isEditform" class="btn btn-danger btn-block" (click)="deleteStudent()" type="button" >
+                <i class="fa fa-save mr-2"></i>Delete Student
+              </button>
             </div>
           </form>
         </div>

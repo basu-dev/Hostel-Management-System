@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -12,8 +12,6 @@ import { StudentRegisterComponent } from './pages/admin/manage-user/student-regi
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NoticesComponent } from './pages/common/notices/notices.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { AdminLoginComponent } from './pages/common/admin-login/admin-login.component';
-import { StudentLoginComponent } from './pages/common/student-login/student-login.component';
 import { ManageUserComponent } from './pages/admin/manage-user/manage-user.component';
 import { ManageStreamComponent } from './pages/admin/manage-stream/manage-stream.component';
 import { ManageRoomComponent } from './pages/admin/manage-room/manage-room.component';
@@ -27,6 +25,9 @@ import { StoreModule } from '@ngrx/store';
 import { LoginComponent } from './pages/common/login/login.component';
 import { authReducer } from 'src/ngrx/auth/auth.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { TokenInterceptorService } from './services/token-interceptor';
+import { NoticeDetailComponent } from './pages/common/notices/notice-detail/notice-detail.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -37,8 +38,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     RoomRegisterComponent,
     NoticesComponent,
     SidenavComponent,
-    AdminLoginComponent,
-    StudentLoginComponent,
     ManageUserComponent,
     ManageStreamComponent,
     ManageRoomComponent,
@@ -50,6 +49,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StaffRegisterComponent,
     ManageStaffComponent,
     LoginComponent,
+    NoticeDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +63,13 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
       maxAge: 10
     })
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,10 +8,11 @@ import { Student } from 'src/app/model/student';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { Subscription } from 'rxjs';
 import { Faculty } from 'src/app/model/faculties';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-student-register',
-  templateUrl: './student-register.component.html',
+  templateUrl: './student-register.component.html', 
   styleUrls: ['./student-register.component.css']
 })
 export class StudentRegisterComponent implements OnInit {
@@ -24,87 +25,98 @@ export class StudentRegisterComponent implements OnInit {
     private alertify: AlertifyService,
     private builder: FormBuilder) { 
       this.keys = Object.keys(this.faculties).filter(String);
+      this.id = this.route.snapshot.paramMap.get('username')!;
+      console.log(this.id);
     }
+    
+  id:String;
   keys:any[];
   faculties=Faculty;
   selectedFaculty:Faculty;
   adminForm: any;
   isEditform=false;
-  student:Student;
+  student:Student = new Student();
   componentName='Student Registration';
   private studentSub: Subscription;
+
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.studentSub = this.studentService.getStudentById(id).subscribe(data=>{
-      this.student=data,
-      (err:any)=>this.alertify.error(err)
-    });
-    console.log(this.student);
-    if(this.student){
-      if (typeof(this.student)){
+    this.studentSub = this.studentService.getStudentById(this.id).subscribe(
+      data=>{
+        console.log(data);
+        this.student=data;
+        console.log(this.student)
         this.selectedFaculty = this.student.faculty;
-        this.isEditform=true;
-        this.componentName='Edit Student';
-      }
-      else{
-        console.log("In between")
-      }
+      },
+      err=>console.log(err)
+    );
+    if(this.id){
+      this.isEditform=true;
+      this.componentName='Edit Student';
+      this.editStudentForm();
     }
     else{
-      this.componentName='Student Registration';
-
-      this.isEditform=false;
-    }
-    if(this.isEditform){
-      this.editStudentForm(this.student);
-
-    }else{
       this.initStudentForm();
       this.selectedFaculty=Faculty.ElectronicsAndCommunication;
+
     }
+
+
   }
 
   initStudentForm() {
     
     this.adminForm = new FormGroup({
       email: new FormControl('a@a.com', [Validators.required, Validators.email]),
-      userName: new FormControl('animal32',[Validators.required]),
-      faculty: new FormControl('073',[Validators.required]),
+      username: new FormControl('073BEX473',[Validators.required]),
+      faculty: new FormControl('',[Validators.required]),
       batch: new FormControl('073',[Validators.required]),
       fullName: new FormControl('New User',[Validators.required]),
       address: new FormControl('Chitwan',[Validators.required]),
       dob: new FormControl('2054-3-12',[Validators.required]),
-      contactNo: new FormControl('5646546546546',[Validators.required,Validators.minLength(10)]),
+      contact: new FormControl('5646546546546',[Validators.required,Validators.minLength(10)]),
       
       // department: new FormControl('',Validators.required)
     });
   }
-  editStudentForm(student:Student) {
-    let {email,userName,faculty,batch,fullName,address,dob,contactNo} = student;
+  editStudentForm() {
+    console.log("sdaf");
+    // let {email,username,faculty,batch,fullName,address,dob,contact} = student;
     this.adminForm = new FormGroup({
-      email: new FormControl(email, [Validators.required, Validators.email]),
-      userName: new FormControl(userName,[Validators.required]),
-      faculty: new FormControl(faculty,[Validators.required]),
-      batch: new FormControl(batch,[Validators.required]),
-      fullName: new FormControl(fullName,[Validators.required]),
-      address: new FormControl(address,[Validators.required]),
-      dob: new FormControl(dob,[Validators.required]),
-      contactNo: new FormControl(contactNo,[Validators.required,Validators.minLength(10)]),
+      email: new FormControl(this.student.email, [Validators.required, Validators.email]),
+      username: new FormControl(this.student.username,[Validators.required]),
+      faculty: new FormControl(this.student.faculty,[Validators.required]),
+      batch: new FormControl(this.student.batch,[Validators.required]),
+      fullName: new FormControl(this.student.fullName,[Validators.required]),
+      address: new FormControl(this.student.address,[Validators.required]),
+      dob: new FormControl(this.student.dob,[Validators.required]),
+      contact: new FormControl(this.student.contact,[Validators.required,Validators.minLength(10)]),
       
       // department: new FormControl('',Validators.required)
     });
   }
 
+  deleteStudent(){
+    this.studentService.deleteStudent(this.student._id).subscribe(
+      data=>this.alertify.success("User Deleted Successfully"),
+      err=>this.alertify.error(err)
+    )
+  }
+
   onSubmit() {
-    console.log(this.adminForm.value);
+    console.log(this.adminForm);
     if(this.isEditform){
-      this.studentService.editStudent(this.student.userName,this.student);
+      console.log(this.adminForm.value);
+   
+      this.studentService.editStudent(this.student._id,this.adminForm.value).subscribe(
+        data=>this.alertify.success("Student Updated Successfully"),
+        err=>this.alertify.error(err)
+      );
      return; 
     }
     this.studentService.registerStudent(this.adminForm.value)
     .subscribe(
       data=>{
-        this.router.navigateByUrl("/admin/manageUsers"); 
+        // this.router.navigateByUrl("/admin/manageUsers"); 
       },
       err=>console.error(err)
     )
@@ -125,7 +137,7 @@ export class StudentRegisterComponent implements OnInit {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.studentSub.unsubscribe();
+    // this.studentSub.unsubscribe();
   }
 
 }

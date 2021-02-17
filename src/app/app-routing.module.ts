@@ -5,15 +5,14 @@ import { ManageRoomComponent } from './pages/admin/manage-room/manage-room.compo
 import { ManageUserComponent } from './pages/admin/manage-user/manage-user.component';
 import { RoomRegisterComponent } from './pages/admin/manage-room/room-register/room-register.component';
 import { StudentRegisterComponent } from './pages/admin/manage-user/student-register/student-register.component';
-import { AdminLoginComponent } from './pages/common/admin-login/admin-login.component';
-import { ContactAdminComponent } from './pages/common/contact-admin/contact-admin.component';
 import { NoticesComponent } from './pages/common/notices/notices.component';
-import { StudentLoginComponent } from './pages/common/student-login/student-login.component';
 import { ManageStaffComponent } from './pages/admin/manage-staff/manage-staff.component';
 import { StudentDetailComponent } from './pages/common/student-detail/student-detail.component';
 import { StaffRegisterComponent } from './pages/admin/manage-staff/staff-register/staff-register.component';
 import { LoginComponent } from './pages/common/login/login.component';
 import { AdminGuard } from './guard/admin.guard';
+import { ContactAdminComponent } from './pages/common/contact-admin/contact-admin.component';
+import { NoticeDetailComponent } from './pages/common/notices/notice-detail/notice-detail.component';
 
 const routes: Routes = [
   {path:"admin", children:[
@@ -24,16 +23,16 @@ const routes: Routes = [
     {path:"staffRegister",component:StaffRegisterComponent},
     {path:"editStaff/:id",component:RoomRegisterComponent},
     {path:"roomRegister",component:RoomRegisterComponent},
-    {path:"editStudent/:id",component:StudentRegisterComponent},
+    {path:"editStudent/:username",component:StudentRegisterComponent},
     {path:"manageUsers",component:ManageUserComponent},
     {path:"manageStaffs",component:ManageStaffComponent},
-    {path:"editRoom/:roomName",component:RoomRegisterComponent}
-  ],canActivate:[AdminGuard]},
-  {path:"studentDetail/:id",component:StudentDetailComponent},
+    {path:"editRoom/:roomName",component:RoomRegisterComponent},
+    
+  ]},
+  {path:"studentDetail/:username",component:StudentDetailComponent},
   {path:"auth/login",component:LoginComponent},
-  {path:"adminLogin",component:AdminLoginComponent},
-  {path:"studentLogin",component:StudentLoginComponent},
   {path:"home",component:NoticesComponent},
+  {path:'noticeDetail/:id',component:NoticeDetailComponent},
   {path:"createMessage",component:ContactAdminComponent},
   {path:"",redirectTo:"/home",pathMatch:'full'}
 ];

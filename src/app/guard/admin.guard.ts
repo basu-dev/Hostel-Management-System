@@ -13,13 +13,7 @@ export class AdminGuard implements CanActivateChild  {
               private alertify: AlertifyService) {}
   canActivateChild(route: ActivatedRouteSnapshot,
                    state: RouterStateSnapshot) {
-    return false
-            // if (this.authSerivce.isAdminLoggedIn()) {
-            //   return true;
-            // } else {
-            //   this.router.navigate(['/']);
-            //   this.alertify.error('Access Denied');
-            //   return false;
-            // }
+                     console.log(this.authSerivce.isAdmin)
+    return this.authSerivce.isAdmin;
     }
 }

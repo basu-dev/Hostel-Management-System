@@ -9,8 +9,8 @@ export class StaffService {
     staffList:Staff[]=[
         {
             id:1,
-            userName:"jeevan",
-            contactNo:"2343241323",
+            username:"jeevan",
+            contact:"2343241323",
             email:"a@a.com",
             password:"Nice@123",
             staffType:StaffType.GeneralStaff,
@@ -20,8 +20,8 @@ export class StaffService {
         },
         {
             id:1,
-            userName:"manoj",
-            contactNo:"2343545158",
+            username:"manoj",
+            contact:"2343545158",
             email:"ab@asa.com",
             password:"Nice@123",
             staffType:StaffType.MeshStaff,
