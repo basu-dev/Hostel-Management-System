@@ -16,6 +16,30 @@ export class ManageRoomComponent implements OnInit {
       public alertify:AlertifyService,
       private router:Router
     ) { }
+    // settings = {
+    //   columns: {
+    //     roomName: {
+    //       title: 'Room Name'
+    //     },
+    //     students: {
+    //       title: 'Students'
+    //     },
+    //     block: {
+    //       title: 'Block'
+    //     },
+    //     table: {
+    //       title: 'Tables'
+    //     },chair:{
+    //       title:"Chairs"
+    //     },
+    //     wardrobe:{
+    //       title:"Wardrobe"
+    //     },
+    //     bed:{
+    //       title:"Bed"
+    //     }
+    //   }
+    // };
   roomList:Room[]=[];
   roomSub:Subscription;
   ngOnInit(): void {
@@ -23,7 +47,7 @@ export class ManageRoomComponent implements OnInit {
       rooms=>this.roomList=rooms,
       err=>this.alertify.error(err)
     )
-    this.roomService.sendAllRooms();
+    this.roomService.getAllRooms();
   }
   editRoom(roomName:String):void{
     this.router.navigate(["/admin/editRoom",roomName]);

@@ -27,7 +27,9 @@ import { authReducer } from 'src/ngrx/auth/auth.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TokenInterceptorService } from './services/token-interceptor';
 import { NoticeDetailComponent } from './pages/common/notices/notice-detail/notice-detail.component';
-import { CommonModule } from '@angular/common';
+
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { TableFooterComponent } from './components/table-footer/table-footer.component';
 
 
 @NgModule({
@@ -50,11 +52,13 @@ import { CommonModule } from '@angular/common';
     ManageStaffComponent,
     LoginComponent,
     NoticeDetailComponent,
+    TableFooterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    Ng2SmartTableModule,
     FormsModule,
     NgbModule,
     ReactiveFormsModule,

@@ -1,66 +1,34 @@
+import { HttpClient } from '@angular/common/http';
 import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
 import { Block, Room } from '../model/room';
+import { Url } from '../urls';
 import { AlertifyService } from './alertify.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class RoomService {
-    constructor(private alertify:AlertifyService){};
-    roomList:Room[]=[
-        {
-            roomName:'A307',
-            students:[
-                '073bex412',
-                '073bex422'
-            ],
-            block:Block.A,
-            assets:{
-                table:2,
-                chair:2,
-                wardrobe:2,
-                bed:2
-            }
-
-        },
-        {
-            roomName:'B102',
-            students:[
-                '073bex412',
-                '073bex422'
-            ],
-            block:Block.B,
-            assets:{
-                table:2,
-                chair:2,
-                wardrobe:2,
-                bed:2
-            }
-
-        },
-        {
-            roomName:'C205',
-            students:[
-                '073bce412',
-                '073bce422'
-            ],
-            block:Block.C,
-            assets:{
-                table:2,
-                chair:2,
-                wardrobe:2,
-                bed:2
-            }
-
-        },
-    ]
+    constructor(private alertify:AlertifyService,
+        
+            private http:HttpClient,
+        ){};
+    roomList:Room[]=[]
+    
     public roomSub = new Subject<Room[]>();
 
-    getAllRooms():Observable<Room[]>{
-        return of(this.roomList);
+    getAllRooms():void{
+         this.http.get(Url.rooms).subscribe(
+            (data:any)=>{this.roomList = data.data,
+                this.sendAllRooms();
+                // console.log(data);
+                console.log(this.roomList[0]);
+            },
+            err=>this.alertify.error(err)
+        );
     }
+
     sendAllRooms():void{
         this.roomSub.next(this.roomList);
     }

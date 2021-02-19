@@ -4,10 +4,12 @@ export class Url {
 //    public static rootUrl= 'http://localhost:5000';
 
    public static registerAdmin=Url.rootUrl+`/auth/register/administration`;
-   public static registerStudent=Url.rootUrl+'/auth/register/student';
+   public static registerStudent=Url.rootUrl+'/students';
    public static filterStudent = Url.rootUrl+'/filterStudents';
    public static login=Url.rootUrl+'/auth/login';
    public static students=Url.rootUrl+'/students';
+   public static staffs=Url.rootUrl+'/staffs';
+
    public static rooms=Url.rootUrl+'/rooms';
 
 }

@@ -2,6 +2,7 @@ import { Faculty } from "./faculties";
 
 export class Student{
     username:String='';
+    rollNo:String;
     contact:String='';
     email:String='';
     password?:String='';

@@ -19,7 +19,75 @@ export class SidenavComponent implements OnInit {
     IsAuthenticated= true;
     IsStaff= false;
     IsStudent= false;
+     adminSidenav=[
+       {
+         name:"Home",
+         link:"/home",
+         icon:"fas-hotel"
+       },
+       {
+         name:"Students",
+         directory:true,
+         icon:"fas-users",
+         link:"",
+         items:[
+           {
+           name:"Block A",
+           link:"/admin/manageStudents/A",
+
+           },
+           {
+            name:"Block B",
+            link:"/admin/manageStudents/C",
+            },
+            {
+              name:"Block C",
+              link:"/admin/manageStudents/C",
+              },
+              {
+                name:"Block E",
+                link:"/admin/manageStudents/E",
+                },
+
+         ]
+       },
+       {
+         name:"Manage Rooms",
+         directory:true,
+         icon:"fas-home",
+         link:"",
+         items:[
+          {
+            name:"Block A",
+            link:"/admin/manageRooms/A",
+            },
+            {
+             name:"Block B",
+             link:"/admin/manageRooms/C",
+             },
+             {
+               name:"Block C",
+               link:"/admin/manageRooms/C",
+               },
+               {
+                 name:"Block E",
+                 link:"/admin/manageRooms/E",
+                 },
+         ]
+       },
+       {
+         name:"Staffs",
+         icon:"fas-users",
+         link:"/admin/manageStaffs"
+       }
     
+      ]
+      studentSidenav=[
+        {
+          name:"User Profile",
+
+        }
+      ]
   ngOnInit() {
     
     this.store.pipe(

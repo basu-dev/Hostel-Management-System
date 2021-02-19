@@ -49,7 +49,6 @@ export class StudentsService {
     console.log("students");
     this.http.get(Url.students).pipe(
     ).subscribe((data:any) => {
-      console.log(data.data);
       this.studentList = data.data;
       this.notifyStudentsChange();
     },
@@ -97,6 +96,12 @@ export class StudentsService {
     return of(true);
     // return this.http.post(Url.rootUrl+Url.registerStudent,student);
   }
+  give10items(index:number,totalItems:any[]):any[]{
+    var startIndex = index * 10;
+    var endIndex = startIndex + 10;
+    console.log(startIndex,endIndex,totalItems.length)
+    return totalItems.filter((x,i)=>  (i>=startIndex && i<endIndex))
+   }
 
 
 }

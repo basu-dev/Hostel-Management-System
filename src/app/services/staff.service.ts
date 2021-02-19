@@ -1,11 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from "rxjs";
 import { Faculty } from '../model/faculties';
 import { StaffType ,Staff} from '../model/staff';
+import { Url } from '../urls';
+import { AlertifyService } from './alertify.service';
 @Injectable({
     providedIn: 'root'
 })
 export class StaffService {
+  constructor(private http:HttpClient,
+      private alertify:AlertifyService
+    ){}
     staffList:Staff[]=[
         {
             id:1,
@@ -32,7 +38,11 @@ export class StaffService {
     ];
     public StaffSub = new Subject<Staff[]>();
     getStaffList():void{
-        return this.StaffSub.next(this.staffList);
+        this.http.get(Url.staffs).subscribe
+        (
+          (res:any)=>this.staffList = res.data,
+          err=>this.alertify.error(err)
+        )
       }
     
       insertStaff(staff: Staff) {

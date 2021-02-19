@@ -13,6 +13,7 @@ import { LoginComponent } from './pages/common/login/login.component';
 import { AdminGuard } from './guard/admin.guard';
 import { ContactAdminComponent } from './pages/common/contact-admin/contact-admin.component';
 import { NoticeDetailComponent } from './pages/common/notices/notice-detail/notice-detail.component';
+import { TableFooterComponent } from './components/table-footer/table-footer.component';
 
 const routes: Routes = [
   {path:"admin", children:[
@@ -27,7 +28,7 @@ const routes: Routes = [
     {path:"manageUsers",component:ManageUserComponent},
     {path:"manageStaffs",component:ManageStaffComponent},
     {path:"editRoom/:roomName",component:RoomRegisterComponent},
-    
+    {path:"ngbhai",component:TableFooterComponent}
   ]},
   {path:"studentDetail/:username",component:StudentDetailComponent},
   {path:"auth/login",component:LoginComponent},

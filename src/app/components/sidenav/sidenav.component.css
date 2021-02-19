@@ -1,24 +1,45 @@
 body {
     overflow-x: hidden;
   }
-  
   #sidebar-wrapper {
-    background-color: var(--secondary-color) !important;
-    min-height: 100vh;
+
+    width: 300px;
+    height: var(--content-height);
+    background-color: var(--sidenav-color) !important;
+    color:var(--sedenav-text-color) !important;
     margin-left: -15rem;
     -webkit-transition: margin .25s ease-out;
     -moz-transition: margin .25s ease-out;
     -o-transition: margin .25s ease-out;
     transition: margin .25s ease-out;
+    box-shadow:  1rem 0 1rem 0 rgb(44 51 73 / 10%) !important;
+  }
+  nav{
+    height: var(--nav-height);
+    background-color:var(--nav-color) !important;
+    color:black !important;
+    box-shadow: 0 0.5rem 1rem 0 rgb(44 51 73 / 10%);
 
   }
-  
   #sidebar-wrapper .sidebar-heading {
     padding: 0.875rem 1.25rem;
     font-size: 1.2rem;
   }
+  .list-group{
+    display:flex;
+    justify-content: space-between;
+  }
+  .flex{
+    display:flex;
+    justify-content: space-between;
+
+  }
   .list-group-item{
-    background:none !important;
+    display:flex;
+    justify-content: space-between;
+    background:var(--sidenav-color);
+    color:var(--sidenav-text-color);
+    /* width:fit-content; */
   }
   
   #sidebar-wrapper .list-group {
@@ -26,7 +47,8 @@ body {
   }
   
   #page-content-wrapper {
-    min-width: 100vw;
+    background-color: var(--content-background);
+    min-height: var(--content-height);
   }
   
   #wrapper.toggled #sidebar-wrapper {
@@ -39,7 +61,8 @@ body {
     }
   
     #page-content-wrapper {
-      min-width: 0;
+      /* min-width: 0; */
+      padding:5px;
       width: 100%;
     }
   
@@ -55,3 +78,6 @@ body {
     height: 50;
     justify-content: space-between;
   }
+a{
+  color:black;
+}

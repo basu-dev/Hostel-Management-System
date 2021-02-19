@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+// import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { Subscription } from 'rxjs';
 import { Faculty } from 'src/app/model/faculties';
 import { Student } from 'src/app/model/student';
@@ -20,18 +21,27 @@ export class ManageUserComponent implements OnInit {
     this.keys = Object.keys(this.faculties).filter(String);
   }
   startSearch = false;
+  totalBottomTabs:Number;
   keys: any[];
   faculties = Faculty;
   students: Student[] = [];
   selectedFaculty = 'BCE';
   studentsSub: Subscription;
+  currentStudents:Student[];
   ngOnInit(): void {
     this.studentsSub = this.studentService.studentSub.subscribe(
-      data => this.students = data,
+      data =>{ this.students = data,
+        this.totalBottomTabs = (data.length / 10);
+        // this.totalBottomTabs = toInteger(data.length / 10);
+        this.currentStudents = this.studentService.give10items(0,this.students);
+        // console.log(this.currentStudents);
+      },
       (err: any) => console.log(err)
     )
     this.studentService.getStudentsList();
+    this.studentService.give10items(1,this.students);
   }
+
   searchByUsername(e:any) {
     let value = e.target.value;
     if (value.trim() == '') {
@@ -40,7 +50,7 @@ export class ManageUserComponent implements OnInit {
     }
     console.log(value);
     this.studentService.getStudentByUsername(value).subscribe(
-      (data:any) => this.students = [data.data]
+      (data:any) => this.students = [data]
     )
   }
   searchByBatch(e:any) {

@@ -16,15 +16,22 @@ intercept(req:HttpRequest<any>,next:HttpHandler){
   })
   return next.handle(newreq)
   .pipe(
-    tap((data:any)=>console.log(data)),
     catchError((error: HttpErrorResponse) => {
       let errorMessage = '';
       if (error.error instanceof ErrorEvent) {
         // client-side error
         errorMessage = `Error: ${error.error.message}`;
       } else {
+        console.log(error);
+        if(error.status == 0){
+          errorMessage = "Check your connection";
+          
+        }
+        else{
+
+          errorMessage = error.statusText;
+        }
         // server-side error
-        errorMessage = error.error.msg;
       }
       return throwError(errorMessage);
     })

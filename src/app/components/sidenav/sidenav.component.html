@@ -1,124 +1,40 @@
-<body>
 
-  <div class="d-flex" id="wrapper">
+  <nav class="navbar bg-primary">
+    <button class="btn" id="menu-toggle"><i class="fas fa-bars"></i></button>
 
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a routerLinkActive="active" class="list-group-item list-group-item-action bg-primary  border-0"
+            *ngIf="IsStudent|| IsAdmin">
+            <i class="fas fa-user mr-3"></i>Welcome {{username}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class='d-flex'>
     <!-- Sidebar -->
-    <div class="bg-primary border-right text-white" id="sidebar-wrapper">
-      <div class="sidebar-heading">
-        <p class="text-center" style="font-size: 20px; margin: 0">
-          <i class="fas fa-city"></i>
-        </p>
-        <div class="hostel-name">
-          <img height="50" src="../../../assets/icons/logo.png" >
-          <div>
-  
-            Paschimanchal Campus Hostel
-          </div>
-        </div>
-      </div>
+    <div class="bg-primary border-right " id="sidebar-wrapper">
       <div class="list-group list-group-flush">
-        <a [routerLink]="['/home']" routerLinkActive="active"
-          class="list-group-item list-group-item-action bg-primary text-white">
-          <i class="fas fa-hotel mr-3"></i>Home
+        <a *ngFor="let item of adminSidenav" [routerLink]="[item.link]" (click)="sidebarClicked(item)" routerLinkActive="active"
+          class="list-group-item list-group-item-action ">
+          <div class="flex">
+            <i [class]="'fas mr-2 fa-home'"></i>
+            <div>
+              {{item.name}}
+            </div>
+          </div>
+          <!-- <i class="fas fa-arrow-left" aria-hidden="true"></i> -->
+          <i *ngIf="item.directory" class="fa fa-chevron-left" aria-hidden="true"></i>
         </a>
-
-        <!--Admin Access-->
-
-        <a class="list-group-item list-group-item-action bg-primary text-white" [routerLink]="['/admin/manageUsers']"
-          routerLinkActive="active" *ngIf="IsAdmin">
-          <i class="fas fa-users mr-3"></i> Students
-        </a>
-        <!-- <a [routerLink]="['/admin/manageS']" routerLinkActive="active"  class="list-group-item list-group-item-action bg-primary text-white"
-          *ngIf="IsAdmin">
-            <i class="fab fa-megaport mr-3"></i>Manage Streams</a> -->
-        <a [routerLink]="['/admin/manageRooms']" routerLinkActive="active"
-          class="list-group-item list-group-item-action bg-primary text-white" *ngIf="IsAdmin">
-          <i class="fas fa-home mr-3"></i>Manage Rooms
-        </a>
-        <!-- <a [routerLink]="['/unallocatedUsers']" routerLinkActive="active"
-          class="list-group-item list-group-item-action bg-primary text-white" *ngIf="IsAdmin">
-          <i class="fas fa-allergies mr-3"></i>Room Allocation
-        </a> -->
-        <a [routerLink]="['/admin/manageStaffs']" routerLinkActive="active"
-          class="list-group-item list-group-item-action bg-primary text-white" *ngIf="IsAdmin">
-          <i class="fas fa-hands-helping mr-3"></i>Staff
-        </a>
-        <a [routerLink]="['/messages']" routerLinkActive="active"
-          class="list-group-item list-group-item-action bg-primary text-white" *ngIf="IsAdmin">
-          <i class="fas fa-comment mr-3"></i>Messages
-        </a>
-
-        <!--Admin Access-->
-
-        <!--User Access-->
-        <a [routerLink]="['/userDetails']" routerLinkActive="active"
-          class="list-group-item list-group-item-action bg-primary text-white" *ngIf="IsStudent">
-          <i class="fas fa-user-circle mr-3"></i>User Profile
-        </a>
-        <!--User Access-->
-
-
-
-        <a [routerLink]="['/admin/createMessage']" *ngIf="IsStudent" routerLinkActive="active"
-          class="list-group-item list-group-item-action bg-primary text-white">
-          <i class="fas fa-file-signature mr-3"></i>contact Admin
-        </a>
-
-        <a [routerLink]="['/studentLogin']" routerLinkActive="active"
-          class="list-group-item list-group-item-action bg-primary text-white"
-          *ngIf="!IsStudent && !IsAdmin">
-          <i class="fas fa-sign-in-alt mr-3"></i>Student Login
-        </a>
-        <a [routerLink]="['/adminLogin']" routerLinkActive="active"
-          class="list-group-item list-group-item-action bg-primary text-white"
-          *ngIf="!IsStudent && !IsAdmin">
-          <i class="fas fa-cog mr-3"></i>Admin Login
-        </a>
-        <a routerLinkActive="active" class="list-group-item list-group-item-action bg-primary text-white"
-          (click)="authService.logout()" style="cursor: pointer"
-          *ngIf="IsStudent || IsAdmin">
-          <i class="fas fa-sign-out-alt mr-3"></i>Logout
-        </a>
-
+       
       </div>
     </div>
-    <!-- /#sidebar-wrapper -->
-
-    <!-- Page Content -->
     <div id="page-content-wrapper">
-
-      <nav class="navbar navbar-expand navbar-dark bg-primary border-bottom">
-        <button class="btn btn-primary" id="menu-toggle"><i class="fas fa-bars"></i></button>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-              <a routerLinkActive="active" class="list-group-item list-group-item-action bg-primary text-white border-0"
-                *ngIf="IsStudent|| IsAdmin">
-                <i class="fas fa-user mr-3"></i>Welcome {{username}}
-              </a>
-            </li>
-            <!-- <li class="nav-item">
-                <a routerLinkActive="active"  class="list-group-item list-group-item-action bg-dark text-white" (click)="authService.logout()" style="cursor: pointer"
-                *ngIf="IsStudent || IsAdmin">
-                  <i class="fas fa-sign-out-alt mr-3"></i>Logout
-                </a>
-              </li> -->
-          </ul>
-        </div>
-      </nav>
-
       <div class="container-fluid" style="padding: 5px;">
         <router-outlet></router-outlet>
       </div>
     </div>
-    <!-- /#page-content-wrapper -->
-
   </div>
 
-</body>

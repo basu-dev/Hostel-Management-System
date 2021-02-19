@@ -3,6 +3,13 @@
     --secondary-color:#1d2f39;
     --tertiary-color:#f5f5f5;
     --table-color:#ebebeb;
+    --nav-height:80px;
+    --content-height:calc(100vh - 80px);
+    --content-background:#edf1f7;
+    --nav-color:#fff;
+    --sidenav-color:#fff;
+
+    --sedenav-text-color:black;
 }
 
 .bg-primary,.btn-primary{
@@ -14,6 +21,7 @@
 }
 body{
     background-color: #fafafa !important;
+    font-family: "Open Sans" sans-serif;
 }
 .sidebar-heading{
     padding:.2em .2em  !important;
