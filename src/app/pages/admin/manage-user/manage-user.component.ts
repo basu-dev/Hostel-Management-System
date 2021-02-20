@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 // import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { Subscription } from 'rxjs';
 import { Faculty } from 'src/app/model/faculties';
@@ -19,10 +19,14 @@ export class ManageUserComponent implements OnInit {
     private router: Router,
     private route:ActivatedRoute
   ) {
-    this.blockName = this.route.snapshot.paramMap.get('id')!;
+ this.route.paramMap.subscribe(
+     ( paramMap:ParamMap) => {this.faculty = paramMap.get('id')!;
+     this.studentService.getStudentByFaculty(this.faculty);
+    }
+    )
     this.keys = Object.keys(this.faculties).filter(String);
   }
-  blockName:String;
+  faculty:String;
   startSearch = false;
   totalBottomTabs:Number;
   keys: any[];
@@ -32,6 +36,7 @@ export class ManageUserComponent implements OnInit {
   studentsSub: Subscription;
   currentStudents:Student[];
   ngOnInit(): void {
+    console.log("asdf");
     this.studentsSub = this.studentService.studentSub.subscribe(
       data =>{ this.students = data,
         this.totalBottomTabs = (data.length / 10);
@@ -40,7 +45,7 @@ export class ManageUserComponent implements OnInit {
       },
       (err: any) => console.log(err)
     )
-    this.studentService.getStudentsListByBlock(this.blockName);
+    // this.studentService.getStudentByFaculty(this.faculty);
     this.studentService.give10items(1,this.students);
   }
 
@@ -68,10 +73,7 @@ export class ManageUserComponent implements OnInit {
   }
   searchByFaculty() {
     console.log(this.selectedFaculty);
-    this.studentService.getStudentByFaculty(this.selectedFaculty).subscribe(
-      (data:any) => this.students = data,
-      err => this.alertify.error(err)
-    );
+    this.studentService.getStudentByFaculty(this.selectedFaculty);
   }
   toggleSearch() {
     if (!this.startSearch) {

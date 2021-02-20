@@ -9,6 +9,7 @@
     --nav-color:#fff;
     --sidenav-color:#fff;
     --sedenav-text-color:black;
+    --tab-active-color:red;
 }
 
 .bg-primary,.btn-primary{
@@ -45,7 +46,7 @@ tr:nth-child(even){
 }
 .card{
     border:none !important;
-    box-shadow: 5px 5px 2px solid grey !important; 
+    box-shadow: 5px 5px 10px 0px #8a898991;
 }
 nb-layout{
     margin:0;
@@ -53,4 +54,8 @@ nb-layout{
 }
 .nb-theme-default nb-layout .layout .layout-container .content .columns nb-layout-column{
     padding:0 !important;
+}
+a{
+    text-decoration: none !important;
+    color:inherit;
 }

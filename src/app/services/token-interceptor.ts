@@ -19,8 +19,9 @@ intercept(req:HttpRequest<any>,next:HttpHandler){
     catchError((error: HttpErrorResponse) => {
       let errorMessage = '';
       if (error.error instanceof ErrorEvent) {
+        console.log("asdflksdjaflkasdjflksdajf;l")
         // client-side error
-        errorMessage = `Error: ${error.error.message}`;
+        errorMessage = `Error: ${error.statusText}`;
       } else {
         console.log(error);
         if(error.status == 0){
@@ -29,7 +30,7 @@ intercept(req:HttpRequest<any>,next:HttpHandler){
         }
         else{
 
-          errorMessage = error.statusText;
+          errorMessage = error.error.msg;
         }
         // server-side error
       }

@@ -1,58 +1,60 @@
+<div class="card">
 
-        <div class="card-header  text-white">
-            <h4><i class="fas fa-user-cog mr-2"></i> Student List</h4>
-            <div class="card-header-controls">
-              <img (click)="toggleSearch()" src="../../../../assets/icons/search-people.png" height="40">
-              <add-icon [routerLink]="['/admin/studentRegister']"></add-icon>
-            </div>
-          </div>
+  <div class="card-header  text-white">
+      <h4><i class="fas fa-user-cog mr-2"></i> Student List</h4>
+      <div class="card-header-controls">
+        <img (click)="toggleSearch()" src="../../../../assets/icons/search-people.png" height="40">
+        <add-icon [routerLink]="['/admin/studentRegister']"></add-icon>
+      </div>
+    </div>
 <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Full Name</th>
-        <th scope="col">Roll No</th>
-        <th scope="col">Batch</th>
-        <th scope="col">Faculty</th>
-        <!-- <th scope="col">RoomNo</th> -->
-        <th scope="col">Contact No.</th>
-        <th scope="col">Email </th>
-        <th scope="col">Address</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr *ngIf="startSearch">
-         <td>
-          
-         </td>
-         <td>
+<thead>
+<tr>
+  <th scope="col">#</th>
+  <th scope="col">Full Name</th>
+  <th scope="col">Roll No</th>
+  <th scope="col">Batch</th>
+  <th scope="col">Faculty</th>
+  <!-- <th scope="col">RoomNo</th> -->
+  <th scope="col">Contact No.</th>
+  <th scope="col">Email </th>
+  <th scope="col">Address</th>
+  <th scope="col">Actions</th>
+</tr>
+</thead>
+<tbody>
+  <tr *ngIf="startSearch">
+   <td>
+    
+   </td>
+   <td>
 
-         </td>
-         <td>
-           <input class="form-control" (change)="searchByUsername($event)" placeholder="Search">
-         </td>
-         <td>
-           <input class="form-control" (change)="searchByBatch($event)" placeholder="Search">
-         </td>
-         <td>
-          <select type="number" class="form-control" [(ngModel)]="selectedFaculty" (change)="searchByFaculty()" >
-            <option *ngFor="let key of keys"  [ngValue]='"BEX"'>{{key}}</option>
-          </select>        </td>
-        </tr>
-        <tr *ngFor="let student of students;let i=index">
-        <th scope="row">{{i+1}}</th>
-        <td>{{student.fullName}}</td>
-        <td>{{student.rollNo}}</td>
-        <td>{{student.batch}}</td>
-        <td>{{student.faculty}}</td>
-        <!-- <td>{{student.roomNo}}</td> -->
-        <td>{{student.contact}}</td>
-        <td>{{student.email}}</td>
-        <td>{{student.address}}</td>
-        <th scope="row">
-            <edit-icon (click)="editStudent(student._id)"></edit-icon>
-        </th>
-      </tr>
-    </tbody>
-   </table>
+   </td>
+   <td>
+     <input class="form-control" (change)="searchByUsername($event)" placeholder="Search">
+   </td>
+   <td>
+     <input class="form-control" (change)="searchByBatch($event)" placeholder="Search">
+   </td>
+   <td>
+    <select type="number" class="form-control" [(ngModel)]="selectedFaculty" (change)="searchByFaculty()" >
+      <option *ngFor="let key of keys"  [ngValue]='"BEX"'>{{key}}</option>
+    </select>        </td>
+  </tr>
+  <tr *ngFor="let student of students;let i=index">
+  <th scope="row">{{i+1}}</th>
+  <td>{{student.fullName}}</td>
+  <td>{{student.rollNo}}</td>
+  <td>{{student.batch}}</td>
+  <td>{{student.faculty}}</td>
+  <!-- <td>{{student.roomNo}}</td> -->
+  <td>{{student.contact}}</td>
+  <td>{{student.email}}</td>
+  <td>{{student.address}}</td>
+  <th scope="row">
+      <edit-icon (click)="editStudent(student._id)"></edit-icon>
+  </th>
+</tr>
+</tbody>
+</table>
+</div>

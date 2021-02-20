@@ -14,6 +14,7 @@ import { AdminGuard } from './guard/admin.guard';
 import { ContactAdminComponent } from './pages/common/contact-admin/contact-admin.component';
 import { NoticeDetailComponent } from './pages/common/notices/notice-detail/notice-detail.component';
 import { StaffOrAdminGuard } from './guard/staffOrAdmin.guard';
+import { MessageComponent } from './pages/common/message/message.component';
 
 const routes: Routes = [
   {path:"admin", children:[
@@ -30,6 +31,7 @@ const routes: Routes = [
     {path:"manageStudents/:id",component:ManageUserComponent},
     {path:"manageStaffs",component:ManageStaffComponent,canActivate:[AdminGuard]},
     {path:"editRoom/:roomName",component:RoomRegisterComponent},
+    {path:"messages",component:MessageComponent}
   ]},
   {path:"studentDetail/:username",component:StudentDetailComponent},
   {path:"auth/login",component:LoginComponent},

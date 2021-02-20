@@ -1,0 +1,105 @@
+
+:root{
+    --tab-active-color:red;
+}
+.tabs{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+    box-shadow: 0px 0px 0px grey;
+    padding: 2px 5px;
+    height: 50px;
+    align-items: center;
+    box-shadow: 0px 0px 4px 0px #80808091;
+    position: relative;
+}
+.tabs div{
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+.tab-active{
+    color: var(--tab-active-color);
+}
+.underline{
+    background-color: red;
+    height: 3px;
+    position: absolute;
+    width: calc(100% + 10px);
+    left: -5px;
+    bottom: -10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    transition: background-color .3s ease-in-out;
+}
+.message-container{
+    height: calc(100vh - var(--nav-height) - 130px);
+}
+.message{
+    display:grid;
+    grid-template-columns: 3fr 6fr 1fr;
+    /* background-color: grey; */
+    box-shadow: 0px 1px 1px 0px #b4b2b291;
+    padding:10px 20px;
+    margin-bottom: 5px;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.message:hover{
+    box-shadow: 0px 1px 10px 0px #8a898991;
+
+}
+.message .name{
+    font-size: 1.03rem;
+    color:rgb(58, 57, 57);
+}
+.message .body{
+    text-align: start;
+}
+.message .actions{
+    display:flex;
+   
+    /* background-color: green; */
+    align-items: center;
+    justify-content: space-around;
+    font-size:1.05rem;
+}
+.input-box{
+    position:absolute;
+    bottom: 0;
+    left:0;
+    width:100%;
+    padding:5px 10px;
+    display: grid;
+    grid-template-columns: 10fr 1fr;
+    align-items: center;
+
+}
+.input-box div{
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+.input-box .svg-inline--fa{
+    color:blue;
+    font-size: 1.4rem;
+}
+.input-box input{
+    border:none;
+    /* border-bottom: 1px solid grey; */
+    padding:10px 20px;
+    outline: none;
+    box-shadow: 0px 2px 3px 0px #5f5e5e91;
+
+}
+input:focus{
+    border-radius: 50px;
+    box-shadow: 0px 1px 20px 4px #6e6c6c91;
+}
+a{
+    cursor: pointer;
+}
+.fas:hover{
+    color:red;
+}

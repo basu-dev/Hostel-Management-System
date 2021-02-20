@@ -78,12 +78,18 @@ export class StudentsService {
     return this.http.get<any>(this.singleStudentUrl(username))
   }
   getStudentByBatch(batch: String): Observable<Student[]> {
-
+    
     return this.http.get<any>(`${Url.filterStudent}?batch=${batch}`);
   }
-  getStudentByFaculty(fac: String): Observable<Student[]> {
-
-    return this.http.get<any>(`${Url.filterStudent}?faculty=${fac}`)
+  getStudentByFaculty(fac: String): void {
+console.log(fac);
+     this.http.get<any>(`${Url.filterStudent}?faculty=${fac}`).subscribe(
+      (res:any)=>{
+        this.studentList = res.data;
+        this.notifyStudentsChange();
+      },
+      err=>this.alertify.error(err)
+    )
 
   }
 

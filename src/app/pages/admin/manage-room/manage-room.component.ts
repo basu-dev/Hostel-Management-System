@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Room } from 'src/app/model/room';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -18,7 +18,12 @@ export class ManageRoomComponent implements OnInit {
       private route:ActivatedRoute
     ) { 
 
-      this.blockName = this.route.snapshot.paramMap.get('id')!;
+     this.route.paramMap.subscribe(
+        (paramMap:ParamMap)=>{
+          this.blockName = paramMap.get('id')!;
+          this.roomService.getAllRoomsByBlock(this.blockName);
+        }
+      )
     }
 blockName:String;
   roomList:Room[]=[];
@@ -28,7 +33,7 @@ blockName:String;
       rooms=>this.roomList=rooms,
       err=>this.alertify.error(err)
     )
-    this.roomService.getAllRoomsByBlock(this.blockName);
+
   }
   editRoom(roomName:String):void{
     this.router.navigate(["/admin/editRoom",roomName]);

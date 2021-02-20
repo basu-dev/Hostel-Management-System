@@ -1,36 +1,39 @@
 
-        <div class="card-header bg-primary text-white">
-            <h4><i class="fas fa-home mr-2"></i> Rooms List</h4>
-            <add-icon [routerLink]="['/admin/roomRegister']"></add-icon>
-          </div>
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">RoomName</th>
-        <th scope="col">Block</th>
-        <th scope="col">Students</th>
-        <th scope="col">Table</th>
-        <th scope="col">Chair</th>
-        <th scope="col">Bed </th>
-        <th scope="col">Wardrobe</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let room of roomList;let i=index">
-        <th scope="row">{{i+1}}</th>
-        <td>{{room.roomName}}</td>
-        <td>{{room.block}}</td>
-        <td>{{room.students[0]?._id}} {{room.students[1]?._id}}</td>
-        <td>{{room.assets.table}}</td>
-        <td>{{room.assets.chair}}</td>
-        <td>{{room.assets.bed}}</td>
-        <td>{{room.assets.wardrobe}}</td>
-        <th scope="row">
-            <edit-icon (click)="editRoom(room.roomName)"></edit-icon>
-        </th>
-      </tr>
-
-    </tbody>
-   </table>
+        
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+              <h4><i class="fas fa-home mr-2"></i> Rooms List</h4>
+              <add-icon [routerLink]="['/admin/roomRegister']"></add-icon>
+            </div>
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">RoomName</th>
+          <th scope="col">Block</th>
+          <th scope="col">Students</th>
+          <th scope="col">Table</th>
+          <th scope="col">Chair</th>
+          <th scope="col">Bed </th>
+          <th scope="col">Wardrobe</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let room of roomList;let i=index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{room.roomName}}</td>
+          <td>{{room.block}}</td>
+          <td>{{room.students[0]?._id}} {{room.students[1]?._id}}</td>
+          <td>{{room.assets.table}}</td>
+          <td>{{room.assets.chair}}</td>
+          <td>{{room.assets.bed}}</td>
+          <td>{{room.assets.wardrobe}}</td>
+          <th scope="row">
+              <edit-icon (click)="editRoom(room.roomName)"></edit-icon>
+          </th>
+        </tr>
+  
+      </tbody>
+     </table>
+        </div>

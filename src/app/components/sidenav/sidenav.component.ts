@@ -46,22 +46,36 @@ export class SidenavComponent implements OnInit {
          link:"",
          items:[
            {
-           name:"Block A",
-           link:"admin/manageStudents/A",
+           name:"Electronices & Communication",
+           link:"admin/manageStudents/BEX",
 
            },
            {
-            name:"Block B",
-            link:"admin/manageStudents/B",
+            name:"Electrical Engineering",
+            link:"admin/manageStudents/BEE",
             },
             {
-              name:"Block C",
-              link:"admin/manageStudents/C",
+              name:"Computer Engineering",
+              link:"admin/manageStudents/BCT",
               },
               {
-                name:"Block E",
-                link:"admin/manageStudents/E",
+                name:"Civil Engineering",
+                link:"admin/manageStudents/BCE",
                 },
+                {
+                  name:"Geomatics Engineering",
+                  link:"admin/manageStudents/BGE",
+                  },
+                  {
+                    name:"Automobile Engineering",
+                    link:"admin/manageStudents/BAE",
+                    },
+                    {
+                      name:"Mechanical Engineering",
+                      link:"admin/manageStudents/BME",
+                      },
+    
+  
 
          ]
        },
@@ -95,6 +109,12 @@ export class SidenavComponent implements OnInit {
          link:"/admin/manageStaffs",
          directory:false,
        },
+       {
+         name:"Messages",
+         icon:"fas-message",
+         link:"/admin/messages",
+         directory:false
+       }
     
       ]
       studentSidenav=[
