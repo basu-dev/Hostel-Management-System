@@ -4,7 +4,8 @@ export const ActionTypes={
     IS_AUTHENTICATED:"[Auth] IsAuthenticated",
     IS_UNAUTHENTICATED:"[Auth] IsUnauthentiated",
     IS_STUDENT:"[Auth] IsStudent",
-    IS_STAFF:"[Auth] IsStaff",
+    IS_HOSTEL_STAFF:"[Auth] IsHostelStaff",
+    IS_MESH_STAFF:"[Auth] IsMeshStaff",
     IS_ADMIN:"[Auth] IsAdmin"
 }
 export class IsAuthenticated implements Action{
@@ -17,11 +18,16 @@ export class IsStudent implements Action{
     type=ActionTypes.IS_STUDENT
 }export class IsAdmin implements Action{
     type=ActionTypes.IS_ADMIN
-}export class IsStaff implements Action{
-    type=ActionTypes.IS_STAFF
+}export class IsHostelStaff implements Action{
+    type=ActionTypes.IS_HOSTEL_STAFF
 }
+export class IsMeshStaff implements Action{
+    type=ActionTypes.IS_MESH_STAFF
+}
+
 export type AuthActions= IsAuthenticated |
                          IsUnauthentiated |
                          IsStudent |
-                         IsStaff |
+                         IsHostelStaff |
+                         IsMeshStaff|
                          IsAdmin

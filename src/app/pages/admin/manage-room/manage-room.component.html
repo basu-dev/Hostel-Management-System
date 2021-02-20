@@ -1,6 +1,6 @@
 
         <div class="card-header bg-primary text-white">
-            <h4><i class="fas fa-user-cog mr-2"></i> Rooms List</h4>
+            <h4><i class="fas fa-home mr-2"></i> Rooms List</h4>
             <add-icon [routerLink]="['/admin/roomRegister']"></add-icon>
           </div>
 <table class="table">
@@ -22,7 +22,7 @@
         <th scope="row">{{i+1}}</th>
         <td>{{room.roomName}}</td>
         <td>{{room.block}}</td>
-        <td>{{room.students[0]._id}} {{room.students[1]}}</td>
+        <td>{{room.students[0]?._id}} {{room.students[1]?._id}}</td>
         <td>{{room.assets.table}}</td>
         <td>{{room.assets.chair}}</td>
         <td>{{room.assets.bed}}</td>

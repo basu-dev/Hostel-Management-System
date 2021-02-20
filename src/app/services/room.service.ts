@@ -28,29 +28,32 @@ export class RoomService {
             err=>this.alertify.error(err)
         );
     }
+    getAllRoomsByBlock(blocK:String):void{
+        console.log(`${Url.rooms}/blocksearch/${blocK}`);
+        this.http.get(`${Url.rooms}/blocksearch/${blocK}`).subscribe(
+            (data:any)=>{this.roomList = data.data,
+                this.sendAllRooms();
+                // console.log(data);
+                console.log(this.roomList[0]);
+            },
+            err=>this.alertify.error(err)
+        );
+    }
 
     sendAllRooms():void{
         this.roomSub.next(this.roomList);
     }
     getRoomByName(roomName:String):Observable<Room>{
-        return of(this.roomList.filter(x=>x.roomName==roomName)[0]);
+        return this.http.get<Room>(`${Url.rooms}/${roomName}`);
     }
     updateRoom(roomName:String,room:Room):any{
-        let roomExist:Room;
-    this.getRoomByName(roomName).subscribe(
-            data=>roomExist = data,
-            err=>this.alertify.error(err)
-        );
-        roomExist=room;
-        return true;
+        return this.http.put(`${Url.rooms}/${roomName}`,room);
     }
     deleteRoom(roomName:String):any{
-        let room = this.getRoomByName(roomName);
-        // if(room){
-        //     this.roomList = this.roomList.filter(function(item) {
-        //         return item !== room
-        //     })
-        // }
+        return this.http.delete(`${Url.rooms}/${roomName}`);
     }
+    // getRoomsByBlock(blockName:Block):Observable<Room[]>{
+    //     // return this.http.get()
+    // }
 
 }

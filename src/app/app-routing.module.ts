@@ -13,22 +13,23 @@ import { LoginComponent } from './pages/common/login/login.component';
 import { AdminGuard } from './guard/admin.guard';
 import { ContactAdminComponent } from './pages/common/contact-admin/contact-admin.component';
 import { NoticeDetailComponent } from './pages/common/notices/notice-detail/notice-detail.component';
-import { TableFooterComponent } from './components/table-footer/table-footer.component';
+import { StaffOrAdminGuard } from './guard/staffOrAdmin.guard';
 
 const routes: Routes = [
   {path:"admin", children:[
-    {path:"adminRegister",component:AdminRegisterComponent},
+    {path:"adminRegister",component:AdminRegisterComponent,canActivate:[AdminGuard]},
     {path:"studentRegister",component:StudentRegisterComponent},
     {path:"manageRooms",component:ManageRoomComponent},
+    {path:"manageRooms/:id",component:ManageRoomComponent},
     {path:"manageStaffs",component:ManageStaffComponent},
     {path:"staffRegister",component:StaffRegisterComponent},
     {path:"editStaff/:id",component:RoomRegisterComponent},
     {path:"roomRegister",component:RoomRegisterComponent},
     {path:"editStudent/:username",component:StudentRegisterComponent},
-    {path:"manageUsers",component:ManageUserComponent},
-    {path:"manageStaffs",component:ManageStaffComponent},
+    // {path:"manageUsers",component:ManageUserComponent},
+    {path:"manageStudents/:id",component:ManageUserComponent},
+    {path:"manageStaffs",component:ManageStaffComponent,canActivate:[AdminGuard]},
     {path:"editRoom/:roomName",component:RoomRegisterComponent},
-    {path:"ngbhai",component:TableFooterComponent}
   ]},
   {path:"studentDetail/:username",component:StudentDetailComponent},
   {path:"auth/login",component:LoginComponent},

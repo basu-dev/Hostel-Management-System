@@ -4,13 +4,15 @@ import { ActionTypes } from './auth.action';
 export interface State{
     IsAuthenticated:boolean;
     IsAdmin:boolean,
-    IsStaff:boolean,
+    IsHostelStaff:boolean,
+    IsMeshStaff:boolean,
     IsStudent:boolean,
 }
 const initialState:State ={
     IsAuthenticated:false,
     IsAdmin:false,
-    IsStaff:false,
+    IsHostelStaff:false,
+    IsMeshStaff:false,
     IsStudent:false
 };
 
@@ -23,9 +25,14 @@ export function authReducer(state= initialState,action:AuthActions){
         return {
             ...state, IsAuthenticated:false
         }
-        case(ActionTypes.IS_STAFF):
+        case(ActionTypes.IS_HOSTEL_STAFF):
         return {
-            ...state, IsStaff:true,IsAuthenticated:true
+            ...state, IsHostelStaff:true,IsAuthenticated:true
+
+        }
+        case(ActionTypes.IS_MESH_STAFF):
+        return {
+            ...state, IsMeshStaff:true,IsAuthenticated:true
 
         }
         case(ActionTypes.IS_STUDENT):
@@ -43,5 +50,6 @@ export function authReducer(state= initialState,action:AuthActions){
 }
 export const getIsAuthenticated=(state:State)=>state.IsAuthenticated;
 export const getIsAdmin=(state:State)=>state.IsAdmin;
-export const getIsStaff=(state:State)=>state.IsStaff;
+export const getIsHostelStaff=(state:State)=>state.IsHostelStaff;
+export const getIsMeshStaff = (state:State)=>state.IsHostelStaff;
 export const getIsStudent = (state:State)=>state.IsStudent;

@@ -55,6 +55,16 @@ export class StudentsService {
       err => console.error(err)
     )
   }
+  getStudentsListByBlock(block:String): void {
+    console.log("students");
+    this.http.get(Url.students).pipe(
+    ).subscribe((data:any) => {
+      this.studentList = data.data;
+      this.notifyStudentsChange();
+    },
+      err => console.error(err)
+    )
+  }
   notifyStudentsChange() {
     this.studentSub.next(this.studentList);
   }

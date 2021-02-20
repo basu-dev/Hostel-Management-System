@@ -67,9 +67,12 @@ export class AuthService{
             case "student":
                 this.store.dispatch({type:ActionTypes.ActionTypes.IS_STUDENT})
                 break;
-            case "staff":
-                this.store.dispatch({type:ActionTypes.ActionTypes.IS_STAFF})
+            case "hostelstaff":
+                this.store.dispatch({type:ActionTypes.ActionTypes.IS_HOSTEL_STAFF})
                 break;
+                case "meshstaff":
+                    this.store.dispatch({type:ActionTypes.ActionTypes.IS_MESH_STAFF})
+                    break;
                 default :
                 
                 this.logout();

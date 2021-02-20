@@ -28,8 +28,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TokenInterceptorService } from './services/token-interceptor';
 import { NoticeDetailComponent } from './pages/common/notices/notice-detail/notice-detail.component';
 
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { TableFooterComponent } from './components/table-footer/table-footer.component';
+import { SidenavItemComponent } from './components/sidenav/sidenav-item.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbThemeModule, NbLayoutModule, NbIconModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 
 @NgModule({
@@ -53,19 +56,29 @@ import { TableFooterComponent } from './components/table-footer/table-footer.com
     LoginComponent,
     NoticeDetailComponent,
     TableFooterComponent,
+    SidenavItemComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    Ng2SmartTableModule,
+    // Ng2SmartTableModule,
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
     StoreModule.forRoot({ auth: authReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 10
-    })
+    }),
+    BrowserAnimationsModule,
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    // NbDialogModule.forRoot(),
+    // NbWindowModule.forRoot(),
+    // NbToastrModule.forRoot(),
+    // NbSidebarModule.forRoot(),
+    NbEvaIconsModule,
+    NbIconModule,
   ],
   providers: [
     {

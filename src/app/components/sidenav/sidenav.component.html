@@ -1,40 +1,44 @@
 
-  <nav class="navbar bg-primary">
-    <button class="btn" id="menu-toggle"><i class="fas fa-bars"></i></button>
+  <nav class=" bg-primary">
+    <button class="btn" id="menu-toggle">
+      <nb-icon height="30" icon="menu-2-outline"></nb-icon>
+    </button>
+    <div class="text-center">
+      <img src="../../../assets/icons/logo.png" height="40">
+      Paschimanchal Campus Hostel
+    </div>
+    <div class="right-side">
+      <i class="far fa-bell"></i>
+      <i class="fab fa-facebook-messenger"></i>
+      <div class="profile-image">
+        <div><i class="fas fa-user"></i></div><div class="name">
+          {{username}}
+        </div> 
+      </div>
+      <div class="elepsis" (click)="showLogout=true">
+        <i class="fas fa-ellipsis-v" >
+        </i>
+        <div *ngIf="showLogout" (click)="logout()">
+          Logout
+        </div>
+      </div>
+    </div>
+</nav>
+<div class="body-content">
+  <!-- Sidebar -->
+  <div class="bg-primary " id="sidebar-wrapper">
+    <div class="li list-group-">
+    
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
-        <li class="nav-item">
-          <a routerLinkActive="active" class="list-group-item list-group-item-action bg-primary  border-0"
-            *ngIf="IsStudent|| IsAdmin">
-            <i class="fas fa-user mr-3"></i>Welcome {{username}}
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <div class='d-flex'>
-    <!-- Sidebar -->
-    <div class="bg-primary border-right " id="sidebar-wrapper">
-      <div class="list-group list-group-flush">
-        <a *ngFor="let item of adminSidenav" [routerLink]="[item.link]" (click)="sidebarClicked(item)" routerLinkActive="active"
-          class="list-group-item list-group-item-action ">
-          <div class="flex">
-            <i [class]="'fas mr-2 fa-home'"></i>
-            <div>
-              {{item.name}}
-            </div>
-          </div>
-          <!-- <i class="fas fa-arrow-left" aria-hidden="true"></i> -->
-          <i *ngIf="item.directory" class="fa fa-chevron-left" aria-hidden="true"></i>
-        </a>
-       
-      </div>
-    </div>
-    <div id="page-content-wrapper">
-      <div class="container-fluid" style="padding: 5px;">
-        <router-outlet></router-outlet>
-      </div>
+        <app-sidenav-item *ngFor="let item of adminSidenav" [item]="item"></app-sidenav-item>
+    
     </div>
   </div>
+  <div id="page-content-wrapper">
+    <div class="container-fluid" style="padding: 5px;">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+ 
 

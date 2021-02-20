@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Room } from 'src/app/model/room';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -14,32 +14,13 @@ export class ManageRoomComponent implements OnInit {
 
   constructor(public roomService:RoomService,
       public alertify:AlertifyService,
-      private router:Router
-    ) { }
-    // settings = {
-    //   columns: {
-    //     roomName: {
-    //       title: 'Room Name'
-    //     },
-    //     students: {
-    //       title: 'Students'
-    //     },
-    //     block: {
-    //       title: 'Block'
-    //     },
-    //     table: {
-    //       title: 'Tables'
-    //     },chair:{
-    //       title:"Chairs"
-    //     },
-    //     wardrobe:{
-    //       title:"Wardrobe"
-    //     },
-    //     bed:{
-    //       title:"Bed"
-    //     }
-    //   }
-    // };
+      private router:Router,
+      private route:ActivatedRoute
+    ) { 
+
+      this.blockName = this.route.snapshot.paramMap.get('id')!;
+    }
+blockName:String;
   roomList:Room[]=[];
   roomSub:Subscription;
   ngOnInit(): void {
@@ -47,14 +28,12 @@ export class ManageRoomComponent implements OnInit {
       rooms=>this.roomList=rooms,
       err=>this.alertify.error(err)
     )
-    this.roomService.getAllRooms();
+    this.roomService.getAllRoomsByBlock(this.blockName);
   }
   editRoom(roomName:String):void{
     this.router.navigate(["/admin/editRoom",roomName]);
   }
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
     this.roomSub.unsubscribe();
   }
   

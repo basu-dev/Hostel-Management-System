@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginModel } from 'src/app/model/login';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -10,7 +9,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   constructor(private authService:AuthService,
       private alertify:AlertifyService  ,
       private builder: FormBuilder,
@@ -18,8 +16,8 @@ export class LoginComponent implements OnInit {
     loginForm:FormGroup;
   ngOnInit(): void {
     this.loginForm = this.builder.group({
-      username:['santosh549',Validators.required],
-      password:['hostel123',[Validators.required,Validators.minLength(5)]],
+      username:['santosh',Validators.required],
+      password:['devkota',[Validators.required,Validators.minLength(5)]],
     });
   }
   login(){

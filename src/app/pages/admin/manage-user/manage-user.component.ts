@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 // import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { Subscription } from 'rxjs';
 import { Faculty } from 'src/app/model/faculties';
@@ -16,10 +16,13 @@ export class ManageUserComponent implements OnInit {
 
   constructor(private studentService: StudentsService,
     private alertify: AlertifyService,
-    private router: Router
+    private router: Router,
+    private route:ActivatedRoute
   ) {
+    this.blockName = this.route.snapshot.paramMap.get('id')!;
     this.keys = Object.keys(this.faculties).filter(String);
   }
+  blockName:String;
   startSearch = false;
   totalBottomTabs:Number;
   keys: any[];
@@ -32,13 +35,12 @@ export class ManageUserComponent implements OnInit {
     this.studentsSub = this.studentService.studentSub.subscribe(
       data =>{ this.students = data,
         this.totalBottomTabs = (data.length / 10);
-        // this.totalBottomTabs = toInteger(data.length / 10);
         this.currentStudents = this.studentService.give10items(0,this.students);
-        // console.log(this.currentStudents);
+     
       },
       (err: any) => console.log(err)
     )
-    this.studentService.getStudentsList();
+    this.studentService.getStudentsListByBlock(this.blockName);
     this.studentService.give10items(1,this.students);
   }
 
