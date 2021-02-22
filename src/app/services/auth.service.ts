@@ -96,7 +96,7 @@ export class AuthService{
     logout(){
         this.isAdmin=false;
         localStorage.clear();
-        this.store.dispatch({type:ActionTypes.ActionTypes.IS_UNAUTHENTICATED});
+        this.store.dispatch({type:ActionTypes.ActionTypes.IS_AUTHENTICATED});
     }
 
 }

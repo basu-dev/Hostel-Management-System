@@ -18,7 +18,7 @@ import { MessageComponent } from './pages/common/message/message.component';
 
 const routes: Routes = [
   {path:"admin", children:[
-    {path:"adminRegister",component:AdminRegisterComponent,canActivate:[AdminGuard]},
+    {path:"adminRegister",component:AdminRegisterComponent},
     {path:"studentRegister",component:StudentRegisterComponent},
     {path:"manageRooms",component:ManageRoomComponent},
     {path:"manageRooms/:id",component:ManageRoomComponent},

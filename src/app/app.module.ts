@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrModule } from 'ngx-toastr';
 
 import { authReducer } from 'src/ngrx/auth/auth.reducer';
@@ -25,6 +26,7 @@ import { ManageStreamComponent } from './pages/admin/manage-stream/manage-stream
 import { ManageUserComponent } from './pages/admin/manage-user/manage-user.component';
 import { StudentRegisterComponent } from './pages/admin/manage-user/student-register/student-register.component';
 import { ContactAdminComponent } from './pages/common/contact-admin/contact-admin.component';
+import { ChangePasswordUserComponent } from './pages/common/login/change-password-user/change-password-user.component';
 import { LoginComponent } from './pages/common/login/login.component';
 import { MessageComponent } from './pages/common/message/message.component';
 import { NoticeDetailComponent } from './pages/common/notices/notice-detail/notice-detail.component';
@@ -57,6 +59,7 @@ import { TokenInterceptorService } from './services/token-interceptor';
     TableFooterComponent,
     SidenavItemComponent,
     MessageComponent,
+    ChangePasswordUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +68,8 @@ import { TokenInterceptorService } from './services/token-interceptor';
     ToastrModule,
     FormsModule,
     NgbModule,
+    NgxPaginationModule,
+
     ReactiveFormsModule,
     StoreModule.forRoot({ auth: authReducer }),
     StoreDevtoolsModule.instrument({
