@@ -8,7 +8,6 @@ import { Student } from 'src/app/model/student';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { Subscription } from 'rxjs';
 import { Faculty } from 'src/app/model/faculties';
-import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-student-register',
@@ -24,14 +23,14 @@ export class StudentRegisterComponent implements OnInit {
     private route :ActivatedRoute,
     private alertify: AlertifyService,
     private builder: FormBuilder) { 
-      this.keys = Object.keys(this.faculties).filter(String);
+
       this.id = this.route.snapshot.paramMap.get('username')!;
       console.log(this.id);
     }
     
   id:String;
-  keys:any[];
-  faculties=Faculty;
+
+  faculties=this.studentService.faculites;
   selectedFaculty:Faculty;
   adminForm: any;
   isEditform=false;
@@ -59,23 +58,18 @@ export class StudentRegisterComponent implements OnInit {
       this.selectedFaculty=Faculty.ElectronicsAndCommunication;
 
     }
-
-
   }
 
   initStudentForm() {
-    
     this.adminForm = new FormGroup({
       email: new FormControl('a@a.com', [Validators.required, Validators.email]),
-      username: new FormControl('073BEX473',[Validators.required]),
+      rollNo: new FormControl('073BEX473',[Validators.required]),
       faculty: new FormControl('',[Validators.required]),
       batch: new FormControl('073',[Validators.required]),
       fullName: new FormControl('New User',[Validators.required]),
       address: new FormControl('Chitwan',[Validators.required]),
       dob: new FormControl('2054-3-12',[Validators.required]),
-      contact: new FormControl('5646546546546',[Validators.required,Validators.minLength(10)]),
-      
-      // department: new FormControl('',Validators.required)
+
     });
   }
   editStudentForm() {
@@ -83,21 +77,20 @@ export class StudentRegisterComponent implements OnInit {
     // let {email,username,faculty,batch,fullName,address,dob,contact} = student;
     this.adminForm = new FormGroup({
       email: new FormControl(this.student.email, [Validators.required, Validators.email]),
-      username: new FormControl(this.student.username,[Validators.required]),
+      rollNo: new FormControl(this.student.rollNo,[Validators.required]),
       faculty: new FormControl(this.student.faculty,[Validators.required]),
       batch: new FormControl(this.student.batch,[Validators.required]),
       fullName: new FormControl(this.student.fullName,[Validators.required]),
       address: new FormControl(this.student.address,[Validators.required]),
       dob: new FormControl(this.student.dob,[Validators.required]),
       contact: new FormControl(this.student.contact,[Validators.required,Validators.minLength(10)]),
-      
-      // department: new FormControl('',Validators.required)
+
     });
   }
 
   deleteStudent(){
     this.studentService.deleteStudent(this.student._id).subscribe(
-      data=>this.alertify.success("User Deleted Successfully"),
+      data=>{console.log(data)},
       err=>this.alertify.error(err)
     )
   }
@@ -106,7 +99,6 @@ export class StudentRegisterComponent implements OnInit {
     console.log(this.adminForm);
     if(this.isEditform){
       console.log(this.adminForm.value);
-   
       this.studentService.editStudent(this.student._id,this.adminForm.value).subscribe(
         data=>this.alertify.success("Student Updated Successfully"),
         err=>this.alertify.error(err)
@@ -114,30 +106,10 @@ export class StudentRegisterComponent implements OnInit {
      return; 
     }
     this.studentService.registerStudent(this.adminForm.value)
-    .subscribe(
-      data=>{
-        // this.router.navigateByUrl("/admin/manageUsers"); 
-      },
-      err=>console.error(err)
-    )
-    
-    
-    // this.adminService.insertAllAdmin(this.adminForm.value).then(() => {
-    //   this.showLoader = false;
-    //   this.alerify.success('Admin account creation successful');
-    //   this.router.navigate(['/adminLogin']);
-    // }).catch((err) => {
-    //   console.log(err);
-    //   this.showLoader = false;
-    //   this.alerify.error('Oops some error occured');
-    // }).finally(() => {
-    //   this.showLoader = false;
-    // });
+
   }
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    // this.studentSub.unsubscribe();
+
   }
 
 }

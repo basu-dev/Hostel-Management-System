@@ -3,3 +3,14 @@
     justify-content: space-between;
     background-color: #fff;
 }
+.card {
+    min-height:500px;
+}
+table{
+    padding:5px;
+}
+.controls{
+    position:absolute;
+    bottom:0px;
+    width:100%;
+}

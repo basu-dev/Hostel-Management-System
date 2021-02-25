@@ -21,19 +21,27 @@ export class ManageRoomComponent implements OnInit {
      this.route.paramMap.subscribe(
         (paramMap:ParamMap)=>{
           this.blockName = paramMap.get('id')!;
-          this.roomService.getAllRoomsByBlock(this.blockName);
+this.fetchRooms();
         }
       )
     }
+showSkeleton=true;
 blockName:String;
   roomList:Room[]=[];
+  page:number = 1;
+  totalRooms:number = 0;
   roomSub:Subscription;
   ngOnInit(): void {
     this.roomSub = this.roomService.roomSub.subscribe(
-      rooms=>this.roomList=rooms,
+      rooms=>{this.roomList=rooms;
+              this.showSkeleton = false;
+      },
       err=>this.alertify.error(err)
     )
-
+  }
+  fetchRooms(){
+    this.showSkeleton= true;
+    this.roomService.getAllRoomsByBlock(this.blockName);
   }
   editRoom(roomName:String):void{
     this.router.navigate(["/admin/editRoom",roomName]);

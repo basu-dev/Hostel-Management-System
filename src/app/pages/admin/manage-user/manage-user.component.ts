@@ -20,33 +20,39 @@ export class ManageUserComponent implements OnInit {
     private route:ActivatedRoute
   ) {
  this.route.paramMap.subscribe(
-     ( paramMap:ParamMap) => {this.faculty = paramMap.get('id')!;
-     this.studentService.getStudentByFaculty(this.faculty);
+     ( paramMap:ParamMap) => {
+      this.faculty = paramMap.get('id')!;
+      this.fetchStduents();
     }
     )
-    this.keys = Object.keys(this.faculties).filter(String);
   }
+
+  //for pagination
+  totalStudents:number = 0;
+  page:number = 1;
+  students: Student[];
+  //endfor pagniation
   faculty:String;
   startSearch = false;
-  totalBottomTabs:Number;
-  keys: any[];
-  faculties = Faculty;
-  students: Student[] = [];
+  faculties = this.studentService.faculites;
   selectedFaculty = 'BCE';
+  showSkeleton=true;
   studentsSub: Subscription;
-  currentStudents:Student[];
   ngOnInit(): void {
-    console.log("asdf");
     this.studentsSub = this.studentService.studentSub.subscribe(
-      data =>{ this.students = data,
-        this.totalBottomTabs = (data.length / 10);
-        this.currentStudents = this.studentService.give10items(0,this.students);
-     
+      data =>{
+        console.log("data cane",data);
+         this.students = data
+        this.totalStudents = this.students.length;
+        this.showSkeleton = false;
       },
-      (err: any) => console.log(err)
+
     )
-    // this.studentService.getStudentByFaculty(this.faculty);
-    this.studentService.give10items(1,this.students);
+  }
+  fetchStduents():void{
+    this.students= [];
+    this.showSkeleton = true;
+    this.studentService.getStudentByFaculty(this.faculty);
   }
 
   searchByUsername(e:any) {

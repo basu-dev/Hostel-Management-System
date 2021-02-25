@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
     <a *ngIf="!item.directory" (click)="clicked(item)" routerLinkActive="active"
     class="list-group-item list-group-item-action ">
     <div class="flex">
-      <i [class]="'fas mr-2'+item.icon"></i>
+      <i [class]="'fas mr-2 '+item.icon"></i>
       <div>
         {{item.name}}
       </div>
@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
   <a  (click)="clicked(item)" routerLinkActive="active"
     class="list-group-item list-group-item-action ">
     <div class="flex">
-      <i [class]="'fas mr-2 fa-home'"></i>
+      <i [class]="'fas mr-2 '+item.icon"></i>
       <div>
         {{item.name}}
       </div>
@@ -31,7 +31,7 @@ import { Router } from '@angular/router';
   <a *ngFor="let item of item.items" (click)="clicked(item)" routerLinkActive="active"
     class="list-group-item list-group-sub-item list-group-item-action ">
     <div class="flex">
-      <i [class]="'fas ml-4 mr-2 fa-home'"></i>
+      <i class="fas ml-4 mr-2 fa-caret-right"></i>
       <div>
         {{item.name}}
       </div>

@@ -10,38 +10,40 @@ import { AlertifyService } from './alertify.service';
   providedIn: 'root'
 })
 export class StudentsService {
-  studentList: any = [
-    {
-      id: 1,
-      userame: "073bex412",
-      contact: "234324",
-      email: "a@a.com",
-      password: "Nice@123",
-      dob: "2054/06/18",
-      faculty: Faculty.ElectronicsAndCommunication,
-      fullName: "Basu Dev Adhikari",
-      address: "Kathmandu",
-      batch: 73,
-      roomNo: "301"
-    },
-    {
-      id: 2,
-      username: "073bce123",
-      contact: "234324",
-      email: "b@a.com",
-      password: "Nice@123",
-      dob: "2054/06/18",
-      faculty: Faculty.CivilEngineering,
-      fullName: "James Domain",
-      address: "Pokhara",
-      batch: 73,
-      roomNo: "320"
-    },
-  ];
+  studentList: any = [];
   public studentSub = new Subject<Student[]>();
   singleStudentUrl(username: String) {
     return `${Url.students}/${username.trim()}`;
   }
+  faculites:{id:String,name:String}[]=[
+    {
+      id:"BEX",
+      name:"ElectronicsAndCommunication"
+    },{
+      id:"BCT",
+      name:"ComputerEngineering"
+    },
+    {
+      id:"BCE",
+      name:"CivilEngineering"
+    },
+    {
+      id:"BME",
+      name:"MechanicalEngineering"
+    },
+    {
+      id:"BGE",
+      name:"GeomaticsEngineering"
+    },
+    {
+      id:"BAE",
+      name:"AutomobileEngineering"
+    },
+    {
+      id:"BEE",
+      name:"ElectricalEngineering"
+    }
+  ]
   constructor(private http: HttpClient,
     private alertify: AlertifyService,
   ) { };
@@ -82,13 +84,19 @@ export class StudentsService {
     return this.http.get<any>(`${Url.filterStudent}?batch=${batch}`);
   }
   getStudentByFaculty(fac: String): void {
-console.log(fac);
+    
+
      this.http.get<any>(`${Url.filterStudent}?faculty=${fac}`).subscribe(
       (res:any)=>{
         this.studentList = res.data;
         this.notifyStudentsChange();
       },
-      err=>this.alertify.error(err)
+      err=>
+      
+      {this.alertify.error(err);
+        this.studentList =[];
+      this.notifyStudentsChange();
+      }
     )
 
   }
@@ -97,19 +105,20 @@ console.log(fac);
     return of(this.studentList.filter((e: Student) => e._id == id)[0]);
   }
   editStudent(id: any, student: Student): Observable<Student> {
+    console.log("edit student called")
     return this.http.put<Student>(this.singleStudentUrl(id), student);
   }
 
   deleteStudent(id: any) {
     return this.http.delete(this.singleStudentUrl(id), id);
   }
-  registerStudent(student: Student): Observable<any> {
+  registerStudent(student: Student): void{
+    console.log(student);
     this.http.post(`${Url.students}`, student)
     .subscribe(
       res => console.log(res),
       err => this.alertify.error(err)
     )
-    return of(true);
     // return this.http.post(Url.rootUrl+Url.registerStudent,student);
   }
   give10items(index:number,totalItems:any[]):any[]{

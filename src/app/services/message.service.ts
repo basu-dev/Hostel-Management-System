@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -94,7 +93,7 @@ adminMesseges = new Array<any>();
 
   replyMessage(msgId:String,msg:String,receiverType:String,studentId?:String,):void{
    let  message:any={
-      id:uuidv4(),
+      id:(Math.random()*234234324).toString(),
       senderType:'admin',
       message:msg
 

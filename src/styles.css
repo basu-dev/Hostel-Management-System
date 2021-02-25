@@ -10,6 +10,7 @@
     --sidenav-color:#fff;
     --sedenav-text-color:black;
     --tab-active-color:red;
+    --card-height:calc(100vh - var(--nav-height) - 20px);
 }
 
 .bg-primary,.btn-primary{
@@ -47,6 +48,7 @@ tr:nth-child(even){
 .card{
     border:none !important;
     box-shadow: 5px 5px 10px 0px #8a898991;
+    height: var(--card-height) !important;
 }
 nb-layout{
     margin:0;

@@ -11,5 +11,8 @@ export class Url {
    public static staffs=Url.rootUrl+'/staffs';
 
    public static rooms=Url.rootUrl+'/rooms';
+   public static notices= Url.rootUrl+'/notice';
+   public static addNotice=Url.notices+'/add';
+   public static getNotices=Url.notices+'/search/latest'
 
 }

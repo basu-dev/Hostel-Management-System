@@ -36,12 +36,14 @@ export class RoomRegisterComponent implements OnInit {
   isEditform = false;
   ngOnInit() {
 
-    const roomName = this.route.snapshot.paramMap.get('roomname') as String;
+    const roomName = this.route.snapshot.paramMap.get('roomName') as String;
     if(roomName){
     this.roomSub = this.roomService.getRoomByName(roomName).subscribe(data => {
       this.room = data,
-        (err: any) => this.alertify.error(err)
-    });
+       console.log(data)
+    },
+      (err:any)=>this.alertify.error(err)
+    );
     console.log(this.room);
     if (this.room) {
       if (typeof (this.room)) {
@@ -73,28 +75,25 @@ export class RoomRegisterComponent implements OnInit {
     this.roomForm = this.builder.group({
       roomName: ['A301'],
       block: Block.A,
-      students: this.builder.group({
-        student1: ['073bex412'],
-        student2: ['073bex422']
-      }),
+      students: this.builder.array([],
+      ),
       assets: this.builder.group({
-        table: ['2'],
-        chair: ['3'],
-        wardrobe: ['2'],
-        bed: ['2']
+        table: [2],
+        chair: [2],
+        wardrobe: [2],
+        bed: [2]
       })
     })
   }
   editRoomForm(room: Room) {
+    console.log(room);
     const { roomName, block, students, assets } = room;
     console.log(room);
     this.roomForm = this.builder.group({
       roomName: [roomName],
       block: block,
-      students: this.builder.group({
-        student1: [students[0]],
-        student2: [students[1]]
-      }),
+      students: this.builder.array([]
+      ),
       assets: this.builder.group({
         table: [assets.table],
         chair: [assets.chair],
@@ -125,7 +124,13 @@ export class RoomRegisterComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.roomForm.value);
-    this.authService.registerAdmin(this.roomForm.value)
+    if(this.isEditform){
+      this.roomService.updateRoom(this.roomForm.value.roomName,this.roomForm.value).subscribe(
+        (data:any)=>{console.log(data)},
+        (err:any)=>this.alertify.error(err)
+      )
+    }
+    this.roomService.registerRoom(this.roomForm.value)
       .subscribe(
         data => console.log(data),
         err => console.error(err)

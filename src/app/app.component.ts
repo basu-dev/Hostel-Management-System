@@ -4,7 +4,6 @@ import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { IsAuthenticated } from 'src/ngrx/auth/auth.action';
 import { authReducer, State } from 'src/ngrx/auth/auth.reducer';
-import { AppService } from './services/app.service';
 import { AuthService } from './services/auth.service';
 
 
@@ -14,7 +13,7 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  constructor(private appService: AppService,
+  constructor(
     private store: Store<{ auth: State }>,
     private router:Router,
     private authService:AuthService
@@ -22,7 +21,7 @@ export class AppComponent{
     
 
     ){}
-  student  = this.appService.student;
+
   isAuthenticated=false;
   ngOnInit(): void {
     this.authService.startupAuthenticate();

@@ -10,7 +10,7 @@ export class Student{
     faculty:Faculty=Faculty.ElectronicsAndCommunication;
     fullName:String='';
     address:String='';
-    batch:any='';
+    batch:String='';
     roomNo?:any='';
     _id?:any;
     imageUrl?:String='';

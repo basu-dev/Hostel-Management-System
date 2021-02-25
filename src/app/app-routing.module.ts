@@ -15,9 +15,11 @@ import { ContactAdminComponent } from './pages/common/contact-admin/contact-admi
 import { NoticeDetailComponent } from './pages/common/notices/notice-detail/notice-detail.component';
 import { StaffOrAdminGuard } from './guard/staffOrAdmin.guard';
 import { MessageComponent } from './pages/common/message/message.component';
+import { AdminHomeComponent } from './pages/admin/home/home.component';
 
 const routes: Routes = [
   {path:"admin", children:[
+    {path:'',component:AdminHomeComponent},
     {path:"adminRegister",component:AdminRegisterComponent},
     {path:"studentRegister",component:StudentRegisterComponent},
     {path:"manageRooms",component:ManageRoomComponent},

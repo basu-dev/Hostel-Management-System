@@ -28,6 +28,10 @@ export class RoomService {
             err=>this.alertify.error(err)
         );
     }
+    registerRoom(room:Room):Observable<any>{
+        return this.http.post(`${Url.rooms}`,room);
+    }
+
     getAllRoomsByBlock(blocK:String):void{
         console.log(`${Url.rooms}/blocksearch/${blocK}`);
         this.http.get(`${Url.rooms}/blocksearch/${blocK}`).subscribe(
@@ -39,7 +43,6 @@ export class RoomService {
             err=>this.alertify.error(err)
         );
     }
-
     sendAllRooms():void{
         this.roomSub.next(this.roomList);
     }

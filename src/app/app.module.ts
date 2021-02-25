@@ -8,7 +8,6 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrModule } from 'ngx-toastr';
-
 import { authReducer } from 'src/ngrx/auth/auth.reducer';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +16,9 @@ import { EditIconComponent } from './components/edit.component';
 import { SidenavItemComponent } from './components/sidenav/sidenav-item.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { TableFooterComponent } from './components/table-footer/table-footer.component';
+import { TableSkeletonLoaderComponent } from './components/table-skeleton-loader/table-skeleton-loader.component';
 import { AdminRegisterComponent } from './pages/admin/admin-register/admin-register.component';
+import { AdminHomeComponent } from './pages/admin/home/home.component';
 import { ManageRoomComponent } from './pages/admin/manage-room/manage-room.component';
 import { RoomRegisterComponent } from './pages/admin/manage-room/room-register/room-register.component';
 import { ManageStaffComponent } from './pages/admin/manage-staff/manage-staff.component';
@@ -59,8 +60,11 @@ import { TokenInterceptorService } from './services/token-interceptor';
     TableFooterComponent,
     SidenavItemComponent,
     MessageComponent,
+    AdminHomeComponent,
     ChangePasswordUserComponent,
+    TableSkeletonLoaderComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,

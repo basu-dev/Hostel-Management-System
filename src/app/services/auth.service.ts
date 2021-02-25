@@ -1,4 +1,4 @@
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of, Subject, throwError } from 'rxjs';
 import { Url } from './../urls';
 import { Admin } from './../model/admin';
 import { Injectable } from "@angular/core";
@@ -12,6 +12,7 @@ import * as fromAuth from '../../ngrx/auth/auth.reducer';
 import jwt_decode from "jwt-decode";
 import { AlertifyService } from './alertify.service';
 import { Router } from '@angular/router';
+import { authEnum } from '../model/auth.enum';
 @Injectable({
     providedIn:'root'
 })
@@ -25,6 +26,8 @@ export class AuthService{
     isAdmin=false;
     isStudent=false;
     isStaff=false;
+
+    currentUser = authEnum.IsUnauthenticated;
     registerAdmin(admin:Admin):Observable<any>{
         console.log(admin);
         return this.http.post(Url.rootUrl+Url.registerAdmin,admin)
@@ -36,6 +39,7 @@ export class AuthService{
     //     console.log(student);
     //     return this.http.post(Url.rootUrl+Url.registerStudent,student)
     // }
+    public authSub = new Subject<authEnum>();
     get isStudentLoggedIn():boolean{
         return false;
     }
@@ -56,25 +60,31 @@ export class AuthService{
        )
     
     }
- 
+    assignRole(role:authEnum){
+        this.currentUser = role;
+        this.authSub.next(this.currentUser);
+    }
     authenticate(role:String){
         console.log(role)
         switch(role){
             case "admin":
                 this.isAdmin=true;
+                this.assignRole(authEnum.IsAdmin);
                 this.store.dispatch({type:ActionTypes.ActionTypes.IS_ADMIN});
                 break;
             case "student":
                 this.store.dispatch({type:ActionTypes.ActionTypes.IS_STUDENT})
+                this.assignRole(authEnum.IsStudent);
                 break;
             case "hostelstaff":
                 this.store.dispatch({type:ActionTypes.ActionTypes.IS_HOSTEL_STAFF})
+                this.assignRole(authEnum.IsHostelStaff);
                 break;
                 case "meshstaff":
                     this.store.dispatch({type:ActionTypes.ActionTypes.IS_MESH_STAFF})
+                    this.assignRole(authEnum.IsMeshStaff);
                     break;
                 default :
-                
                 this.logout();
 
           }    }
@@ -96,7 +106,8 @@ export class AuthService{
     logout(){
         this.isAdmin=false;
         localStorage.clear();
-        this.store.dispatch({type:ActionTypes.ActionTypes.IS_AUTHENTICATED});
+        this.store.dispatch({type:ActionTypes.ActionTypes.IS_UNAUTHENTICATED});
+        this.assignRole(authEnum.IsUnauthenticated);
     }
 
 }
