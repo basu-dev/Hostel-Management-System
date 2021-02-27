@@ -12,8 +12,6 @@ import { Router } from '@angular/router';
         {{item.name}}
       </div>
     </div>
-    <!-- <i class="fas fa-arrow-left" aria-hidden="true"></i> -->
-    <i *ngIf="item.directory" class="fa fa-chevron-left" aria-hidden="true"></i>
   </a>
   <div *ngIf="item.directory">
   <a  (click)="clicked(item)" routerLinkActive="active"
@@ -23,9 +21,10 @@ import { Router } from '@angular/router';
       <div>
         {{item.name}}
       </div>
-    <!-- <i class="fas fa-arrow-left" aria-hidden="true"></i> -->
   </div>
-  <i *ngIf="item.directory" class="fa fa-chevron-left" aria-hidden="true"></i>
+  <div *ngIf="item.directory">
+    <i class="fas fa" [ngClass]="open?'fa-chevron-down':'fa-chevron-left'"></i>
+  </div>
 </a>
   <div *ngIf="item.directory &&open" >
   <a *ngFor="let item of item.items" (click)="clicked(item)" routerLinkActive="active"
@@ -36,8 +35,7 @@ import { Router } from '@angular/router';
         {{item.name}}
       </div>
     </div>
-    <!-- <i class="fas fa-arrow-left" aria-hidden="true"></i> -->
-    <i  *ngIf="item.directory" class="fa fa-chevron-left" aria-hidden="true"></i>
+
   </a>
   </div>
 
@@ -46,7 +44,6 @@ import { Router } from '@angular/router';
   })
 
   export class SidenavItemComponent {
-
     @Input('item') item :{link?:string,icon:String,directory:boolean,items?:any,name:String};
    open=false;
    constructor(private router:Router){}
@@ -58,5 +55,4 @@ import { Router } from '@angular/router';
         }
         this.router.navigateByUrl(item.link)
     }
-
   }

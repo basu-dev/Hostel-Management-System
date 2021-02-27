@@ -2,7 +2,7 @@ export interface Staff{
     id?:any,
     username:String,
     fullName:String,
-    staffType:StaffType,
+    role:String,
     password?:String,
     imageUrl?:String,
     contact:String,
@@ -11,6 +11,6 @@ export interface Staff{
 
 }
 export enum StaffType{
-    GeneralStaff = 'General',
-    MeshStaff ='Mesh'
+    GeneralStaff = 'Hostel',
+    MeshStaff ='Mess'
 }

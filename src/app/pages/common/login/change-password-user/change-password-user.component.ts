@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertifyService } from 'src/app/services/alertify.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { MustMatch } from 'src/app/validators/mustmatch.validator';
 
 @Component({
@@ -9,8 +12,8 @@ import { MustMatch } from 'src/app/validators/mustmatch.validator';
 })
 export class ChangePasswordUserComponent implements OnInit {
 
-  constructor(private fb:FormBuilder) { }
-  passwordForm:any;
+  constructor(private fb:FormBuilder,private authService:AuthService,private alertify:AlertifyService,private router:Router) { }
+  passwordForm:FormGroup;
   ngOnInit() {
     this.passwordForm = this.fb.group({
       password:['',[Validators.required,Validators.minLength(5)]],
@@ -20,13 +23,20 @@ export class ChangePasswordUserComponent implements OnInit {
     })
   }
   get password(){
-   return this.passwordForm.controls.get('password');
+   return this.passwordForm.get('password');
   }
   get confirmPassword(){
-   return this.passwordForm.controls.get('confirmPassword');
+   return this.passwordForm.get('confirmPassword');
   }
   resetPassword(){
-    console.log("reset");
+    this.authService.changePasswordByUser(this.passwordForm.get('password')?.value).subscribe(
+      data=>{
+        console.log(data);
+        this.router.navigateByUrl("/");
+        this.authService.startupAuthenticate();
+      },
+      err=>this.alertify.error(err)
+    )
   }
   
 

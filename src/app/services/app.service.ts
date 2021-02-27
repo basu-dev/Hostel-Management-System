@@ -49,7 +49,7 @@ export class NoticeService {
             case 'hostel':
                 this.hostelNoticeSub.next(notices);
                 break;
-            case 'mesh':
+            case 'mess':
                 this.meshNoticeSub.next(notices);
                 break;
         }

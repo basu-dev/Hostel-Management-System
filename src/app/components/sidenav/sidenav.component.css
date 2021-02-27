@@ -169,7 +169,7 @@ a:hover{
 }
 
 .fa-facebook-messenger{
-  color:rgb(0, 81, 255);
+  color:#a7aab1;
   font-size: 25px;
 }
 .fa-bell{
@@ -193,9 +193,15 @@ a:hover{
 .text-center{
   font-size: 1.4rem;
 }
-/* .container-fluid{
-  background-color: #fff;
-} */
+.container-fluid{
+  background-color: green;
+}
 .fa-chevron-left{
   font-size: .7rem;
+}
+#page-content-wrapper{
+  /* background-color: green; */
+  padding:10px;
+  height: calc(var(--card-height) + 40px);
+  overflow-y: scroll;
 }

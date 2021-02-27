@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertifyService } from 'src/app/services/alertify.service';
 import { MessageService } from 'src/app/services/message.service';
 
 @Component({
@@ -8,9 +9,10 @@ import { MessageService } from 'src/app/services/message.service';
 })
 export class MessageComponent implements OnInit {
 
-  constructor(private messageService:MessageService) { }
+  constructor(private messageService:MessageService,private alertify:AlertifyService) { }
 messages:any;
 currentMessages:any;
+receiver:string;
 title:String;
 messageStatus = "student";
 selectedMessage:String = ''
@@ -20,22 +22,28 @@ showReplyBox = false;
     this.loadStudentMessages();
   }
   loadStudentMessages(){
-    this.currentMessages = this.messages.filter((x:any)=>x.senderType == "student");
+    this.receiver = "6033b88c141f97001569b537";
+    this.messageService.getMessages("6033b88c141f97001569b537").subscribe(
+      data=>console.log(data),
+      (err:any)=>this.alertify.error(err)
+    )
     this.title="Student Messagses";
     this.messageStatus =  "student";
   }
   loadMeshMessages(){
-    this.currentMessages = this.messages.filter((x:any)=>x.senderType == "meshstaff")
-    this.title="Mesh Messagses";
-    this.messageStatus =  "meshstaff";
-
+    this.receiver = "messstaff";
+    this.messageService.getMessages("messstaff").subscribe(
+      data=>this.currentMessages = data,
+      (err:any)=>this.alertify.error(err)
+    )
+    this.title="Mess Messagses";
+    this.messageStatus =  "messstaff";
   }
   loadStaffMessages(){
+    this.receiver = "hostelstaff";
     this.currentMessages = this.messages.filter((x:any)=>x.senderType == "hostelstaff")
     this.title="Staff Messagses";
     this.messageStatus =  "hostelstaff";
-
-
   }
   get isStudentMsg():boolean{
       return this.messageStatus === "student";
@@ -44,15 +52,18 @@ showReplyBox = false;
     return this.messageStatus ==="hostelstaff";
 } 
 get isMeshMsg():boolean{
-  return this.messageStatus ==="meshstaff";
+  return this.messageStatus ==="messstaff";
 } 
 sendMessage(e:any){
   console.log(e.target.value);
-  this.messageService.replyMessage(this.selectedMessage,e?.target?.value,this.messageStatus);
+  console.log(this.receiver);
+  this.messageService.setMessage(this.receiver,e?.target?.value).subscribe(
+    data=>console.log(data),
+    (err:any)=>this.alertify.error(err)
+  )
 }
-_showReplyBox(id:String){
-  console.log('clcied')
-    this.showReplyBox = true;
-    this.selectedMessage = id;
+_showReplyBox(){
+    // this.showReplyBox = true;
+    // this.selectedMessage = receiver;
 }
 }

@@ -13,6 +13,7 @@ import jwt_decode from "jwt-decode";
 import { AlertifyService } from './alertify.service';
 import { Router } from '@angular/router';
 import { authEnum } from '../model/auth.enum';
+import { AuthCredentials } from '../model/authCredentials';
 @Injectable({
     providedIn:'root'
 })
@@ -26,7 +27,13 @@ export class AuthService{
     isAdmin=false;
     isStudent=false;
     isStaff=false;
-
+    
+    authCredentials:AuthCredentials;
+     setAuthCredential(credential:AuthCredentials){
+        this.authCredentials = credential;
+        console.log(this.authCredentials);
+        this.authCredentialSub.next(this.authCredentials);
+    }
     currentUser = authEnum.IsUnauthenticated;
     registerAdmin(admin:Admin):Observable<any>{
         console.log(admin);
@@ -39,7 +46,9 @@ export class AuthService{
     //     console.log(student);
     //     return this.http.post(Url.rootUrl+Url.registerStudent,student)
     // }
-    public authSub = new Subject<authEnum>();
+    public authSub = new Subject<{role:authEnum,user:AuthCredentials}>();
+    public authCredentialSub = new Subject<AuthCredentials>();
+     authUser:any;
     get isStudentLoggedIn():boolean{
         return false;
     }
@@ -49,20 +58,30 @@ export class AuthService{
     login(credentials:LoginModel):any{
         this.http.post<{token:any}>(Url.login,credentials).subscribe(
           (data:any)=>{
-              console.log(data)
-           this.savedata(data.data)
-           let decoded:any = jwt_decode(data.data.token)
-           console.log(decoded);
-              this.authenticate(decoded.role);
-              this.router.navigateByUrl('/');
+              this.authUser = data.user;
+              let decoded:any = jwt_decode(data.data.token)
+              this.savedata(data.data)
+              this.setAuthCredential(decoded);
+                 this.authenticate(decoded.role);
+              if(!decoded.isPasswordChanged){
+                  this.router.navigateByUrl("/auth/resetpassword");
+                  return
+                }
+                else{
+                  this.router.navigateByUrl('/');
+           }
         },
         err=>this.alerfity.error(err)
        )
     
     }
+    changePasswordByUser(password:String):Observable<any>{
+        return this.http.put(Url.resetPasswordUser,{newpassword:password});
+    }
     assignRole(role:authEnum){
+        console.log("assign role",role)
         this.currentUser = role;
-        this.authSub.next(this.currentUser);
+        this.authSub.next({role,user:this.authCredentials});
     }
     authenticate(role:String){
         console.log(role)
@@ -73,16 +92,16 @@ export class AuthService{
                 this.store.dispatch({type:ActionTypes.ActionTypes.IS_ADMIN});
                 break;
             case "student":
-                this.store.dispatch({type:ActionTypes.ActionTypes.IS_STUDENT})
                 this.assignRole(authEnum.IsStudent);
+                this.store.dispatch({type:ActionTypes.ActionTypes.IS_STUDENT})
                 break;
             case "hostelstaff":
-                this.store.dispatch({type:ActionTypes.ActionTypes.IS_HOSTEL_STAFF})
                 this.assignRole(authEnum.IsHostelStaff);
+                this.store.dispatch({type:ActionTypes.ActionTypes.IS_HOSTEL_STAFF})
                 break;
-                case "meshstaff":
-                    this.store.dispatch({type:ActionTypes.ActionTypes.IS_MESH_STAFF})
+                case "messstaff":
                     this.assignRole(authEnum.IsMeshStaff);
+                    this.store.dispatch({type:ActionTypes.ActionTypes.IS_MESH_STAFF})
                     break;
                 default :
                 this.logout();
@@ -93,10 +112,14 @@ export class AuthService{
         localStorage.setItem('token',data.token);
 
     }
-    
+    getLoginDetails(role:String):Observable<any>{
+        return this.http.get(Url.loginCredentials+`?role=${role}`)
+    }
     startupAuthenticate(){
         try{
-             let token:{role:String} = jwt_decode(localStorage.getItem('token')!);
+             let token:AuthCredentials = jwt_decode(localStorage.getItem('token')!);
+             this.setAuthCredential(token);
+             console.log(token.role)
             this.authenticate(token.role);
 
         }catch(e){

@@ -24,7 +24,7 @@ body{
     background-color: #fafafa !important;
     font-family: "Open Sans" sans-serif;
    
-        overflow-x: hidden !important;
+        overflow: hidden !important;
         font-family:  -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji !important;
       
 }
@@ -48,7 +48,7 @@ tr:nth-child(even){
 .card{
     border:none !important;
     box-shadow: 5px 5px 10px 0px #8a898991;
-    height: var(--card-height) !important;
+    min-height: var(--card-height) !important;
 }
 nb-layout{
     margin:0;

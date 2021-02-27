@@ -7,12 +7,20 @@ export class Url {
    public static registerStudent=Url.rootUrl+'/students';
    public static filterStudent = Url.rootUrl+'/filterStudents';
    public static login=Url.rootUrl+'/auth/login';
+   public static resetPasswordUser=Url.rootUrl+'/auth/initialpasswordreset';
+   public static resetPasswordByAdmin=Url.rootUrl+'/auth/resetpassword';//:id is required
+
+
    public static students=Url.rootUrl+'/students';
-   public static staffs=Url.rootUrl+'/staffs';
+   public static allStaffs=Url.rootUrl+'/auth/findall/staff';
+   public static registerStaff=Url.rootUrl+'/auth/register/staff';
 
    public static rooms=Url.rootUrl+'/rooms';
    public static notices= Url.rootUrl+'/notice';
    public static addNotice=Url.notices+'/add';
-   public static getNotices=Url.notices+'/search/latest'
+   public static getNotices=Url.notices+'/search/latest';
+   public static loginCredentials=Url.rootUrl+'/auth/logindetails'
+   public static getMessages=Url.rootUrl+'/message/get';
+   public static setMessages=Url.rootUrl+'/message/add';
 
 }

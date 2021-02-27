@@ -60,23 +60,21 @@ export class StaffRegisterComponent implements OnInit {
     this.adminForm = new FormGroup({
       email: new FormControl('a@a.com', [Validators.required, Validators.email]),
       username: new FormControl('animal32',[Validators.required]),
-      staffType: new FormControl('bex',[Validators.required]),
+      role: new FormControl('hostel',[Validators.required]),
       fullName: new FormControl('New User',[Validators.required]),
       address: new FormControl('Chitwan',[Validators.required]),
       contact: new FormControl('5646546546546',[Validators.required,Validators.minLength(10)]),
-      // department: new FormControl('',Validators.required)
     });
   }
   editStaffForm(staff:Staff) {
-    let {email,username,staffType,fullName,address,contact} = staff;
+    let {email,username,role,fullName,address,contact} = staff;
     this.adminForm = new FormGroup({
       email: new FormControl(email, [Validators.required, Validators.email]),
       username: new FormControl(username,[Validators.required]),
-      staffType: new FormControl(staffType,[Validators.required]),
+      role: new FormControl(role,[Validators.required]),
       fullName: new FormControl(fullName,[Validators.required]),
       address: new FormControl(address,[Validators.required]),
       contact: new FormControl(contact,[Validators.required,Validators.minLength(10)]),
-      // department: new FormControl('',Validators.required)
     });
   }
 

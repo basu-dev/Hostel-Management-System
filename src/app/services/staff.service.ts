@@ -13,34 +13,14 @@ export class StaffService {
       private alertify:AlertifyService
     ){}
     staffList:Staff[]=[
-        {
-            id:1,
-            username:"jeevan",
-            contact:"2343241323",
-            email:"a@a.com",
-            password:"Nice@123",
-            staffType:StaffType.GeneralStaff,
-            fullName:"Jeevan Poudel",
-            address:"Pokhara",
-            imageUrl:"asdf.jpg", 
-        },
-        {
-            id:1,
-            username:"manoj",
-            contact:"2343545158",
-            email:"ab@asa.com",
-            password:"Nice@123",
-            staffType:StaffType.MeshStaff,
-            fullName:"Manoj Yadav",
-            address:"Sarlahi",
-            imageUrl:"asdf.jpg", 
-        },
     ];
     public StaffSub = new Subject<Staff[]>();
     getStaffList():void{
-        this.http.get(Url.staffs).subscribe
+        this.http.get(Url.allStaffs).subscribe
         (
-          (res:any)=>this.staffList = res.data,
+          (res:any)=>{this.StaffSub.next(res.data)
+          console.log(res.data);
+          },
           err=>this.alertify.error(err)
         )
       }
@@ -65,10 +45,10 @@ export class StaffService {
         return this.staffList.filter(id);
       }
       registerStaff(staff:Staff):Observable<any>{
-        this.staffList.push(staff);
-        this.StaffSub.next(this.staffList);
-       return of(true);
-        // return this.http.post(Url.rootUrl+Url.registerStaff,staff);
+      //   this.staffList.push(staff);
+      //   this.StaffSub.next(this.staffList);
+      //  return of(true);
+        return this.http.post(Url.registerStaff,staff);
     }
 
 

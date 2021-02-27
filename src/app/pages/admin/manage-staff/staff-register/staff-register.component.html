@@ -33,12 +33,11 @@
               </div>
               <div class="form-group">
                 <label for="batch">Staff Type*</label>
-                <select type="number" class="form-control"  id="staffType" formControlName="staffType">
-                  <option id="bex" value="bex">Electronics And Communication</option>
-                  <option id="bel" value="bel">Electrical Engineering</option>
-                  <option id="bct" value="bct">Computer Engineering</option>
+                <select type="number" class="form-control"  id="role" formControlName="role">
+                  <option  value="hostelstaff">Hostel Staff</option>
+                  <option  value="messstaff">Mess Staff</option>
                 </select>
-                <div class="form-text text-danger" *ngIf="adminForm.get('staffType').hasError('required') && adminForm.get('staffType').touched">
+                <div class="form-text text-danger" *ngIf="adminForm.get('role').hasError('required') && adminForm.get('role').touched">
                   Staff Type field is required
                 </div>
               </div>

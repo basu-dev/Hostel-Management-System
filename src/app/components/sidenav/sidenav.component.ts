@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { authEnum } from 'src/app/model/auth.enum';
+import { AuthCredentials } from 'src/app/model/authCredentials';
 import { AuthService } from 'src/app/services/auth.service';
 import  * as auth from 'src/ngrx/auth/auth.reducer' ;
 
@@ -20,7 +21,7 @@ export class SidenavComponent implements OnInit {
     }
     showLogout= false;
     currentNavItems :{name:String,link:string,icon:String,directory:boolean,items?:any}[];
-
+    currentUser:AuthCredentials; 
     currentAuth = authEnum.IsUnauthenticated;
      adminSidenav:{name:String,link:string,icon:String,directory:boolean,items?:any}[]=[
        {
@@ -104,27 +105,59 @@ export class SidenavComponent implements OnInit {
          icon:"fa-comment-dots",
          link:"/admin/messages",
          directory:false
+       },
+       {
+         name:"Credentials",
+         icon:"fa-key",
+         link:"/admin/authcredentials",
+         directory:false
+       },
+       {
+         name:"Available Rooms",
+         icon:"fa-room",
+         link:"/admin/availableRooms",
+         directory:false
        }
     
       ]
       studentSidenav=[
         {
-          name:"User Profile",
+          name:"Dashboard",
           icon:"fa-user",
-          link:"/profile",
+          link:"/home",
           directory:false,
+        },
+        {
+          name:"Notices",
+          icon:"fa-notice",
+          link:"/notices",
+          directory:false,
+        },
+        {
+          name:"Mess",
+          icon:"fa-",
+          link:"/student/mess",
+          directory:false
         }
       ]
   ngOnInit() {
     this.authService.authSub.subscribe(
-      (data:authEnum)=>this.currentAuth = data
+      (data)=>{this.currentAuth = data.role;
+        this.currentUser = data.user;
+      this.decideSideNav();
+      }
     )
+
+    this.authService.startupAuthenticate();
+
 
     // this.username = localStorage.getItem('username');
   }
   decideSideNav():void{
+    console.log(this.currentAuth);
     switch (this.currentAuth){
       case authEnum.IsAdmin:
+        console.log("admin")
         this.currentNavItems = this.adminSidenav
         break;
       case authEnum.IsHostelStaff:
@@ -134,12 +167,12 @@ export class SidenavComponent implements OnInit {
         this.currentNavItems = this.studentSidenav;
     }
   }
+  loadProfile():void{
+    console.log("Profile loading")
+  }
   logout(){
     this.authService.logout();
   }
-
-
-
 
 }
 

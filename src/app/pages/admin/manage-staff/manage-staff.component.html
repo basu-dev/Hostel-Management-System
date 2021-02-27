@@ -10,6 +10,7 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Full Name</th>
+          <th scope="col">UserName</th>
           <th scope="col">Staff Type</th>
           <th scope="col">contact</th>
           <th scope="col">Email </th>
@@ -21,7 +22,8 @@
           <tr *ngFor="let staff of staffs;let i=index">
           <th scope="row">{{i+1}}</th>
           <td>{{staff.fullName}}</td>
-          <td>{{staff.staffType}}</td>
+          <td>{{staff.username}}</td>
+          <td>{{staff.role}}</td>
           <td>{{staff.contact}}</td>
           <td>{{staff.email}}</td>
           <td>{{staff.address}}</td>

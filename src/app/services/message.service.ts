@@ -1,12 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Url } from '../urls';
+import { AlertifyService } from './alertify.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-constructor() {  
+constructor(private http:HttpClient,private alertify:AlertifyService,private authService:AuthService) {  
    this.adminMesseges=[
   {
     _id:"23432lkjasdlfk",
@@ -41,21 +46,21 @@ constructor() {
   {
     _id:"23432lk3dgjasdlfk",
     senderId:'asdflkjower',
-    senderType:"meshstaff",
+    senderType:"messstaff",
     senderfullName:'Roshan Sharma',
     message:'This is not nice'
   },
   {
     _id:"23432lk3dgjasdlfk",
     senderId:'asdflkjower',
-    senderType:"meshstaff",
+    senderType:"messstaff",
     senderfullName:'Hemraj Sharma',
     message:'This is not nice'
   },
   {
     _id:"23432lk3dgjasdlfk",
     senderId:'asdflkjower',
-    senderType:"meshstaff",
+    senderType:"messstaff",
     senderfullName:'Suntali Pokhrel',
     message:'This is not nice'
   },
@@ -100,7 +105,7 @@ adminMesseges = new Array<any>();
     }
     console.log(receiverType);
     switch(receiverType){
-      case 'meshstaff':
+      case 'messstaff':
         this.replyMessageToMesh(msgId,message);
         break;
       case 'student':
@@ -116,12 +121,29 @@ adminMesseges = new Array<any>();
   createMessage(msg:String,receiverType:String,studentId?:String){
 
   }
+   getCurrentUserId():String{
+     var id;
+     var  credentials  = this.authService.authCredentials;
+    if(credentials.role=="student"){
+     id=credentials._id;
+    }else{
+      id=credentials.role;
+    }
+    return id;
+
+  }
+  getMessages(receiver:String):Observable<any>{
+    var id = this.getCurrentUserId();
+    return this.http.get(Url.getMessages+`/?sender=${id}&receiver=${receiver}`).pipe(
+      map((res:any)=>res.data),
+    );
+  }
+  setMessage(receiver:String,msg:StringConstructor):Observable<any>{
+    var message={messageContent:msg}
+    var id = this.getCurrentUserId();
+    return this.http.post(Url.setMessages+`/?sender=${id}&receiver=${receiver}`,message);
+  }
   replyMessageToMesh(msgId:String,msg:any){
-  //  this.adminMesseges.filter((x:any)=>{
-  //    if(x._id == msgId){
-  //      x.replies.add(msg)
-  //    }
-  //  });
    this.adminMesseges.forEach((x:any)=>{
     if(x._id == msgId){
       if(x.replies){

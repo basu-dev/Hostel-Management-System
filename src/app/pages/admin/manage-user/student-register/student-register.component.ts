@@ -39,16 +39,16 @@ export class StudentRegisterComponent implements OnInit {
   private studentSub: Subscription;
 
   ngOnInit() {
-    this.studentSub = this.studentService.getStudentById(this.id).subscribe(
-      data=>{
-        console.log(data);
-        this.student=data;
-        console.log(this.student)
-        this.selectedFaculty = this.student.faculty;
-      },
-      err=>console.log(err)
-    );
+
     if(this.id){
+      this.studentSub = this.studentService.getStudentById(this.id).subscribe(
+        data=>{
+          console.log(data);
+          this.student=data;
+          this.selectedFaculty = this.student.faculty;
+        },
+        err=>console.log(err)
+      );
       this.isEditform=true;
       this.componentName='Edit Student';
       this.editStudentForm();
@@ -64,11 +64,12 @@ export class StudentRegisterComponent implements OnInit {
     this.adminForm = new FormGroup({
       email: new FormControl('a@a.com', [Validators.required, Validators.email]),
       rollNo: new FormControl('073BEX473',[Validators.required]),
-      faculty: new FormControl('',[Validators.required]),
+      faculty: new FormControl('bex',[Validators.required]),
       batch: new FormControl('073',[Validators.required]),
       fullName: new FormControl('New User',[Validators.required]),
       address: new FormControl('Chitwan',[Validators.required]),
       dob: new FormControl('2054-3-12',[Validators.required]),
+      contact: new FormControl("2323232323232222",[Validators.required,Validators.minLength(10)]),
 
     });
   }
@@ -90,7 +91,9 @@ export class StudentRegisterComponent implements OnInit {
 
   deleteStudent(){
     this.studentService.deleteStudent(this.student._id).subscribe(
-      data=>{console.log(data)},
+      data=>{console.log(data);
+        history.back();
+      },
       err=>this.alertify.error(err)
     )
   }
@@ -100,7 +103,9 @@ export class StudentRegisterComponent implements OnInit {
     if(this.isEditform){
       console.log(this.adminForm.value);
       this.studentService.editStudent(this.student._id,this.adminForm.value).subscribe(
-        data=>this.alertify.success("Student Updated Successfully"),
+        data=>{this.alertify.success("Student Updated Successfully");
+          history.back();
+      },
         err=>this.alertify.error(err)
       );
      return; 

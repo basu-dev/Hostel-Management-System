@@ -32,19 +32,27 @@ import { LoginComponent } from './pages/common/login/login.component';
 import { MessageComponent } from './pages/common/message/message.component';
 import { NoticeDetailComponent } from './pages/common/notices/notice-detail/notice-detail.component';
 import { NoticesComponent } from './pages/common/notices/notices.component';
-import { StudentDetailComponent } from './pages/common/student-detail/student-detail.component';
+import { StudentDetailComponent } from './pages/student/student-detail/student-detail.component';
+import { StudentDashboardComponent } from './pages/student/student-dashboard/student-dashboard.component';
 import { TokenInterceptorService } from './services/token-interceptor';
+import { AuthCredentialsComponent } from './pages/admin/auth-credentials/auth-credentials.component';
 
 
 
 @NgModule({
   declarations: [
+    //common
+    NoticesComponent,
     AppComponent,
+    SidenavItemComponent,
+    LoginComponent,
+    SidenavComponent,
+    NoticeDetailComponent,
+    ChangePasswordUserComponent,
+    //admin
     AdminRegisterComponent,
     StudentRegisterComponent,
     RoomRegisterComponent,
-    NoticesComponent,
-    SidenavComponent,
     ManageUserComponent,
     ManageStreamComponent,
     ManageRoomComponent,
@@ -55,14 +63,14 @@ import { TokenInterceptorService } from './services/token-interceptor';
     StudentDetailComponent,
     StaffRegisterComponent,
     ManageStaffComponent,
-    LoginComponent,
-    NoticeDetailComponent,
     TableFooterComponent,
-    SidenavItemComponent,
     MessageComponent,
     AdminHomeComponent,
     ChangePasswordUserComponent,
     TableSkeletonLoaderComponent,
+    AuthCredentialsComponent,
+    //student
+    StudentDashboardComponent,
   ],
 
   imports: [
@@ -73,7 +81,6 @@ import { TokenInterceptorService } from './services/token-interceptor';
     FormsModule,
     NgbModule,
     NgxPaginationModule,
-
     ReactiveFormsModule,
     StoreModule.forRoot({ auth: authReducer }),
     StoreDevtoolsModule.instrument({
@@ -82,7 +89,7 @@ import { TokenInterceptorService } from './services/token-interceptor';
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
-      timeOut: 1000
+      timeOut: 2000
     }),
   ],
   providers: [

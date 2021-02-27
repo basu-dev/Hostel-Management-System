@@ -10,51 +10,51 @@
       <a (click)="loadStudentMessages()" [class.tab-active]="isStudentMsg">
         <i class="fas fa-user-friends"></i>
         Students</a>
-        <div *ngIf="isStudentMsg" class="underline"></div>
+      <div *ngIf="isStudentMsg" class="underline"></div>
     </div>
     <div>
 
       <a (click)="loadMeshMessages()" [class.tab-active]="isMeshMsg">
         <i class="fas fa-utensils"></i>
-  
-        Mesh </a>
-        <div *ngIf="isMeshMsg" class="underline"></div>
 
-      </div>
-      <div>
+        Mess </a>
+      <div *ngIf="isMeshMsg" class="underline"></div>
+
+    </div>
+    <div>
       <a (click)="loadStaffMessages()" [class.tab-active]="isStaffMsg">
         <i class="fas fa-user-cog"></i>
         Staff</a>
-        <div *ngIf="isStaffMsg" class="underline"></div>
+      <div *ngIf="isStaffMsg" class="underline"></div>
 
     </div>
   </div>
 
   <div class="message-container card-body">
-    <div *ngFor="let item of currentMessages"  class="message" >
-      
+    <div *ngFor="let item of currentMessages" class="message">
+
       <div class="name">
         <i class="fas fa-user"></i> {{item.senderfullName}}
       </div>
       <div class="body">
-        
-        {{item.message}}
+
+        {{item.messageContent}}
       </div>
       <div class="actions">
         <div class='action'>
 
-          <i class="fas fa-trash"></i> 
+          <i class="fas fa-trash"></i>
         </div>
-        <div class='action' (click)="_showReplyBox(item._id)">
-          <i class="fas fa-reply" ></i> 
-        </div>
-      </div>
-      </div>
-      <div class="input-box" *ngIf="showReplyBox">
-        <input (change)="sendMessage($event)" type="text" placeholder="reply">
-        <div (change)="sendMessage($event)">
-          <i class="far fa-paper-plane"></i>
+        <div class='action' (click)="_showReplyBox()">
+          <i class="fas fa-reply"></i>
         </div>
       </div>
+    </div>
+    <div class="input-box">
+      <input (change)="sendMessage($event)" type="text" placeholder="reply">
+      <div (change)="sendMessage($event)">
+        <i class="far fa-paper-plane"></i>
+      </div>
+    </div>
   </div>
 </div>

@@ -12,9 +12,9 @@
       <a [routerLink]="['/admin/messages']" routerLinkActive="router-link-active" >
         <i class="fab fa-facebook-messenger" ></i>
       </a> 
-      <div class="profile-image">
+      <div (click)="loadProfile()" class="profile-image">
         <div><i class="fas fa-user"></i></div><div class="name">
-          {{username}}
+          {{currentUser.fullName}}
         </div> 
       </div>
       <div class="elepsis" (click)="showLogout=true">
@@ -30,16 +30,11 @@
   <!-- Sidebar -->
   <div class="bg-primary " id="sidebar-wrapper">
     <div class="li list-group-">
-    
-
-        <app-sidenav-item *ngFor="let item of adminSidenav" [item]="item"></app-sidenav-item>
-    
+        <app-sidenav-item *ngFor="let item of currentNavItems" [item]="item"></app-sidenav-item>
     </div>
   </div>
   <div id="page-content-wrapper">
-    <div class="container-fluid" style="padding: 5px;">
       <router-outlet></router-outlet>
-    </div>
   </div>
 </div>
  

@@ -7,7 +7,7 @@ import { RoomRegisterComponent } from './pages/admin/manage-room/room-register/r
 import { StudentRegisterComponent } from './pages/admin/manage-user/student-register/student-register.component';
 import { NoticesComponent } from './pages/common/notices/notices.component';
 import { ManageStaffComponent } from './pages/admin/manage-staff/manage-staff.component';
-import { StudentDetailComponent } from './pages/common/student-detail/student-detail.component';
+import { StudentDetailComponent } from './pages/student/student-detail/student-detail.component';
 import { StaffRegisterComponent } from './pages/admin/manage-staff/staff-register/staff-register.component';
 import { LoginComponent } from './pages/common/login/login.component';
 import { AdminGuard } from './guard/admin.guard';
@@ -16,6 +16,9 @@ import { NoticeDetailComponent } from './pages/common/notices/notice-detail/noti
 import { StaffOrAdminGuard } from './guard/staffOrAdmin.guard';
 import { MessageComponent } from './pages/common/message/message.component';
 import { AdminHomeComponent } from './pages/admin/home/home.component';
+import { StudentDashboardComponent } from './pages/student/student-dashboard/student-dashboard.component';
+import { AuthCredentialsComponent } from './pages/admin/auth-credentials/auth-credentials.component';
+import { ChangePasswordUserComponent } from './pages/common/login/change-password-user/change-password-user.component';
 
 const routes: Routes = [
   {path:"admin", children:[
@@ -33,11 +36,16 @@ const routes: Routes = [
     {path:"manageStudents/:id",component:ManageUserComponent},
     {path:"manageStaffs",component:ManageStaffComponent,canActivate:[AdminGuard]},
     {path:"editRoom/:roomName",component:RoomRegisterComponent},
-    {path:"messages",component:MessageComponent}
+    {path:"messages",component:MessageComponent},
+    {path:"authcredentials",component:AuthCredentialsComponent}
   ]},
+  {path:"student",children:[
+    {path:"",component:StudentDashboardComponent}
+  ]},
+  {path:"auth/resetpassword",component:ChangePasswordUserComponent},
   {path:"studentDetail/:username",component:StudentDetailComponent},
   {path:"auth/login",component:LoginComponent},
-  {path:"home",component:NoticesComponent},
+  {path:"home",component:AdminHomeComponent},
   {path:'noticeDetail/:id',component:NoticeDetailComponent},
   {path:"createMessage",component:ContactAdminComponent},
   {path:"",redirectTo:"/home",pathMatch:'full'}
