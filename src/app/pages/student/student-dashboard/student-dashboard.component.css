@@ -1,0 +1,32 @@
+.container{
+    padding: 1rem;
+    /* font-size:15px; */
+    display:grid;
+    /* grid-template-columns: 3fr 2fr; */
+    grid-gap: 1rem;
+}
+.card{
+    padding:1rem  2rem;
+    min-height: 0 !important;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+
+}
+.card .grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+}
+b{display: block;}
+b span{
+    font-weight: normal;
+    padding-left: 1em;
+}
+b div{
+    font-weight: normal;
+    display: inline;
+}
+ h5{
+     padding:0rem 2rem 0 0rem;
+    display: inline;
+    border-bottom:2px solid rgb(241, 237, 237);
+}

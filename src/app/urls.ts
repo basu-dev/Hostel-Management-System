@@ -22,5 +22,7 @@ export class Url {
    public static loginCredentials=Url.rootUrl+'/auth/logindetails'
    public static getMessages=Url.rootUrl+'/message/get';
    public static setMessages=Url.rootUrl+'/message/add';
+   public static studentquery=Url.rootUrl+'/studentquery';
+
 
 }

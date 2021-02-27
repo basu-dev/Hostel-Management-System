@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-header">
+
+    <h4><i class="fas fa-user-cog mr-2"></i> Add Query Post</h4>
+  </div>
+  <form [formGroup]="queryForm" (submit)="submit()">
+    <div class="form-group">
+      <div class="label">Title*</div>
+      <input class="form-control" type="text" formControlName="queryTitle">
+      <div class="text-danger" *ngIf="queryTitle?.hasError('required')" >Title is Required</div>
+    </div>
+    <div class="form-group">
+      <div class="label">Body*</div>
+      <textarea class="form-control" type="text" rows="5" formControlName="queryContent"></textarea>  
+      <div class="text-danger" *ngIf="queryContent?.hasError('required')">Body is Required</div>
+    </div>
+    <div class="form-group"><button  class="btn-primary form-control">
+      Submit
+    </button></div>
+  </form>
+</div>

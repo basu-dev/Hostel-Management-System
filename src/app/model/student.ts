@@ -14,4 +14,5 @@ export class Student{
     roomNo?:any='';
     _id?:any;
     imageUrl?:String='';
+    isInMess?:boolean;
 }

@@ -1,11 +1,10 @@
-import { Observable, of, Subject, throwError } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { Url } from './../urls';
 import { Admin } from './../model/admin';
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse} from "@angular/common/http";
+import { HttpClient} from "@angular/common/http";
 import { Student } from '../model/student';
 import { LoginModel } from '../model/login';
-import {catchError, map, tap} from "rxjs/operators";
 import { Store } from '@ngrx/store';
 import * as ActionTypes from '../../ngrx/auth/auth.action';
 import * as fromAuth from '../../ngrx/auth/auth.reducer';
@@ -18,7 +17,6 @@ import { AuthCredentials } from '../model/authCredentials';
     providedIn:'root'
 })
 export class AuthService{
-
     constructor(private http: HttpClient,
       private  store:Store<{auth:fromAuth.State}>,
       private router:Router,
@@ -68,7 +66,7 @@ export class AuthService{
                   return
                 }
                 else{
-                  this.router.navigateByUrl('/');
+                  this.router.navigateByUrl('/student');
            }
         },
         err=>this.alerfity.error(err)
@@ -79,12 +77,10 @@ export class AuthService{
         return this.http.put(Url.resetPasswordUser,{newpassword:password});
     }
     assignRole(role:authEnum){
-        console.log("assign role",role)
         this.currentUser = role;
         this.authSub.next({role,user:this.authCredentials});
     }
     authenticate(role:String){
-        console.log(role)
         switch(role){
             case "admin":
                 this.isAdmin=true;
@@ -117,11 +113,10 @@ export class AuthService{
     }
     startupAuthenticate(){
         try{
-             let token:AuthCredentials = jwt_decode(localStorage.getItem('token')!);
-             this.setAuthCredential(token);
-             console.log(token.role)
-            this.authenticate(token.role);
-
+             let decoded:AuthCredentials = jwt_decode(localStorage.getItem('token')!);
+             this.setAuthCredential(decoded);
+             this.authCredentials = decoded;
+            this.authenticate(decoded.role);
         }catch(e){
             this.logout();
         }

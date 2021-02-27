@@ -1,3 +1,41 @@
-<p>
-  student-dashboard works!
-</p>
+<div class="container">
+  <div class="card">
+    <img src="../../../../assets/icons/logo.png" height=200>
+    <div class="details">
+      <h3>{{profile?.fullName}}</h3>
+      <br>
+      <div class="grid">
+        <div>
+          <h5>General Details</h5>
+          <b>Gender:<span>Male</span></b>
+          <b>D.O.B:<div>{{profile?.dob}}</div></b>
+          <b>Faculty:<div>BEX</div></b>
+          <b>Batch:<div>{{profile?.batch}}</div></b>
+          <b>College Roll No:<div>{{profile?.rollNo}}</div></b>
+          <b>Father's Name:<div>Govinda Prasad Adhikari</div></b>
+          <b>Address: <div>{{profile?.address}}</div></b>
+          <b>Mobile No: <div>{{profile?.contact}}</div> </b>
+        </div>
+        <div>
+         <h5>Hostel Details</h5>
+         <b>Entry Date:<span>2074-10-02</span></b>
+          <b>Block:<div>A</div></b>
+          <b>Room No:<div>305</div></b>
+          <b>Is In Mess:<div>{{profile?.isInMess}}</div></b>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">
+      <h3>My Queryies</h3>
+    </div>
+  </div>
+  <app-show-query *ngFor="let item of myPost" [query]="item"></app-show-query>
+  <app-floating-button backgroundColor="red" (click)="openModal('custom-modal-1')">
+   <i class="fa fa-plus" style="font: 15px"></i>
+  </app-floating-button>
+</div>
+<jw-modal id="custom-modal-1" height="500px" width="500px">
+  <app-add-post></app-add-post>
+</jw-modal>

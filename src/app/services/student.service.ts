@@ -1,16 +1,17 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject, throwError } from "rxjs";
-import { catchError, map, tap } from 'rxjs/operators';
-import { Faculty } from '../model/faculties';
+import { map, tap } from 'rxjs/operators';
 import { Student } from '../model/student';
 import { Url } from '../urls';
 import { AlertifyService } from './alertify.service';
+import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
 export class StudentsService {
   studentList: any = [];
+  public myProfile:Student;
   public studentSub = new Subject<Student[]>();
   singleStudentUrl(username: String) {
     return `${Url.students}/${username.trim()}`;
@@ -46,6 +47,7 @@ export class StudentsService {
   ]
   constructor(private http: HttpClient,
     private alertify: AlertifyService,
+    private authService:AuthService,
   ) { };
   getStudentsList(): void {
     console.log("students");
@@ -128,5 +130,21 @@ export class StudentsService {
     return totalItems.filter((x,i)=>  (i>=startIndex && i<endIndex))
    }
 
+   addPost(post:any):Observable<any>{
+     return this.http.post(Url.studentquery+"/add",post);
+   }
+getMyPosts():Observable<any>{
+  return this.http.get(Url.studentquery+"/search/myqueries");
+}
+getMyProfile():Observable<any>{
+  if(!this.myProfile){
+    var username = this.authService.authCredentials.rollNo as String;
+   return this.getStudentByUsername(username).pipe(
+     map((res:any)=>res.data),
+     tap((res:any)=>this.myProfile = res)
+   );
+  }
+  return of(this.myProfile)
+}
 
 }

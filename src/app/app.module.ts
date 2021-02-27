@@ -36,6 +36,10 @@ import { StudentDetailComponent } from './pages/student/student-detail/student-d
 import { StudentDashboardComponent } from './pages/student/student-dashboard/student-dashboard.component';
 import { TokenInterceptorService } from './services/token-interceptor';
 import { AuthCredentialsComponent } from './pages/admin/auth-credentials/auth-credentials.component';
+import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
+import { ModalComponent } from './components/Modal/Modal.component';
+import { AddPostComponent } from './pages/student/add-post/add-post.component';
+import { ShowQueryComponent } from './pages/student/show-query/show-query.component';
 
 
 
@@ -49,6 +53,9 @@ import { AuthCredentialsComponent } from './pages/admin/auth-credentials/auth-cr
     SidenavComponent,
     NoticeDetailComponent,
     ChangePasswordUserComponent,
+    FloatingButtonComponent,
+    ModalComponent,
+    ShowQueryComponent,
     //admin
     AdminRegisterComponent,
     StudentRegisterComponent,
@@ -71,6 +78,7 @@ import { AuthCredentialsComponent } from './pages/admin/auth-credentials/auth-cr
     AuthCredentialsComponent,
     //student
     StudentDashboardComponent,
+    AddPostComponent,
   ],
 
   imports: [

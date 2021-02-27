@@ -4,4 +4,5 @@ export interface AuthCredentials{
     fullName:String,
     _id:String,
     role:String,
+    rollNo?:String,
 }

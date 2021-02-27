@@ -14,7 +14,7 @@
       </a> 
       <div (click)="loadProfile()" class="profile-image">
         <div><i class="fas fa-user"></i></div><div class="name">
-          {{currentUser.fullName}}
+          {{currentUser.fullName? currentUser.fullName:currentUser.role}}
         </div> 
       </div>
       <div class="elepsis" (click)="showLogout=true">

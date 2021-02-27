@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { map } from 'rxjs/operators';
 import { authEnum } from 'src/app/model/auth.enum';
 import { AuthCredentials } from 'src/app/model/authCredentials';
 import { AuthService } from 'src/app/services/auth.service';
-import  * as auth from 'src/ngrx/auth/auth.reducer' ;
+
 
 
 
@@ -15,8 +13,7 @@ import  * as auth from 'src/ngrx/auth/auth.reducer' ;
 })
 export class SidenavComponent implements OnInit {
   username:String | null='Basu Dev Adhikari';
-  constructor(public authService: AuthService,
-    private store: Store<{ auth: auth.State }>) { 
+  constructor(public authService: AuthService) { 
   
     }
     showLogout= false;
@@ -144,6 +141,7 @@ export class SidenavComponent implements OnInit {
     this.authService.authSub.subscribe(
       (data)=>{this.currentAuth = data.role;
         this.currentUser = data.user;
+        console.log(this.currentUser);
       this.decideSideNav();
       }
     )
