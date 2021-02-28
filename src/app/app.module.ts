@@ -12,6 +12,7 @@ import { authReducer } from 'src/ngrx/auth/auth.reducer';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
+import { LinearLoaderComponent } from './components/linear-loader/linear-loader.component';
 import { ModalComponent } from './components/Modal/Modal.component';
 import { SidenavItemComponent } from './components/sidenav/sidenav-item.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -37,7 +38,7 @@ import { SharedModule } from './shared.module';
     LoginComponent,
     SidenavComponent,
     ChangePasswordUserComponent,
-
+    LinearLoaderComponent,
 
     ChangePasswordUserComponent,
     FloatingButtonComponent,

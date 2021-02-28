@@ -25,12 +25,13 @@
         </div>
       </div>
     </div>
+    <app-linear-loader *ngIf="loading"></app-linear-loader>
 </nav>
 <div class="body-content">
   <!-- Sidebar -->
   <div class="bg-primary " id="sidebar-wrapper">
     <div class="li list-group-">
-        <app-sidenav-item *ngFor="let item of currentNavItems" [item]="item"></app-sidenav-item>
+      <app-sidenav-item *ngFor="let item of currentNavItems" [item]="item"></app-sidenav-item>
     </div>
   </div>
   <div id="page-content-wrapper">

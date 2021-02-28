@@ -28,7 +28,7 @@
                     <label for="check"><span class="icon"></span> Keep me Signed in</label>
                 </div>
                 <div class="group">
-                    <input type="submit" [disabled]="!loginForm.valid" (click)="login()" class="button" value="Sign In">
+                    <button type="submit" [disabled]="!loginForm.valid || loading" (click)="login()" class="button" >{{btnText}}</button>
                 </div>
                 <div class="hr"></div>
                 <div class="foot-lnk">

@@ -132,12 +132,12 @@ export class AuthService{
         this.assignRole(authEnum.IsUnauthenticated);
     }
     navigate():void{
-        // if(this.currentUser == authEnum.IsStudent){
-        //     this.router.navigateByUrl("/student")
-        // }
-        // else{
-        //     this.router.navigateByUrl('/admin');
-        // }
+        if(this.currentUser == authEnum.IsStudent){
+            this.router.navigateByUrl("/student")
+        }
+        else{
+            this.router.navigateByUrl('/admin');
+        }
     }
 
 }

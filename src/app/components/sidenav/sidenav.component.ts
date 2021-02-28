@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { authEnum } from 'src/app/model/auth.enum';
 import { AuthCredentials } from 'src/app/model/authCredentials';
 import { AuthService } from 'src/app/services/auth.service';
+import { UiServiceService } from 'src/app/services/ui-service.service';
 
 
 
@@ -14,9 +15,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SidenavComponent implements OnInit {
   username:String | null='Basu Dev Adhikari';
-  constructor(public authService: AuthService) { 
+  constructor(public authService: AuthService,private uiService:UiServiceService) { 
   
     }
+    loading=false;
     showLogout= false;
     currentNavItems :{name:String,link:string,icon:String,directory:boolean,items?:any}[];
     currentUser:AuthCredentials; 
@@ -145,7 +147,7 @@ export class SidenavComponent implements OnInit {
         }
       ]
   ngOnInit() {
-    console.log("siddnav listening")
+   this.listenLoading();
     this.authService.authSub.subscribe(
       (data)=>{this.currentAuth = data.role;
         this.currentUser = data.user;
@@ -158,6 +160,11 @@ export class SidenavComponent implements OnInit {
 
 
     // this.username = localStorage.getItem('username');
+  }
+  listenLoading(){
+    this.uiService.loadingSub.subscribe(
+      data=>this.loading=data
+    )
   }
   decideSideNav():void{
     console.log(this.currentAuth);
