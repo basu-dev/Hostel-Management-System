@@ -64,5 +64,8 @@ export class NoticeService {
     getNoticeById(id:String):Observable<Notice>{
         return of (this.notices.filter(e=>e._id == id)[0]);
     }
+    getAllQueries():Observable<any>{
+        return this.http.get(Url.studentquery+"/search/latest");
+    }
 
 }

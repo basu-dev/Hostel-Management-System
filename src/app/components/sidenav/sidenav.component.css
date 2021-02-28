@@ -22,10 +22,10 @@
     position:absolute;
     width: 100vw;
     overflow: hidden;
-    z-index: 120;
+    z-index: 5 !important;
     height: var(--nav-height);
-    background-color:var(--nav-color) !important;
-    color:black !important;
+    background-color:var(--primary-color) !important;
+    color:white !important;
 
     /* border-bottom: 1px solid rgb(241, 234, 234); */
     display:flex;
@@ -40,6 +40,7 @@
     box-shadow: 0 0.5rem 1rem 0 rgb(44 51 73 / 10%) !important;
   }
   #sidebar-wrapper{
+    z-index:100 !important;
     padding-top:30px;
     font-size:.9rem;
     box-shadow: 1rem 0.5rem 1rem 0 black;
@@ -62,7 +63,7 @@
     display:flex;
     justify-content: space-between;
     align-items:center;
-    background:var(--sidenav-color);
+    /* background:#574898; */
     color:var(--sidenav-text-color);
     width: 100%;
     border:none ;
@@ -169,11 +170,12 @@ a:hover{
 }
 
 .fa-facebook-messenger{
-  color:#a7aab1;
+  color:#ffffff;
   font-size: 25px;
 }
 .fa-bell{
   font-size:25px;
+  color:white;
 }
 .elepsis{
   position:relative;
@@ -204,4 +206,7 @@ a:hover{
   padding:10px;
   height: calc(var(--card-height) + 40px);
   overflow-y: scroll;
+}
+.nav .fas,.nav .far{
+  color:white !important;
 }

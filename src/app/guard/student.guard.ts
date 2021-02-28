@@ -9,12 +9,13 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuard implements CanActivate  {
+export class StudentGuard implements CanActivate  {
   constructor(private authSerivce: AuthService, private router: Router,
               private alertify: AlertifyService) {}
   canActivate(route: ActivatedRouteSnapshot,
                    state: RouterStateSnapshot) {
-                     console.log("alsdkfjlaksdjflksajdflkaj lskjd lkj")
-    return (this.authSerivce.currentUser == authEnum.IsAdmin);
+                     console.log("student guard" )
+
+    return (this.authSerivce.currentUser == authEnum.IsStudent);
     }
 }

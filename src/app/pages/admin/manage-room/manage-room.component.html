@@ -35,6 +35,8 @@
           <edit-icon (click)="editRoom(room.roomName)"></edit-icon>
         </th>
       </tr>
+      <app-table-skeleton-loader rows=5 cols=8 *ngIf="showSkeleton"></app-table-skeleton-loader>
+
     </tbody>
   </table>
   <div class="text-center">

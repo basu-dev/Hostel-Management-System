@@ -18,10 +18,15 @@ export class ManageStaffComponent implements OnInit {
     ) { }
   staffs:Staff[] = [];
   staffsSub:Subscription;
+  showSkeleton=true;
   ngOnInit(): void {
    this.staffsSub =  this.staffService.StaffSub.subscribe(
-      data=>this.staffs=data,
-      err=>console.log(err)
+      data=>{this.staffs=data;
+        this.showSkeleton = false;
+      },
+      err=>{console.log(err)
+        this.showSkeleton = false;
+      }
       )
       this.staffService.getStaffList();
     }

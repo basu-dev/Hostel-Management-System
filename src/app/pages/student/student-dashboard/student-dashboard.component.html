@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="card">
+  <div class="card card-rounded">
     <img src="../../../../assets/icons/logo.png" height=200>
     <div class="details">
       <h3>{{profile?.fullName}}</h3>
@@ -31,7 +31,7 @@
       <h3>My Queryies</h3>
     </div>
   </div>
-  <app-show-query *ngFor="let item of myPost" [query]="item"></app-show-query>
+  <app-show-query *ngFor="let item of myPost" [query]="item" [myQuery]="true"></app-show-query>
   <app-floating-button backgroundColor="red" (click)="openModal('custom-modal-1')">
    <i class="fa fa-plus" style="font: 15px"></i>
   </app-floating-button>

@@ -1,46 +1,23 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AdminRegisterComponent } from './pages/admin/admin-register/admin-register.component';
-import { ManageRoomComponent } from './pages/admin/manage-room/manage-room.component';
-import { ManageUserComponent } from './pages/admin/manage-user/manage-user.component';
-import { RoomRegisterComponent } from './pages/admin/manage-room/room-register/room-register.component';
-import { StudentRegisterComponent } from './pages/admin/manage-user/student-register/student-register.component';
-import { NoticesComponent } from './pages/common/notices/notices.component';
-import { ManageStaffComponent } from './pages/admin/manage-staff/manage-staff.component';
-import { StudentDetailComponent } from './pages/student/student-detail/student-detail.component';
-import { StaffRegisterComponent } from './pages/admin/manage-staff/staff-register/staff-register.component';
-import { LoginComponent } from './pages/common/login/login.component';
-import { AdminGuard } from './guard/admin.guard';
-import { ContactAdminComponent } from './pages/common/contact-admin/contact-admin.component';
-import { NoticeDetailComponent } from './pages/common/notices/notice-detail/notice-detail.component';
+import { RouterModule, Routes } from '@angular/router';
 import { StaffOrAdminGuard } from './guard/staffOrAdmin.guard';
-import { MessageComponent } from './pages/common/message/message.component';
+import { StudentGuard } from './guard/student.guard';
+
 import { AdminHomeComponent } from './pages/admin/home/home.component';
-import { StudentDashboardComponent } from './pages/student/student-dashboard/student-dashboard.component';
-import { AuthCredentialsComponent } from './pages/admin/auth-credentials/auth-credentials.component';
+import { AllQueriesComponent } from './pages/common/all-queries/all-queries.component';
+import { ContactAdminComponent } from './pages/common/contact-admin/contact-admin.component';
 import { ChangePasswordUserComponent } from './pages/common/login/change-password-user/change-password-user.component';
+import { LoginComponent } from './pages/common/login/login.component';
+import { NoticeDetailComponent } from './pages/common/notices/notice-detail/notice-detail.component';
+import { StudentDashboardComponent } from './pages/student/student-dashboard/student-dashboard.component';
+import { StudentDetailComponent } from './pages/student/student-detail/student-detail.component';
 
 const routes: Routes = [
-  {path:"admin", children:[
-    {path:'',component:AdminHomeComponent},
-    {path:"adminRegister",component:AdminRegisterComponent},
-    {path:"studentRegister",component:StudentRegisterComponent},
-    {path:"manageRooms",component:ManageRoomComponent},
-    {path:"manageRooms/:id",component:ManageRoomComponent},
-    {path:"manageStaffs",component:ManageStaffComponent},
-    {path:"staffRegister",component:StaffRegisterComponent},
-    {path:"editStaff/:id",component:RoomRegisterComponent},
-    {path:"roomRegister",component:RoomRegisterComponent},
-    {path:"editStudent/:username",component:StudentRegisterComponent},
-    // {path:"manageUsers",component:ManageUserComponent},
-    {path:"manageStudents/:id",component:ManageUserComponent},
-    {path:"manageStaffs",component:ManageStaffComponent,canActivate:[AdminGuard]},
-    {path:"editRoom/:roomName",component:RoomRegisterComponent},
-    {path:"messages",component:MessageComponent},
-    {path:"authcredentials",component:AuthCredentialsComponent}
-  ]},
-  {path:"student",children:[
-    {path:"",component:StudentDashboardComponent}
+  {path:"admin", canActivate:[StaffOrAdminGuard] ,loadChildren:()=>import('./pages/admin/admin.module').then(module=>module.AdminModule)
+  },
+  {path:"student",canActivate:[StudentGuard],children:[
+    {path:"",component:StudentDashboardComponent},
+    {path:"allqueries",component:AllQueriesComponent}
   ]},
   {path:"auth/resetpassword",component:ChangePasswordUserComponent},
   {path:"studentDetail/:username",component:StudentDetailComponent},

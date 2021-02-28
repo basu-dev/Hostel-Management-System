@@ -19,7 +19,9 @@ export class Url {
    public static notices= Url.rootUrl+'/notice';
    public static addNotice=Url.notices+'/add';
    public static getNotices=Url.notices+'/search/latest';
-   public static loginCredentials=Url.rootUrl+'/auth/logindetails'
+   public static loginCredentials=Url.rootUrl+'/auth/logindetails';
+   public static loginCredentialSingle=Url.loginCredentials+'/search';
+
    public static getMessages=Url.rootUrl+'/message/get';
    public static setMessages=Url.rootUrl+'/message/add';
    public static studentquery=Url.rootUrl+'/studentquery';

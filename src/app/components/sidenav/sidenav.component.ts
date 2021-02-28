@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { authEnum } from 'src/app/model/auth.enum';
 import { AuthCredentials } from 'src/app/model/authCredentials';
 import { AuthService } from 'src/app/services/auth.service';
@@ -121,13 +122,19 @@ export class SidenavComponent implements OnInit {
         {
           name:"Dashboard",
           icon:"fa-user",
-          link:"/home",
+          link:"/student",
           directory:false,
         },
         {
           name:"Notices",
           icon:"fa-notice",
           link:"/notices",
+          directory:false,
+        },
+        {
+          name:"Queries",
+          icon:"fa-notice",
+          link:"/student/allqueries",
           directory:false,
         },
         {
@@ -138,6 +145,7 @@ export class SidenavComponent implements OnInit {
         }
       ]
   ngOnInit() {
+    console.log("siddnav listening")
     this.authService.authSub.subscribe(
       (data)=>{this.currentAuth = data.role;
         this.currentUser = data.user;

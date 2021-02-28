@@ -22,10 +22,11 @@ export class RoomService {
          this.http.get(Url.rooms).subscribe(
             (data:any)=>{this.roomList = data.data,
                 this.sendAllRooms();
-                // console.log(data);
-                console.log(this.roomList[0]);
             },
-            err=>this.alertify.error(err)
+            err=>{this.alertify.error(err);
+            this.roomList=[];
+            this.sendAllRooms();
+            }
         );
     }
     registerRoom(room:Room):Observable<any>{
@@ -40,7 +41,9 @@ export class RoomService {
                 // console.log(data);
                 console.log(this.roomList[0]);
             },
-            err=>this.alertify.error(err)
+            err=>{this.alertify.error(err);
+            this.roomList=[];
+            this.sendAllRooms();}
         );
     }
     sendAllRooms():void{

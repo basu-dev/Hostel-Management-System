@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import { Message } from '../model/message';
 import { Url } from '../urls';
 import { AlertifyService } from './alertify.service';
 import { AuthService } from './auth.service';
@@ -124,6 +125,7 @@ adminMesseges = new Array<any>();
    getCurrentUserId():String{
      var id;
      var  credentials  = this.authService.authCredentials;
+     console.log(credentials);
     if(credentials.role=="student"){
      id=credentials._id;
     }else{
@@ -132,16 +134,21 @@ adminMesseges = new Array<any>();
     return id;
 
   }
-  getMessages(receiver:String):Observable<any>{
+  getMessages(receiver:String):Observable<Message[]>{
+
     var id = this.getCurrentUserId();
-    return this.http.get(Url.getMessages+`/?sender=${id}&receiver=${receiver}`).pipe(
+    console.log(id);
+    return this.http.get(Url.getMessages+`?sender=${id}&receiver=${receiver}`).pipe(
+      tap((res:any)=>console.log(res)),
       map((res:any)=>res.data),
     );
   }
   setMessage(receiver:String,msg:StringConstructor):Observable<any>{
     var message={messageContent:msg}
+   
     var id = this.getCurrentUserId();
-    return this.http.post(Url.setMessages+`/?sender=${id}&receiver=${receiver}`,message);
+    console.log(id);
+    return this.http.post(Url.setMessages+`?sender=${id}&receiver=${receiver}`,message);
   }
   replyMessageToMesh(msgId:String,msg:any){
    this.adminMesseges.forEach((x:any)=>{

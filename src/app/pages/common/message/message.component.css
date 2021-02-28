@@ -36,36 +36,7 @@
     height: calc(100vh - var(--nav-height) - 130px);
     overflow:scroll;
 }
-.message{
-    display:grid;
-    grid-template-columns: 3fr 6fr 1fr;
-    /* background-color: grey; */
-    box-shadow: 0px 1px 1px 0px #b4b2b291;
-    padding:10px 20px;
-    margin-bottom: 5px;
-    justify-content: space-between;
-    align-items: center;
-    
-}
-.message:hover{
-    box-shadow: 0px 1px 10px 0px #8a898991;
 
-}
-.message .name{
-    font-size: 1.03rem;
-    color:rgb(58, 57, 57);
-}
-.message .body{
-    text-align: start;
-}
-.message .actions{
-    display:flex;
-   
-    /* background-color: green; */
-    align-items: center;
-    justify-content: space-around;
-    font-size:1.05rem;
-}
 .action{
     cursor: pointer;
 }
@@ -94,11 +65,11 @@
     /* border-bottom: 1px solid grey; */
     padding:10px 20px;
     outline: none;
-    box-shadow: 0px 2px 3px 0px #5f5e5e91;
+    /* box-shadow: 0px 2px 3px 0px #5f5e5e91; */
 
+    border-radius: 50px;
 }
 input:focus{
-    border-radius: 50px;
     box-shadow: 0px 1px 20px 4px #6e6c6c91;
 }
 a{
@@ -106,4 +77,34 @@ a{
 }
 .fas:hover{
     color:red;
+}
+.message{
+    margin:.01rem 0rem;
+}
+/* .message:hover{
+    box-shadow: 0px 1px 10px 0px #8a898991;
+
+} */
+
+.my-msg div, .his-msg{
+    display: inline-block;
+    max-width: 400px;
+    padding:.5rem 1rem;
+    border-radius: 20px;
+    margin-bottom:.3rem;
+}
+.my-msg {
+    text-align: right;
+    /* display:inline-block; */
+    
+}
+.my-msg div{
+    background-color:var(--primary-color);
+    color:white;
+
+}
+.his-msg{
+    background: rgb(211, 211, 218);
+    color:black;
+  
 }

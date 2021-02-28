@@ -40,6 +40,7 @@ blockName:String;
     )
   }
   fetchRooms(){
+    this.roomList=[];
     this.showSkeleton= true;
     this.roomService.getAllRoomsByBlock(this.blockName);
   }

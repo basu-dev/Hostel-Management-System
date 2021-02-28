@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Query } from 'src/app/model/query';
+import { StudentsService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-show-query',
@@ -8,10 +9,18 @@ import { Query } from 'src/app/model/query';
 })
 export class ShowQueryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private studentService:StudentsService) { }
   @Input() query:Query | any;
+  @Input() myQuery:boolean;
   ngOnInit() {
   }
+  editQuery():void{
+    
+  }
+deleteQuery(){
 
+}
+makeResolved(){
 
+}
 }

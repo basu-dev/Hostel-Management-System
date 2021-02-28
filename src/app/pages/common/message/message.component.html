@@ -6,13 +6,13 @@
   </div>
 
   <div class="tabs">
-    <div>
+    <div *ngIf="!authService.getIsStudent">
       <a (click)="loadStudentMessages()" [class.tab-active]="isStudentMsg">
         <i class="fas fa-user-friends"></i>
         Students</a>
       <div *ngIf="isStudentMsg" class="underline"></div>
     </div>
-    <div>
+    <div *ngIf="!authService.getIsMessStaff">
 
       <a (click)="loadMeshMessages()" [class.tab-active]="isMeshMsg">
         <i class="fas fa-utensils"></i>
@@ -21,26 +21,30 @@
       <div *ngIf="isMeshMsg" class="underline"></div>
 
     </div>
-    <div>
+    <div *ngIf="!authService.getIsHostelStaff">
       <a (click)="loadStaffMessages()" [class.tab-active]="isStaffMsg">
         <i class="fas fa-user-cog"></i>
         Staff</a>
       <div *ngIf="isStaffMsg" class="underline"></div>
 
     </div>
+    <div *ngIf="!authService.getIsAdmin">
+      <a (click)="loadAdminMessages()" [class.tab-active]="isStaffMsg">
+        <i class="fas fa-user-cog"></i>
+        Admin</a>
+      <div *ngIf="isStaffMsg" class="underline"></div>
+
+    </div>
   </div>
 
-  <div class="message-container card-body">
-    <div *ngFor="let item of currentMessages" class="message">
-
-      <div class="name">
-        <i class="fas fa-user"></i> {{item.senderfullName}}
+  <div class="message-container card-body" #scrollMe>
+    <div *ngFor="let item of currentMessages" class="message" >
+      <div class="body" [class]="amISender(item.receiverId[0])?'my-msg':'his-msg'">
+        <div>
+          {{item.messageContent}}
+        </div>
       </div>
-      <div class="body">
-
-        {{item.messageContent}}
-      </div>
-      <div class="actions">
+      <!-- <div class="actions">
         <div class='action'>
 
           <i class="fas fa-trash"></i>
@@ -48,7 +52,7 @@
         <div class='action' (click)="_showReplyBox()">
           <i class="fas fa-reply"></i>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="input-box">
       <input (change)="sendMessage($event)" type="text" placeholder="reply">

@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
-import { map } from 'rxjs/operators';
-import { IsAuthenticated } from 'src/ngrx/auth/auth.action';
-import { authReducer, State } from 'src/ngrx/auth/auth.reducer';
+import { Subscription } from 'rxjs';
+
+import { authEnum } from './model/auth.enum';
 import { AuthService } from './services/auth.service';
 
 
@@ -14,33 +13,28 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent{
   constructor(
-    private store: Store<{ auth: State }>,
     private router:Router,
     private authService:AuthService
 
     
 
     ){}
-
+    private authSub = new Subscription();
   isAuthenticated=false;
   ngOnInit(): void {
-    this.authService.startupAuthenticate();
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    
-    this.store.pipe(
-      map(data=>data.auth.IsAuthenticated)
-    ).subscribe(
-      data=>{this.isAuthenticated=data;
-        console.log(data);
-        if(data==false){
-          this.router.navigateByUrl('/auth/login');
-        }
-        else{
-         
-        }
-      }
+    console.log("listenning");
+   this.authSub =  this.authService.authSub.subscribe(
+      data=>{if(data.role == authEnum.IsUnauthenticated){
+        this.isAuthenticated=false;
+        this.router.navigateByUrl("/auth/login")
+      }else{
+        this.isAuthenticated = true;
+      }}
     )
+    this.authService.startupAuthenticate();
+  }
+  ngOnDestroy():void{
+this.authSub.unsubscribe();
   }
 
 }
