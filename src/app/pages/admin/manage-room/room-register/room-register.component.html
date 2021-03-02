@@ -6,7 +6,7 @@
           <h4><i class="fas fa-user-cog mr-2"></i> {{componentName}}</h4>
         </div>
         <div class="card-body">
-          <form [formGroup]="roomForm" (ngSubmit)="onSubmit()">
+          <form *ngIf="roomForm" [formGroup]="roomForm" (ngSubmit)="onSubmit()">
             <div class="form-group    ">
               <label for="roomName">Room Name*</label>
               <input type="text" class="form-control" id="roomName" formControlName="roomName">
@@ -67,8 +67,8 @@
                   Wardrobe Field cannot be blank
                 </div> -->
               </div>
-            <!-- </div>
-            <div formGroupName="students">
+             </div>
+            <!-- <div formGroupName="students">
               <div class="form-group    ">
                 <label for="student1">Student1*</label>
                 <input type="text" class="form-control" id="student1" formControlName="student1">
@@ -78,13 +78,28 @@
                 <label for="student2">Student2*</label>
                 <input type="text" class="form-control" id="student2" formControlName="student2">
                
-              </div> -->
-            </div>
+              </div> 
+            </div> -->
+            
+            
+            <div formArrayName="students">
+              <div class="form-group">
+                <label for="">Students</label>
+                <div *ngFor="let student of students.controls; let i=index">
+               
+                    <div class="form-group    ">
+                      <input type="text" placeholder="RollNo of Student" class="form-control" id="student1" [formControlName]="i">
+                    </div>
+                 
+                </div>
+              </div>
+              </div>
             <div class="form-group    ">
               <button class="btn btn-primary btn-block" type="submit" >
                 <i class="fa fa-save mr-2">{{isEditform?"Submit":"Register"}}</i>
               </button>
 
+              {{this.roomForm.value | json}}
               <!-- <div class="text-center" *ngIf="showLoader">
                 <div class="spinner-border text-primary" role="status">
                   <span class="sr-only">Loading...</span>

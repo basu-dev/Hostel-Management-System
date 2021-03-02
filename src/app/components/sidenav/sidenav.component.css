@@ -59,6 +59,7 @@
     align-items:center;
 
   }
+
   .list-group-item{
     display:flex;
     justify-content: space-between;
@@ -203,7 +204,7 @@ a:hover{
 }
 #page-content-wrapper{
   /* background-color: green; */
-  padding:10px;
+  padding:1rem;
   height: calc(var(--card-height) + 40px);
   overflow-y: scroll;
 }

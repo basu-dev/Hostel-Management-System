@@ -8,7 +8,9 @@ import { AllQueriesComponent } from './pages/common/all-queries/all-queries.comp
 import { ContactAdminComponent } from './pages/common/contact-admin/contact-admin.component';
 import { ChangePasswordUserComponent } from './pages/common/login/change-password-user/change-password-user.component';
 import { LoginComponent } from './pages/common/login/login.component';
+import { MessageComponent } from './pages/common/message/message.component';
 import { NoticeDetailComponent } from './pages/common/notices/notice-detail/notice-detail.component';
+import { NoticesComponent } from './pages/common/notices/notices.component';
 import { StudentDashboardComponent } from './pages/student/student-dashboard/student-dashboard.component';
 import { StudentDetailComponent } from './pages/student/student-detail/student-detail.component';
 
@@ -19,6 +21,8 @@ const routes: Routes = [
     {path:"",component:StudentDashboardComponent},
     {path:"allqueries",component:AllQueriesComponent}
   ]},
+  {path:"messages",component:MessageComponent},
+  {path:"notices",component:NoticesComponent},
   {path:"auth/resetpassword",component:ChangePasswordUserComponent},
   {path:"studentDetail/:username",component:StudentDetailComponent},
   {path:"auth/login",component:LoginComponent},

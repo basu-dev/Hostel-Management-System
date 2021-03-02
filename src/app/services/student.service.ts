@@ -133,6 +133,9 @@ export class StudentsService {
    addPost(post:any):Observable<any>{
      return this.http.post(Url.studentquery+"/add",post);
    }
+   editPost(id:String,post:any):Observable<any>{
+    return this.http.put(Url.studentquery+"/update/"+id,post);
+  }
 getMyPosts():Observable<any>{
   return this.http.get(Url.studentquery+"/search/myqueries");
 }

@@ -44,6 +44,7 @@ export class NoticeService {
     whoseNoticeReq:String;
     public hostelNoticeSub = new Subject<Notice[]>();
     public meshNoticeSub = new Subject<Notice[]>();
+    public refreshNoticeSub= new Subject<boolean>();
     sendNotices(notices:Notice[]):void{
         switch (this.whoseNoticeReq){
             case 'hostel':
@@ -54,18 +55,24 @@ export class NoticeService {
                 break;
         }
     }
-    fetchAllNotices(name:String):void{
+    fetchAllNotices(name:String):Observable<any>{
         this.whoseNoticeReq = name;
-        this.http.get<{data:Notice[]}>(Url.getNotices+"?noticefrom="+name).subscribe(
-            (data)=>this.sendNotices(data.data),
-            (err:any)=>this.alertify.error(err)
-        )
+       return this.http.get<{data:Notice[]}>(Url.getNotices+"?noticefrom="+name);
+    }
+    postNotice(notice:Notice):Observable<any>{
+        return this.http.post(Url.addNotice,notice)
+    }
+    editNotice(id:String,notice:Notice):Observable<any>{
+        return this.http.put(Url.notices+"/update"+id,notice)
     }
     getNoticeById(id:String):Observable<Notice>{
         return of (this.notices.filter(e=>e._id == id)[0]);
     }
     getAllQueries():Observable<any>{
         return this.http.get(Url.studentquery+"/search/latest");
+    }
+    refreshNotices(){
+        this.refreshNoticeSub.next(true);
     }
 
 }

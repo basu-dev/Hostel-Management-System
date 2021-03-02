@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header  text-white">
-    <h4><i class="fas fa-user-cog mr-2"></i> Admin Messages</h4>
+    <h4><i class="fas fa-user-cog mr-2"></i> {{title}}</h4>
     <div class="card-header-controls">
     </div>
   </div>
@@ -29,10 +29,10 @@
 
     </div>
     <div *ngIf="!authService.getIsAdmin">
-      <a (click)="loadAdminMessages()" [class.tab-active]="isStaffMsg">
+      <a (click)="loadAdminMessages()" [class.tab-active]="isAdminMsg">
         <i class="fas fa-user-cog"></i>
         Admin</a>
-      <div *ngIf="isStaffMsg" class="underline"></div>
+      <div *ngIf="isAdminMsg" class="underline"></div>
 
     </div>
   </div>

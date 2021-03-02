@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
-import { Block, Room } from '../model/room';
+import { Observable,  Subject } from 'rxjs';
+import {  Room } from '../model/room';
 import { Url } from '../urls';
 import { AlertifyService } from './alertify.service';
 
@@ -34,23 +33,23 @@ export class RoomService {
     }
 
     getAllRoomsByBlock(blocK:String):void{
-        console.log(`${Url.rooms}/blocksearch/${blocK}`);
         this.http.get(`${Url.rooms}/blocksearch/${blocK}`).subscribe(
             (data:any)=>{this.roomList = data.data,
                 this.sendAllRooms();
-                // console.log(data);
-                console.log(this.roomList[0]);
             },
             err=>{this.alertify.error(err);
             this.roomList=[];
             this.sendAllRooms();}
         );
     }
+    getAvailableRooms():Observable<any>{
+        return this.http.get(Url.availableRooms);
+    }
     sendAllRooms():void{
         this.roomSub.next(this.roomList);
     }
     getRoomByName(roomName:String):Observable<Room>{
-        return this.http.get<Room>(`${Url.rooms}/${roomName}`);
+        return this.http.get<Room>(`${Url.rooms}/namesearch/${roomName}`);
     }
     updateRoom(roomName:String,room:Room):any{
         return this.http.put(`${Url.rooms}/${roomName}`,room);

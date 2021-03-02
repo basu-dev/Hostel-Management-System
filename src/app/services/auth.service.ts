@@ -15,7 +15,6 @@ import { AuthCredentials } from '../model/authCredentials';
 })
 export class AuthService{
     constructor(private http: HttpClient,
-    //   private  store:Store<{auth:fromAuth.State}>,
       private router:Router,
       private alerfity:AlertifyService
         ){}
@@ -132,12 +131,12 @@ export class AuthService{
         this.assignRole(authEnum.IsUnauthenticated);
     }
     navigate():void{
-        if(this.currentUser == authEnum.IsStudent){
-            this.router.navigateByUrl("/student")
-        }
-        else{
-            this.router.navigateByUrl('/admin');
-        }
+        // if(this.currentUser == authEnum.IsStudent){
+        //     this.router.navigateByUrl("/student")
+        // }
+        // else{
+        //     this.router.navigateByUrl('/admin');
+        // }
     }
 
 }

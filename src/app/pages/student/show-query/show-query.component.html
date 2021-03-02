@@ -1,10 +1,10 @@
-<div class="card">
+<div class="card card-rounded">
   <div *ngIf="myQuery" class="controls">
     <div (click)="editQuery()"><i class="far fa-edit"></i></div>
     <div (click)="deleteQuery()"><i class="far fa-trash-alt"></i></div>
     <div (click)="makeResolved()"><i class="far fa-check-circle"></i></div>
   </div>
-  <h4 class="card-title">{{query.queryTitle}}</h4>
+  <h5 >{{query.queryTitle}}</h5>
   <div class='date'>{{query.queryDate | date}}</div>
   <div class="card-body">
     {{query.queryContent}}
@@ -12,6 +12,9 @@
   <div class="footer">
     <b>Query By:
       <div>{{query.studentId}}</div>
+    </b>
+    <b>Status:
+      <div>{{query.resolveStatus}}</div>
     </b>
     <b>Room No:
       <div>{{query.roomNo}}</div>

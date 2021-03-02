@@ -3,6 +3,6 @@ export interface AuthCredentials{
     email:String,
     fullName:String,
     _id:String,
-    role:String,
+    role:string,
     rollNo?:String,
 }

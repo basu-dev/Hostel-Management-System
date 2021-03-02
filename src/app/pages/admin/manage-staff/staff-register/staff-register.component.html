@@ -6,7 +6,7 @@
             <h4><i class="fas fa-user-cog mr-2"></i> {{componentName}}</h4>
           </div>
           <div class="card-body">
-            <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" >
+            <form *ngIf="adminForm" [formGroup]="adminForm" (ngSubmit)="onSubmit()" >
               <div class="form-group">
                 <label for="username">username*</label>
                 <input type="text" class="form-control" id="username" formControlName="username">

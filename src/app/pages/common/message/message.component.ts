@@ -73,8 +73,8 @@ public enum:authEnum;
       data=>this.currentMessages = data,
       (err:any)=>this.alertify.error(err)
     )
-    this.title="Staff Messagses";
-    this.messageStatus =  "hostelstaff";
+    this.title="Admin Messagses";
+    this.messageStatus =  "admin";
   }
   get isStudentMsg():boolean{
       return this.messageStatus === "student";
@@ -84,6 +84,9 @@ public enum:authEnum;
 } 
 get isMeshMsg():boolean{
   return this.messageStatus ==="messstaff";
+} 
+get isAdminMsg():boolean{
+  return this.messageStatus ==="admin";
 } 
 sendMessage(e:any){
   if(e.target.value.trim() !=""){

@@ -1,6 +1,6 @@
 import { AuthService } from '../../../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { RoomService } from 'src/app/services/room.service';
@@ -38,50 +38,49 @@ export class RoomRegisterComponent implements OnInit {
 
     const roomName = this.route.snapshot.paramMap.get('roomName') as String;
     if(roomName){
-    this.roomSub = this.roomService.getRoomByName(roomName).subscribe(data => {
-      this.room = data,
-       console.log(data)
+      console.log(roomName);
+    this.roomSub = this.roomService.getRoomByName(roomName).subscribe((data:any) => {
+      this.room = data.data,
+      console.log(this.room);
+      this.initializeForm();
     },
-      (err:any)=>this.alertify.error(err)
+      (err:any)=>{this.alertify.error(err)
+      console.log("lkdasjflkdsfj")
+      this.initroomForm();
+      }
     );
-    console.log(this.room);
-    if (this.room) {
-      if (typeof (this.room)) {
-        this.isEditform = true;
-        this.componentName = 'Edit Room';
-      }
-      else {
-        console.log("In between")
-      }
-    }
-    else {
-      this.componentName = 'Room Registration';
-
-      this.isEditform = false;
-    }
-    if (this.isEditform) {
-      this.editRoomForm(this.room);
-
-    } 
 
   }
   else {
     this.initroomForm();
   }
   }
-
+initializeForm(){
+  if(this.room){
+    if (typeof(this.room)){
+      this.componentName='Edit Room ';
+      this.editRoomForm(this.room);
+    }
+  }
+  else{
+    this.componentName='Room Registration';
+    this.isEditform=false;
+    this.initroomForm();
+  }}
   initroomForm() {
-
     this.roomForm = this.builder.group({
-      roomName: ['A301'],
+      roomName: [''],
       block: Block.A,
-      students: this.builder.array([],
+      students: this.builder.array([
+        new FormControl(''),
+        new FormControl('')
+      ],
       ),
       assets: this.builder.group({
-        table: [2],
-        chair: [2],
-        wardrobe: [2],
-        bed: [2]
+        table: [],
+        chair: [],
+        wardrobe: [],
+        bed: []
       })
     })
   }
@@ -92,7 +91,10 @@ export class RoomRegisterComponent implements OnInit {
     this.roomForm = this.builder.group({
       roomName: [roomName],
       block: block,
-      students: this.builder.array([]
+      students: this.builder.array([
+        new FormControl(students[0]),
+        new FormControl(students[1])
+      ]
       ),
       assets: this.builder.group({
         table: [assets.table],
@@ -122,23 +124,32 @@ export class RoomRegisterComponent implements OnInit {
   get room2(): any {
     return this.roomForm.get('room.room2')
   }
+
+ 
+get students() : FormArray {
+  return this.roomForm.get("students") as FormArray
+}
   onSubmit() {
     console.log(this.roomForm.value);
-    if(this.isEditform){
-      this.roomService.updateRoom(this.roomForm.value.roomName,this.roomForm.value).subscribe(
-        (data:any)=>{console.log(data)},
+    if(this.room){
+      this.roomService.updateRoom(this.room._id,this.roomForm.value).subscribe(
+        (data:any)=>{
+          this.alertify.success("Room Updated Successfully")
+        },
         (err:any)=>this.alertify.error(err)
       )
     }
-    this.roomService.registerRoom(this.roomForm.value)
-      .subscribe(
-        data => console.log(data),
-        err => console.error(err)
-      )
+    else{
+      this.roomService.registerRoom(this.roomForm.value)
+        .subscribe(
+          data => this.alertify.success("Room Created Successfully") ,
+          err => console.error(err)
+        )
+    }
 
   }
   ngOnDestroy(): void {
-
+    this.roomSub.unsubscribe()
   }
 
 }

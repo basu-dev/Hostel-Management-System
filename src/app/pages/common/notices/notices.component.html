@@ -1,17 +1,38 @@
-<div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4><i class="fas fa-user-cog"></i> {{componentName}}</h4>
+<div class="card card-rounded">
+    <h5>{{componentName}}</h5>
+    <div class="notice-list">
+        <ul class="" *ngIf="notices;else noNotices">
+            <li  class="list-group-ite" *ngFor="let item of notices | paginate:{
+                            id:paginationId,
+                            itemsPerPage:dataLenToShow,
+                            currentPage:page,
+                            totalItems:totalNotices }
+                        
+                        "><div (click)="fullNotice(item!)">
+                            {{item.noticeTitle}} <span>{{item.publishedDate |date}}</span>
+                        </div>
+                <div *ngIf="showControls" class="controls">
+                    <div (click)="edit(item)"><i class="far fa-edit"></i></div>
+                    <div (click)="remove(item._id!)"><i class="far fa-trash-alt"></i></div>
                 </div>
-                <div class="card-">
-                    <ul class="list-grou list-group-">
-                        <li (click)="fullNotice(item._id!)" class="list-group-ite" *ngFor="let item of notices">{{item.noticeTitle}} <span>{{item.createdTime}}</span></li>              
-                    </ul>
-                </div>
-
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
+    <div *ngIf="showPagination" class="text-center">
+        <pagination-controls [id]="paginationId" (pageChange)="page = $event"></pagination-controls>
+    </div>
+
 </div>
+<ng-template #noNotices>
+    <ul>
+        <li class="text-center" *ngIf="!error;else errorTemplate">Loading</li>
+    </ul>
+</ng-template>
+<ng-template class="text-center" #errorTemplate>
+    <div class="text-center">
+        {{error}}
+    </div>
+</ng-template>
+<jw-modal id="custom-modal-notice" width="500px">
+    <app-notice-detail *ngIf="showNoticeModal" [notice]="selectedNotice"></app-notice-detail>
+</jw-modal>

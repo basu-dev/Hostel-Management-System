@@ -9,12 +9,12 @@
     </div>
     <div class="right-side">
       <i class="far fa-bell"></i>
-      <a [routerLink]="['/admin/messages']" routerLinkActive="router-link-active" >
+      <a [routerLink]="['/messages']" routerLinkActive="router-link-active" >
         <i class="fab fa-facebook-messenger" ></i>
       </a> 
       <div (click)="loadProfile()" class="profile-image">
         <div><i class="fas fa-user"></i></div><div class="name">
-          {{currentUser.fullName? currentUser.fullName:currentUser.role}}
+          {{currentUser.fullName? currentUser.fullName:currentUser.role | titlecase}}
         </div> 
       </div>
       <div class="elepsis" (click)="showLogout=true">

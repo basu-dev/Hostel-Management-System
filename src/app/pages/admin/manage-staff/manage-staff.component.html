@@ -28,7 +28,7 @@
           <td>{{staff.email}}</td>
           <td>{{staff.address}}</td>
           <th scope="row">
-              <edit-icon (click)="editStaff(staff.id)"></edit-icon>
+              <edit-icon (click)="editStaff(staff.username)"></edit-icon>
           </th>
         </tr>
         <app-table-skeleton-loader rows=5 cols=8 *ngIf="showSkeleton"></app-table-skeleton-loader>

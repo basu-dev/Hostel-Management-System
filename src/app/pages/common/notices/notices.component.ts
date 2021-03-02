@@ -1,45 +1,83 @@
 import { Component, OnInit,Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Notice } from 'src/app/model/notices';
-import { AlertifyService } from 'src/app/services/alertify.service';
 import { NoticeService } from 'src/app/services/app.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-notices',
   templateUrl: './notices.component.html',
-  styleUrls: ['./notices.component.css']
+  styleUrls: ['./notices.component.scss']
 })
 export class NoticesComponent implements OnInit {
 @Input() for:String;
   constructor(public noticeService:NoticeService,
-    private alertify:AlertifyService,
-    private router:Router
+    private modalService:ModalService,
+    private authService:AuthService
     ) { }
     componentName:String;
     notices:Notice[];
+    error:String;
     noticeSub:Subscription;
+    showNoticeModal=false;
+    selectedNotice:Notice;
+    totalNotices:number=0;
+    showPagination=false;
+    dataLenToShow=5;
+    showControls = false;
+    page:number=1;
+    paginationId:string;
     ngOnInit(): void {
       this.componentName = this.for+" Notices";
-      this.startSubscription();
-      this.noticeService.fetchAllNotices(this.for.toLocaleLowerCase())}
-  fullNotice(id:String){
-    this.router.navigate(["noticeDetail",id]);
+      this.paginationId="paginate_"+this.for;
+      this.fetchNotices();
+      var myRole= this.authService.authCredentials.role;
+      if(myRole.includes(this.for.toLowerCase())){
+        this.refreshNotice();
+      }
+      else{
+        if(this.for=="Hostel" && myRole=="admin"){
+          this.refreshNotice()
+        }
+      }
+    
+    }
+    refreshNotice(){
+      this.showControls=true;
+      this.noticeService.refreshNoticeSub.subscribe(
+        _=>this.fetchNotices()
+      )
+    }
+    fetchNotices(){
+      this.noticeSub= this.noticeService.fetchAllNotices("hostel").subscribe(
+        (res:any)=>{this.notices=res.data;
+          this.totalNotices=this.notices.length;
+          console.log(this.notices)
+          if(this.totalNotices>this.dataLenToShow){
+            this.showPagination=true;
+          }
+          this.notices.forEach(x=>x.noticeBy=this.for)
+        },
+        (err:any)=>this.error="No notices yet."
+      )
+    }
+  fullNotice(notice:Notice){
+    this.selectedNotice=notice;
+    this.showNoticeModal=true;
+    this.modalService.open('custom-modal-notice');
   }
-startSubscription(){
-  (this.for=="Hostel")?this.hostelNoticeSubscribe():this.meshoticeSubscribe();
-}
-    hostelNoticeSubscribe(){
-     this.noticeSub = this.noticeService.hostelNoticeSub.subscribe(
-        data=>this.notices= data
-      )
+   SeeAll(){
+
+   }
+  edit(item:Notice){
+
+  }
+  remove(id:String){
+
+  }
+    
+    ngOnDestroy():void{
+this.noticeSub.unsubscribe();
     }
-  meshoticeSubscribe(){
-   this.noticeSub =   this.noticeService.meshNoticeSub.subscribe(
-        data=>this.notices= data
-      )
-    }
-//     ngOnDestroy():void{
-// this.noticeSub.unsubscribe();
-//     }
 }

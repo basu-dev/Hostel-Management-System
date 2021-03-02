@@ -5,8 +5,6 @@ import { EditIconComponent } from 'src/app/components/edit.component';
 import { TableFooterComponent } from 'src/app/components/table-footer/table-footer.component';
 import { TableSkeletonLoaderComponent } from 'src/app/components/table-skeleton-loader/table-skeleton-loader.component';
 import { ContactAdminComponent } from '../common/contact-admin/contact-admin.component';
-import { ChangePasswordUserComponent } from '../common/login/change-password-user/change-password-user.component';
-import { MessageComponent } from '../common/message/message.component';
 import { StudentDetailComponent } from '../student/student-detail/student-detail.component';
 import { AdminRegisterComponent } from './admin-register/admin-register.component';
 import { AuthCredentialsComponent } from './auth-credentials/auth-credentials.component';
@@ -22,6 +20,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminRoutingModule } from './admin-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from 'src/app/shared.module';
+import { AvailableRoomsComponent } from './manage-room/available-rooms/available-rooms.component';
+import { AdminNoticesComponent } from './admin-notices/admin-notices.component';
 
 
 @NgModule({
@@ -53,10 +53,12 @@ import { SharedModule } from 'src/app/shared.module';
     StaffRegisterComponent,
     ManageStaffComponent,
     TableFooterComponent,
-    MessageComponent,
     AdminHomeComponent,
+    AdminNoticesComponent,
     TableSkeletonLoaderComponent,
     AuthCredentialsComponent,
+    AvailableRoomsComponent,
+    // AddNoticeComponent,
   ]
 })
 export class AdminModule { }

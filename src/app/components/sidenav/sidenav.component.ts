@@ -30,6 +30,12 @@ export class SidenavComponent implements OnInit {
          icon:"fa-hotel",
          directory:false,
        },
+       {name:"Notices",
+       link:"admin/notices",
+       icon:"fa-envelope",
+       directory:false
+      
+      },
        {
          name:"Students",
          directory:true,
@@ -114,7 +120,7 @@ export class SidenavComponent implements OnInit {
        },
        {
          name:"Available Rooms",
-         icon:"fa-room",
+         icon:"fa-bed",
          link:"/admin/availableRooms",
          directory:false
        }

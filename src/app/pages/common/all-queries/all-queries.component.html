@@ -1,4 +1,37 @@
-<div class="container">
-  <h4>Latest Queries of Students</h4>
+<!-- <div class="container">
+  <h4>Open Issues of Students</h4>
 </div>
-<app-show-query *ngFor="let item of queries" [query]="item"></app-show-query>
+<app-show-query *ngFor="let item of queries" [query]="item"></app-show-query> -->
+
+<div class="card card-rounded">
+  <h5>Student Queries</h5>
+  <div class="notice-list">
+      <ul class="" *ngIf="queries;else noNotices">
+          <li (click)="fullQuery(item)" class="list-group-ite" *ngFor="let item of queries | paginate:{
+            id:'query_pagination',
+            itemsPerPage:dataLenToShow,
+            currentPage:page,
+            totalItems:totalQueries }
+        ">
+            <div>{{item.queryTitle}}</div> <span>{{item.queryDate | date}}</span></li>              
+      </ul>
+  </div>
+  <div *ngIf="showPagination" class="text-center">
+    <pagination-controls id="query_pagination" (pageChange)="page = $event"></pagination-controls>
+  </div>
+
+</div>
+<ng-template #noNotices>
+  <ul>
+      <li class="text-center" *ngIf="!error;else errorTemplate">Loading</li>
+  </ul>
+</ng-template>
+<ng-template class="text-center" #errorTemplate>
+  <div class="text-center">
+    {{error}}
+  </div>
+</ng-template>
+
+<jw-modal  id="custom-modal-3" width="500px">
+  <app-show-query *ngIf="showQueryModal" [query]="selectedQuery"></app-show-query>
+</jw-modal>

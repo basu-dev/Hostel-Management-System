@@ -29,33 +29,38 @@ export class StaffRegisterComponent implements OnInit {
   staff:Staff;
   private staffSub: Subscription;
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.staffSub = this.staffService.getStaffById(id).subscribe(data=>{
-      this.staff=data,
-      (err:any)=>this.alertify.error(err)
-    });
-    console.log(this.staff);
-    if(this.staff){
-      if (typeof(this.staff)){
+    const id = this.route.snapshot.paramMap.get('id') as String;
+    if(id){
+      this.staffSub = this.authService.getLoginDetailUser(id).subscribe(data=>{
+        this.staff=data.data;
         this.isEditform=true;
-        this.componentName='Edit Staff ';
-      }
-      else{
-        console.log("In between")
-      }
-    }
-    else{
-      this.componentName='Staff Registration';
-      this.isEditform=false;
-    }
-    if(this.isEditform){
-      this.editStaffForm(this.staff);
-
+        this.initializeForm();
+      },
+      (err)=>{this.alertify.error(err)
+      this.initStaffForm();
+      });
     }else{
       this.initStaffForm();
     }
+   
   }
+initializeForm(){
+  if(this.staff){
+    if (typeof(this.staff)){
+      this.componentName='Edit Staff ';
+    }
+  }
+  else{
+    this.componentName='Staff Registration';
+    this.isEditform=false;
+  }
+  if(this.isEditform){
+    this.editStaffForm(this.staff);
 
+  }else{
+    this.initStaffForm();
+  }
+}
   initStaffForm() {
     this.adminForm = new FormGroup({
       email: new FormControl('a@a.com', [Validators.required, Validators.email]),
@@ -81,29 +86,24 @@ export class StaffRegisterComponent implements OnInit {
   onSubmit() {
     console.log(this.adminForm.value);
     if(this.isEditform){
-      this.staffService.editStaff(this.staff.username,this.staff);
+      this.staffService.editStaff(this.staff._id,this.staff).subscribe(
+        data=>{
+          this.alertify.success("Staff Updated Successfully!")
+          this.router.navigateByUrl("/admin/manageStaffs"); 
+        },
+        err=>this.alertify.error(err)
+      );
      return; 
     }
     this.staffService.registerStaff(this.adminForm.value)
     .subscribe(
       data=>{
+        this.alertify.success("Staff Created Successfully!")
         this.router.navigateByUrl("/admin/manageStaffs"); 
       },
       err=>this.alertify.error(err)
     )
-    
-    
-    // this.adminService.insertAllAdmin(this.adminForm.value).then(() => {
-    //   this.showLoader = false;
-    //   this.alerify.success('Admin account creation successful');
-    //   this.router.navigate(['/adminLogin']);
-    // }).catch((err) => {
-    //   console.log(err);
-    //   this.showLoader = false;
-    //   this.alerify.error('Oops some error occured');
-    // }).finally(() => {
-    //   this.showLoader = false;
-    // });
+
   }
 
 }

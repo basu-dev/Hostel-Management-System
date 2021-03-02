@@ -1,0 +1,35 @@
+.card{
+    // min-height: 0 !important;
+    padding:1rem 0rem
+}
+.card h5{
+    font-weight: 600;
+    text-align: center;
+}
+ul{
+    list-style: none;
+    margin:0;padding:0;
+}
+li{
+    padding:5px 1rem;
+    span{
+        font-size: .7rem;
+        font-weight: bold;
+        display: block;
+        text-align: right;
+    }
+}
+li:nth-child(even){
+    background-color: var(--table-color);
+    
+}
+li:hover{
+    opacity: .8;
+    cursor: pointer;
+}
+.footer{
+    text-align: center;
+    font-size: .8rem;
+    color:green;
+    margin-top: 10px;
+}

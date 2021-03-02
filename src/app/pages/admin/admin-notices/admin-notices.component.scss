@@ -6,11 +6,9 @@
 .notices{
     display:flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    // justify-content: space-between;
 }
+
 .student-queries,.notices{
     height: var(--content-height);
-}
-.student-queries{
-    overflow: scroll;
 }

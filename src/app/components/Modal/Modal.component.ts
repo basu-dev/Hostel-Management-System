@@ -30,7 +30,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
         // close modal on background click
         this.element.addEventListener('click', (el:any) => {
-            if (el.target.className === 'jw-modal') {
+            if ( el.target.className === 'jw-modal-background') {
                 this.close();
             }
         });
@@ -47,6 +47,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
     // open modal
     open(): void {
+        console.log("opencalled")
         this.element.style.display = 'block';
         document.body.classList.add('jw-modal-open');
     }

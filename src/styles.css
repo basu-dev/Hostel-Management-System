@@ -10,7 +10,8 @@
     --sidenav-color:#fff;
     --sedenav-text-color:black;
     --tab-active-color:red;
-    --card-height:calc(100vh - var(--nav-height) - 20px);
+    --card-height:calc(100vh - var(--nav-height) - 1.5rem);
+    --half-content-height:calc(var(--content-height) / 2 - 1.5rem);
 }
 
 .bg-primary,.btn-primary{

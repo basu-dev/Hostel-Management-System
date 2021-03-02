@@ -1,5 +1,5 @@
 export interface Staff{
-    id?:any,
+    _id?:any,
     username:String,
     fullName:String,
     role:String,

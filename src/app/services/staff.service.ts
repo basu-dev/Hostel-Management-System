@@ -21,7 +21,9 @@ export class StaffService {
           (res:any)=>{this.StaffSub.next(res.data)
           console.log(res.data);
           },
-          err=>this.alertify.error(err)
+          err=>{this.alertify.error(err)
+          this.StaffSub.next([])
+          }
         )
       }
     
@@ -36,9 +38,8 @@ export class StaffService {
        return of(this.staffList.filter((x:any)=>x.id==id)[0]);
       }
       
-      editStaff(id:any, staff:any) {
-        
-       return false;
+      editStaff(id:any, staff:any):Observable<any> {
+       return this.http.put(Url.updateStaff+"/"+id,staff)
       }
       
       deleteStaff(id:any) {

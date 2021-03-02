@@ -1,6 +1,9 @@
-import { Component, OnInit, Query } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Query } from 'src/app/model/query';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { NoticeService } from 'src/app/services/app.service';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-all-queries',
@@ -9,16 +12,42 @@ import { NoticeService } from 'src/app/services/app.service';
 })
 export class AllQueriesComponent implements OnInit {
 
-  constructor(private noticeService:NoticeService,private alertify:AlertifyService) { }
+  constructor(private noticeService:NoticeService,
+    private router:Router,
+    private modalService:ModalService,
+    private alertify:AlertifyService) { }
   queries :Query[];
+  error:String;
+  selectedQuery:Query;
+  showQueryModal=false;
+  page:number;
+  totalQueries:number=0;
+  showPagination=false;
+  dataLenToShow=10;
   ngOnInit() {
     this.noticeService.getAllQueries().subscribe(
       (data:any)=>{
         console.log(data)
-        this.queries= data.data
+        this.queries= data.data;
+        this.totalQueries=this.queries.length;
+        if(this.totalQueries>this.dataLenToShow){
+          this.showPagination=true;
+        }
       },
       (err:any)=>this.alertify.error(err)
     )
+  }
+  fullQuery(query:Query){
+    
+    this.selectedQuery=query;
+    this.showQueryModal=true;
+    this.openModal("custom-modal-3");
+  }
+  openModal(id: string) {
+    this.modalService.open(id);
+}
+  SeeAll(){
+
   }
 
 }
