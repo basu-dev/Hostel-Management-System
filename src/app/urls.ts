@@ -1,7 +1,7 @@
 export class Url {
     // rootUrl= 'http=//192.168.100.12=5000';
-   public static rootUrl= 'https://murmuring-bayou-32937.herokuapp.com';
-//    public static rootUrl= 'http://192.168.0.13:5000';
+//    public static rootUrl= 'https://murmuring-bayou-32937.herokuapp.com';
+   public static rootUrl= 'http://192.168.0.13:5000';
 
    // public static rootUrl= 'http://localhost:5000';
 

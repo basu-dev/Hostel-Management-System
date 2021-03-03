@@ -9,7 +9,7 @@ export class UiServiceService {
 constructor() { 
 
 }
-
+public notificationSub = new Subject<boolean>();
 public loadingSub = new Subject<boolean>();
 public startLoading(){
   this.loadingSub.next(true);

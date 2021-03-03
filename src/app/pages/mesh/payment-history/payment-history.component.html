@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="card-header">
+
+    <h4><i class="fas fa-table mr-2"></i>Payment History
+    </h4>
+  </div>
+  <div class="grid">
+    <div class='students'>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Students</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr (click)="selectStudent(item)" *ngFor="let item of messStudents" [class.selected]="isSelected(item)">
+            <td>{{item.fullName}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <app-payment-table *ngIf="currentStudentPayment" [paymentHistory]="currentStudentPayment"></app-payment-table>
+    </div>
+    </div>
+    

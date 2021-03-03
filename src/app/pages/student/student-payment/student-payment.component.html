@@ -1,0 +1,9 @@
+<div class="card">
+  <div class="card-header">
+    <h5>My Mess Payment History</h5>
+  </div>
+  <div class="card-body">
+
+    <app-payment-table *ngIf="currentStudentPayment" [paymentHistory]="currentStudentPayment"></app-payment-table>
+  </div>
+</div>

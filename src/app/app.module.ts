@@ -17,13 +17,21 @@ import { ChangePasswordUserComponent } from './pages/common/login/change-passwor
 import { LoginComponent } from './pages/common/login/login.component';
 import { MessageComponent } from './pages/common/message/message.component';
 import { QueryMainComponent } from './pages/common/query-main/query-main.component';
+import { DailyConsumptionComponent } from './pages/mesh/daily-consumption/daily-consumption.component';
 import { EnrollStudentComponent } from './pages/mesh/enroll-student/enroll-student.component';
+import { MakePaymentComponent } from './pages/mesh/make-payment/make-payment.component';
 import { MessHomeComponent } from './pages/mesh/mess-home/mess-home.component';
+import { MessNoticesComponent } from './pages/mesh/mess-notices/mess-notices.component';
+import { PaymentHistoryComponent } from './pages/mesh/payment-history/payment-history.component';
+import { PaymentTableComponent } from './pages/mesh/payment-table/payment-table.component';
 import { AddPriceComponent } from './pages/mesh/price-table/add-price/add-price.component';
 import { PriceTableComponent } from './pages/mesh/price-table/price-table.component';
 import { AddPostComponent } from './pages/student/add-post/add-post.component';
 import { StudentDashboardComponent } from './pages/student/student-dashboard/student-dashboard.component';
+import { StudentMeshmenuComponent } from './pages/student/student-meshmenu/student-meshmenu.component';
 import { StudentNoticesComponent } from './pages/student/student-notices/student-notices.component';
+import { StudentPaymentComponent } from './pages/student/student-payment/student-payment.component';
+import { StudentPricetableComponent } from './pages/student/student-pricetable/student-pricetable.component';
 import { TokenInterceptorService } from './services/token-interceptor';
 import { SharedModule } from './shared.module';
 
@@ -50,12 +58,20 @@ import { SharedModule } from './shared.module';
     StudentDashboardComponent,
     AddPostComponent,
     StudentNoticesComponent,
+    StudentPaymentComponent,
+    StudentPricetableComponent,
+    StudentMeshmenuComponent,
     //Mess
 
     EnrollStudentComponent,
     MessHomeComponent,
     PriceTableComponent,
-    AddPriceComponent
+    AddPriceComponent,
+    DailyConsumptionComponent,
+    MakePaymentComponent,
+    PaymentHistoryComponent,
+    PaymentTableComponent,
+    MessNoticesComponent
   ],
 
   imports: [
@@ -67,7 +83,7 @@ import { SharedModule } from './shared.module';
     SharedModule,
     NgbModule,
     ReactiveFormsModule,
-    // NgxPaginationModule,
+    NgxPaginationModule,
 
     // StoreModule.forRoot({ auth: authReducer }),
     // StoreDevtoolsModule.instrument({

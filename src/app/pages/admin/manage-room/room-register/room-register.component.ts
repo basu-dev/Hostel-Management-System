@@ -92,8 +92,8 @@ initializeForm(){
       roomName: [roomName],
       block: block,
       students: this.builder.array([
-        new FormControl(students[0]),
-        new FormControl(students[1])
+        new FormControl(students[0]?.rollNo),
+        new FormControl(students[1]?.rollNo)
       ]
       ),
       assets: this.builder.group({

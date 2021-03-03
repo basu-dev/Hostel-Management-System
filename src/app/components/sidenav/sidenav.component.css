@@ -217,3 +217,10 @@ nav .fa-comment-dots{
   font-size: 24px;
   color:white !important;
 }
+
+*{
+  user-select: none;
+}
+.notification{
+  cursor: pointer;
+}

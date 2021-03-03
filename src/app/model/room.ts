@@ -1,15 +1,17 @@
 import { RoomService } from "../services/room.service";
+import { Student } from "./student";
 
 export interface Room{
     _id:String,
     roomName:String,
-    students:RoomStudent[],
+    students:Student[],
     assets:Asset,
     block:Block
 }
 export interface RoomStudent{
     _id:String,
-    fullName:String
+    fullName:String,
+
 
 }
 export interface Asset{

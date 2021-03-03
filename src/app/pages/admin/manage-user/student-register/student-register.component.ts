@@ -96,6 +96,7 @@ export class StudentRegisterComponent implements OnInit {
     this.studentService.deleteStudent(this.student._id).subscribe(
       data=>{console.log(data);
         history.back();
+        this.alertify.success("Student Deleted Successfullly")
       },
       err=>this.alertify.error(err)
     )
@@ -114,6 +115,13 @@ export class StudentRegisterComponent implements OnInit {
      return; 
     }
     this.studentService.registerStudent(this.adminForm.value)
+    .subscribe(
+      res => {
+        history.back();
+        this.alertify.success("Student Created Successfuly")
+      },
+      err => this.alertify.error(err)
+    )
 
   }
   ngOnDestroy(): void {

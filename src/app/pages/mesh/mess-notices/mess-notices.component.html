@@ -1,0 +1,7 @@
+<app-notices [for]="'Mess'"></app-notices>
+<app-floating-button (click)="openModal('custom-modal-2')">
+  <i class="fa fa-plus" style="font: 15px"></i>
+</app-floating-button> 
+<jw-modal id="custom-modal-2"  width="600px">
+  <app-add-notice></app-add-notice>
+</jw-modal>

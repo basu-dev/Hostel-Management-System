@@ -1,0 +1,10 @@
+<div class="notification-place">
+
+<div class="card card-rounded">
+  <ul *ngIf="notifications">
+    <li  *ngFor="let item of notifications">
+      {{item.title}}
+    </li>
+  </ul>
+</div>
+</div>

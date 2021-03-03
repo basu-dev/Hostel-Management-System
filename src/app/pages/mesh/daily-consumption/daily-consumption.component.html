@@ -1,3 +1,82 @@
-<p>
-  daily-consumption works!
-</p>
+<div class="card">
+  <div class="card-header">
+    
+    <h4><i class="fas fa-table mr-2"></i>Daily Consumption
+    </h4>
+    <div class="partOfDay">
+      <div (click)="setPartofDay('morning')" [class.selected]="isMorning">Morning</div>
+      <div  (click)="setPartofDay('evening')" [class.selected]="!isMorning" >Evening</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div class='students'>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Students</th>
+          </tr>
+        </thead>
+        <tbody>
+         <tr (click)="selectStudent(item)" *ngFor="let item of messStudents" [class.selected]="isSelected(item)">
+           <td>{{item.fullName}}</td>
+         </tr>
+          </tbody>
+          </table>
+    </div>
+    <!-- <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">FoodName</th>
+          <th scope="col">Consumed</th>
+          <th scope="col">Number</th>
+        </tr>
+      </thead>
+      <tbody> -->
+        
+       <!-- <tr *ngFor="let item of foodMenu" >
+         {{item|json}}
+         <td>{{item.foodName}}</td>
+         <td><input type="checkbox" checked></td>
+         <td><input type="number" value="1"></td>
+       </tr> -->
+       <form *ngIf="consumptionForm"  [formGroup]="consumptionForm">
+         <div formArrayName="foodDetails">
+       <table class="table menutable">
+      <thead>
+        <tr>
+          <th scope="col">FoodName</th>
+          <th scope="col">Consumed</th>
+          <th scope="col">Number</th>
+        </tr>
+      </thead>
+      <tbody> 
+
+        <tr *ngFor="let item of getFoodDetails.controls;let i=index" [formGroupName]="i">
+          <td>{{foodMenu[i].foodName}}</td>
+          
+
+            <input style="display:none" formControlName="foodId">
+         
+          <td>
+
+            <input formControlName="selected" type="checkbox" >
+          </td>
+          <td>
+
+            <input formControlName="count" type="number" value="1">
+          </td>
+          
+        </tr>
+        </tbody>
+        </table>
+         </div>
+         <button class="btn btn-success" (click)="submit()">Submit</button>
+       </form>
+        <!-- </tbody>
+        
+        </table> -->
+
+  </div>
+
+    </div>  
+    

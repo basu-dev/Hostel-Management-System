@@ -114,13 +114,10 @@ export class StudentsService {
   deleteStudent(id: any) {
     return this.http.delete(this.singleStudentUrl(id), id);
   }
-  registerStudent(student: Student): void{
+  registerStudent(student: Student): Observable<any>{
     console.log(student);
-    this.http.post(`${Url.students}`, student)
-    .subscribe(
-      res => console.log(res),
-      err => this.alertify.error(err)
-    )
+    return this.http.post(`${Url.students}`, student)
+
     // return this.http.post(Url.rootUrl+Url.registerStudent,student);
   }
   give10items(index:number,totalItems:any[]):any[]{

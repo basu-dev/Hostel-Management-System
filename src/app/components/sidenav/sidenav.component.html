@@ -8,7 +8,10 @@
       Paschimanchal Campus Hostel
     </div>
     <div class="right-side">
-      <i class="far fa-bell"></i>
+      <div class="notification" (click)="toggleNotification()">
+       
+        <i class="far fa-bell"></i>
+      </div>
       <a [routerLink]="['/messages']" routerLinkActive="router-link-active" >
         <i class="fas fa-comment-dots" ></i>
       </a> 
@@ -33,7 +36,6 @@
           Logout
         </div>
       </div>
-  
     </a>
     </div>
   </div>
@@ -42,4 +44,5 @@
   </div>
 </div>
  
+  <app-notification ></app-notification>
 

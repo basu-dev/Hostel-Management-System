@@ -8,3 +8,15 @@ tr:nth-child(even){
 th,td{
     text-align: center;
 }
+.row{
+    
+    // width: 100px;
+    // display:flex;
+    justify-content: space-around;
+    color:var(--primary-color);
+    font-size:22px;
+}
+.fa-trash{
+    color:rgb(212, 25, 25);
+    cursor:pointer;
+}

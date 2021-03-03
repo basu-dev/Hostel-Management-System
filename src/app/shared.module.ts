@@ -6,6 +6,7 @@ import { NgxPaginationModule } from "ngx-pagination";
 import { EditIconComponent } from "./components/edit.component";
 import { FloatingButtonComponent } from "./components/floating-button/floating-button.component";
 import { ModalComponent } from "./components/Modal/Modal.component";
+import { NotificationComponent } from "./components/notification/notification.component";
 import { StudentCredentialsComponent } from "./components/student-credentials/student-credentials.component";
 import { AddNoticeComponent } from "./pages/admin/add-notice/add-notice.component";
 import { AuthCredentialsComponent } from "./pages/admin/auth-credentials/auth-credentials.component";
@@ -25,7 +26,8 @@ const components = [
     StudentCredentialsComponent,
     AuthCredentialsComponent,
     EditIconComponent,
-
+    NotificationComponent,
+    
 
 ]
 @NgModule({

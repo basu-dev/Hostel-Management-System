@@ -1,0 +1,30 @@
+.card{
+    min-height: 0 !important;
+    max-height:50vh;
+    width:30vw;
+    // padding:1rem;
+    padding-right:1rem;
+    padding-top: 1rem;
+}
+li{
+    list-style: none;
+    border-bottom:1px solid rgba(128, 128, 128, 0.226);
+    cursor: pointer;
+}
+li:hover{
+    background-color: rgba(128, 128, 128, 0.11);
+
+}
+.notification-place{
+    min-height: 0 !important;
+    position:fixed;
+    top:var(--nav-height);
+    right:50px;
+  }
+  .show{
+      display:block !important;
+  }
+
+  :host{
+      display:none;
+  }

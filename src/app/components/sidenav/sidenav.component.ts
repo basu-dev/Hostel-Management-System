@@ -22,8 +22,9 @@ export class SidenavComponent implements OnInit {
   
     }
     loading=false;
+
     showLogout= false;
-  
+    showNotification:boolean=false;
     currentNavItems :{name:String,link:string,icon:String,directory:boolean,items?:any}[];
     currentUser:AuthCredentials; 
     currentAuth = authEnum.IsUnauthenticated;
@@ -151,7 +152,7 @@ export class SidenavComponent implements OnInit {
         },
         {
           name:"Queries",
-          icon:"fa-notice",
+          icon:"far fa-question-circle",
           link:"/student/allqueries",
           directory:false,
         },
@@ -196,19 +197,25 @@ export class SidenavComponent implements OnInit {
         }
       ]
       messSideNav:any[]=[
-        {
-          name:"Dashboard",
-          link:"/mess",
-          icon:"fa-utensils",
-          directory:false
-        },
+        // {
+        //   name:"Dashboard",
+        //   link:"/mess",
+        //   icon:"fa-utensils",
+        //   directory:false
+        // },
         {
           name:"Enroll/Remove",
           link:"/mess/enrollStudent",
           icon:"fa-user-plus",
           directory:false
         },
+        { 
+          name:"Notices",
+          link:"/mess/notices",
+          icon:"fa-thumbtack",
+          directory:false
 
+        },
         {
           name:"Price Table",
           link:"/mess/priceTable",
@@ -276,6 +283,18 @@ export class SidenavComponent implements OnInit {
         this.currentNavItems = this.messSideNav;
     }
   }
+
+  toggleNotification(){
+    console.log(this.showNotification);
+    if(this.showNotification==false){
+      this.showNotification=true
+      this.uiService.notificationSub.next(true)
+    }else{
+      this.uiService.notificationSub.next(false)
+      this.showNotification=false;
+    }
+  }
+
   loadProfile():void{
     console.log("Profile loading")
   }
