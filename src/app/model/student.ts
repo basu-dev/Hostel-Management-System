@@ -15,4 +15,6 @@ export class Student{
     _id?:any;
     imageUrl?:String='';
     isInMess?:boolean;
+    parentsName:String;
+    parentsContact:String;
 }

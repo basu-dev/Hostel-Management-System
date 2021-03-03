@@ -1,9 +1,11 @@
-import { ViewChild } from '@angular/core';
+import { Input, ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { MessService } from 'src/app/services/mess.service';
+import { StudentsService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-auth-credentials',
@@ -12,10 +14,16 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AuthCredentialsComponent implements OnInit {
 
-  constructor(private authService:AuthService,private alertify:AlertifyService,private fb:FormBuilder) { }
+  constructor(private studentService:StudentsService,
+    private messService:MessService,
+    private authService:AuthService,
+    private alertify:AlertifyService,
+    private fb:FormBuilder) { }
   whoseCredentials="student";
   @ViewChild('passwordField') private passwordField: ElementRef;
   passwordShown=false;
+  @Input() fromMesh=false;
+  @Input() title="Authentication Credentials";
 
   get isStudent(){return this.whoseCredentials == "student"};
  get isMesh(){return this.whoseCredentials == "messstaff"};
@@ -27,39 +35,50 @@ export class AuthCredentialsComponent implements OnInit {
     this.user = this.fb.group({
       userName:['073BEX422',Validators.required]
     })
-    this.authService.getLoginDetails("student").subscribe(
-      (data:any)=>{
-        this.credentials = data.data;
-      },
-      (err:any)=>{
-        this.alertify.error(err)
-      }
-    )
-    this.loadCredentials();
+
+    if(this.fromMesh){
+      console.log("From Mesh")
+
+    }else{
+    }
   }
-  loadCredentials():void{
-    this.authService.getLoginDetails(this.whoseCredentials).subscribe(
-      data=>console.log(data),
-      err=>this.alertify.error(err)
-    )
-  }
+
   getCredentials(){
+    if(this.fromMesh){
+      this.getCredentialMesh();
+      return;
+    }
     this.foundUser=null;
     var userName = this.user.get('userName')?.value;
     this.authService.getLoginDetailUser(userName).subscribe(
       (data:any)=>{
+        console.log(data.data)
         this.foundUser= data.data;
       },
       (err:any)=>this.alertify.error(err)
     )
-    // var credential = this.credentials.filter((e:any)=>e.username==userName || e.rollNo==userName)[0];
-    // console.log(credential);
-    // this.foundUser= credential;
+  }
+  getCredentialMesh(){
+    this.messService.showEnroll.next(false)
+    this.foundUser=null;
+    var userName = this.user.get('userName')?.value;
+    this.studentService.getStudentByUsername(userName).subscribe(
+      (data:any)=>{
+        console.log(data.data)
+        this.foundUser= data.data;
+        this.messService.showEnroll.next(true)
+        this.messService.studentSub.next(data.data)
+      },
+      (err:any)=>{this.alertify.error(err)
+        this.messService.showEnroll.next(false)
+
+      }
+    )
   }  
-public  credential(role:string){
-  this.whoseCredentials = role;
-  this.loadCredentials();
-}
+// public  credential(role:string){
+//   this.whoseCredentials = role;
+//   this.loadCredentials();
+// }
 
 
 togglePasswordShow():void{

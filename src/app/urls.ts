@@ -1,6 +1,8 @@
 export class Url {
     // rootUrl= 'http=//192.168.100.12=5000';
    public static rootUrl= 'https://murmuring-bayou-32937.herokuapp.com';
+//    public static rootUrl= 'http://192.168.0.13:5000';
+
    // public static rootUrl= 'http://localhost:5000';
 
    public static registerAdmin=Url.rootUrl+`/auth/register/administration`;
@@ -28,6 +30,9 @@ export class Url {
    public static getMessages=Url.rootUrl+'/message/get';
    public static setMessages=Url.rootUrl+'/message/add';
    public static studentquery=Url.rootUrl+'/studentquery';
+
+   public static mess=Url.rootUrl+'/mess';
+   public static enrollStudentMess=Url.mess+'/enrollremove';
 
 
 }

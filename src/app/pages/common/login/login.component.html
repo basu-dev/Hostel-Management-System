@@ -1,4 +1,4 @@
- <div class="login-wrap">
+ <!-- <div class="login-wrap">
     <div class="login-html">
 
       <div class="logo-place">
@@ -38,4 +38,32 @@
         </div>
 
     </div>
-</div> 
+</div>  -->
+<section class="container">
+    <div class="level1">
+      <div class="collageName">
+        <div class="img">
+          <img src="../../../../assets/icons/logo.png" height="80" alt="TU LOGO" class="img-1" />
+        </div>
+        <div class="collegeNameInner">
+          <p class="name">PASCHIMANCHAL CAMPUS, IOE</p>
+          <p class="name-1">BOYS HOSTEL</p>
+        </div>
+      </div>
+        <form class="collegeForm" [formGroup]="loginForm">
+        <div class="input">
+            <!-- <i class="fas fa-key"></i> -->
+            <input id="user" placeholder="Username / RollNo" type="text" formControlName="username" class="input1">
+        </div>
+        <div class="input">
+            <input id="pass" type="password" placeholder="Password" formControlName="password" class="input2" data-type="password">
+        </div>
+        <div class="button">
+
+            <button href="#" [disabled]="!loginForm.valid || loading" (click)="login()" class="btn">{{btnText.toUpperCase()}}</button>
+        </div>
+          <!-- <input type="button" value="forget password"  class="input3" /> -->
+       
+    </form>
+    </div>
+  </section>

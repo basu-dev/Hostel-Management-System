@@ -37,6 +37,9 @@ intercept(req:HttpRequest<any>,next:HttpHandler){
           errorMessage = "Check your connection";
           
         }
+        else if (error.status==404){
+          errorMessage=="Page Not Found"
+        }
         else{
 
           errorMessage = error.error.msg;

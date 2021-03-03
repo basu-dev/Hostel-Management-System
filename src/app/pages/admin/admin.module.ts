@@ -22,6 +22,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from 'src/app/shared.module';
 import { AvailableRoomsComponent } from './manage-room/available-rooms/available-rooms.component';
 import { AdminNoticesComponent } from './admin-notices/admin-notices.component';
+import { StudentResultsComponent } from './student-results/student-results.component';
 
 
 @NgModule({
@@ -40,14 +41,13 @@ import { AdminNoticesComponent } from './admin-notices/admin-notices.component';
   ],
   declarations: [
     AdminRegisterComponent,
-
+    StudentResultsComponent,
     RoomRegisterComponent,
     ManageUserComponent,
     ManageStreamComponent,
     ManageRoomComponent,
     ContactAdminComponent,
     AddIconComponent,
-    EditIconComponent,
     ManageStaffComponent,
     StudentDetailComponent,
     StaffRegisterComponent,
@@ -56,7 +56,6 @@ import { AdminNoticesComponent } from './admin-notices/admin-notices.component';
     AdminHomeComponent,
     AdminNoticesComponent,
     TableSkeletonLoaderComponent,
-    AuthCredentialsComponent,
     AvailableRoomsComponent,
     // AddNoticeComponent,
   ]

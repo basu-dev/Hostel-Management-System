@@ -13,6 +13,7 @@ import { ManageStaffComponent } from './manage-staff/manage-staff.component';
 import { StaffRegisterComponent } from './manage-staff/staff-register/staff-register.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
 import { StudentRegisterComponent } from './manage-user/student-register/student-register.component';
+import { StudentResultsComponent } from './student-results/student-results.component';
 
   
 const routes: Routes = [  
@@ -34,7 +35,8 @@ const routes: Routes = [
         {path:"editRoom/:roomName",component:RoomRegisterComponent},
         {path:"availableRooms",component:AvailableRoomsComponent},
         {path:"notices",component:AdminNoticesComponent},
-        {path:"authcredentials",component:AuthCredentialsComponent}
+        {path:"authcredentials",component:AuthCredentialsComponent},
+        {path:"studentResults",component:StudentResultsComponent}
       ]
         
     }  

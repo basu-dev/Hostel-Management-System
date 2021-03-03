@@ -10,7 +10,7 @@ li{
     position: relative;
 }
 .card{
-    min-height: var(--half-content-height) !important;
+    min-height: calc(var(--half-content-height) + 100px) !important;
 }
 .controls{
     position:absolute;

@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
     loading=false;
   ngOnInit(): void {
     this.loginForm = this.builder.group({
-      username:['073BEX412',Validators.required],
-      password:['76rzFfbALP',[Validators.required,Validators.minLength(5)]],
+      username:['messstaff_1',Validators.required],
+      password:['hello',[Validators.required,Validators.minLength(5)]],
     });
     this.listenLoading();
   }

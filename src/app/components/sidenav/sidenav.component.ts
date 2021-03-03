@@ -8,6 +8,9 @@ import { UiServiceService } from 'src/app/services/ui-service.service';
 
 
 
+interface sidenav{
+      
+}
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -20,6 +23,7 @@ export class SidenavComponent implements OnInit {
     }
     loading=false;
     showLogout= false;
+  
     currentNavItems :{name:String,link:string,icon:String,directory:boolean,items?:any}[];
     currentUser:AuthCredentials; 
     currentAuth = authEnum.IsUnauthenticated;
@@ -109,7 +113,7 @@ export class SidenavComponent implements OnInit {
        {
          name:"Messages",
          icon:"fa-comment-dots",
-         link:"/admin/messages",
+         link:"/messages",
          directory:false
        },
        {
@@ -123,6 +127,12 @@ export class SidenavComponent implements OnInit {
          icon:"fa-bed",
          link:"/admin/availableRooms",
          directory:false
+       },
+       {
+         name:"Student Resuls",
+         icon:"fa-file",
+         link:"/admin/studentResults",
+         directory:false
        }
     
       ]
@@ -135,8 +145,8 @@ export class SidenavComponent implements OnInit {
         },
         {
           name:"Notices",
-          icon:"fa-notice",
-          link:"/notices",
+          icon:"fa-thumbtack",
+          link:"student/notices",
           directory:false,
         },
         {
@@ -147,10 +157,87 @@ export class SidenavComponent implements OnInit {
         },
         {
           name:"Mess",
-          icon:"fa-",
-          link:"/student/mess",
+          icon:"fa-utensils",
+          link:"",
+          directory:true,
+          items:[
+            {
+              name:"My Payment",
+              icon:"fa-wallet",
+              link:"student/payment",
+            },
+            {
+              name:"Price Table",
+              link:"/student/priceTable"
+            },
+            {
+              name:"Mess Menu",
+              link:"/student/messMenu"
+            },
+            {
+              name:"Mess Info",
+              link:"/student/messInfo"
+            }
+            
+
+          ]
+        },
+        {
+          name:"Messages",
+          link:"/messages",
+          icon:"fa-comment-dots",
+          directory:false,
+        },
+        {
+          name:"My Results",
+          link:"/student/result",
+          icon:"fa-file-alt",
           directory:false
         }
+      ]
+      messSideNav:any[]=[
+        {
+          name:"Dashboard",
+          link:"/mess",
+          icon:"fa-utensils",
+          directory:false
+        },
+        {
+          name:"Enroll/Remove",
+          link:"/mess/enrollStudent",
+          icon:"fa-user-plus",
+          directory:false
+        },
+
+        {
+          name:"Price Table",
+          link:"/mess/priceTable",
+          icon:"fa-table",
+          directory:false
+        },
+        {
+          name:"Daily Consumption",
+          link:"/mess/dailyConsumption",
+          icon:"fa-arrows-alt",
+          directory:false
+        },
+        {
+          name:"Payment",
+          link:"/mess/payment",
+          icon:"fa-dollar-sign",
+          directory:true,
+          items:[
+            {
+              name:"Make Payment",
+              link:"/mess/makePayment"
+            },
+            {
+              name:"Payment History",
+              link:"/mess/paymentHistory"
+            }
+          ]
+        }
+      
       ]
   ngOnInit() {
    this.listenLoading();
@@ -184,6 +271,9 @@ export class SidenavComponent implements OnInit {
         break;
       case authEnum.IsStudent:
         this.currentNavItems = this.studentSidenav;
+        break;
+        case authEnum.IsMeshStaff:
+        this.currentNavItems = this.messSideNav;
     }
   }
   loadProfile():void{

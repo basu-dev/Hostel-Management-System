@@ -10,19 +10,12 @@
     <div class="right-side">
       <i class="far fa-bell"></i>
       <a [routerLink]="['/messages']" routerLinkActive="router-link-active" >
-        <i class="fab fa-facebook-messenger" ></i>
+        <i class="fas fa-comment-dots" ></i>
       </a> 
       <div (click)="loadProfile()" class="profile-image">
         <div><i class="fas fa-user"></i></div><div class="name">
           {{currentUser.fullName? currentUser.fullName:currentUser.role | titlecase}}
         </div> 
-      </div>
-      <div class="elepsis" (click)="showLogout=true">
-        <i class="fas fa-ellipsis-v" >
-        </i>
-        <div *ngIf="showLogout" (click)="logout()">
-          Logout
-        </div>
       </div>
     </div>
     <app-linear-loader *ngIf="loading"></app-linear-loader>
@@ -32,6 +25,16 @@
   <div class="bg-primary " id="sidebar-wrapper">
     <div class="li list-group-">
       <app-sidenav-item *ngFor="let item of currentNavItems" [item]="item"></app-sidenav-item>
+      <a (click)="logout()"  routerLinkActive="active"
+      class="list-group-item list-group-sub-item list-group-item-action ">
+      <div class="flex">
+        <i class="fas mr-3 fa-sign-out-alt"></i>
+        <div>
+          Logout
+        </div>
+      </div>
+  
+    </a>
     </div>
   </div>
   <div id="page-content-wrapper">

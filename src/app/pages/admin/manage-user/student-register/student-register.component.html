@@ -72,6 +72,25 @@
                 </div>
             </div>
             <div class="form-group">
+              <label for="parentsName">Parent's Name*</label>
+              <input type="text" class="form-control" id="parentsName" formControlName="parentsName">
+              <div class="form-text text-danger" *ngIf="adminForm.get('parentsName').hasError('required') && adminForm.get('parentsName').touched">
+                Parent's Name cannot be empty.
+              </div>
+        
+            </div>
+            <div class="form-group">
+              <label for="parentsContact">Parent's Contact.*</label>
+              <input type="number" class="form-control" id="parentsContact" formControlName="parentsContact">
+              <div class="form-text text-danger" *ngIf="adminForm.get('parentsContact').hasError('required') && adminForm.get('parentsContact').touched">
+                Parent's Contact is required.
+              </div>
+              <div class="form-text text-danger" *ngIf="adminForm.get('parentsContact').hasError('minlength') && adminForm.get('parentsContact').touched">
+                contact No. should be 10 digits long.
+              </div>
+            </div>
+            
+            <div class="form-group">
                 <button class="btn btn-primary btn-block" type="submit" *ngIf=!showLoader [disabled]="!adminForm.valid">
                   <i class="fa fa-save mr-2"></i>{{isEditform?"Submit":"Register"}}
                 </button>
@@ -83,7 +102,7 @@
             </div>
             <div class="form-group">
               <button *ngIf="isEditform" class="btn btn-danger btn-block" (click)="deleteStudent()" type="button" >
-                <i class="fa fa-save mr-2"></i>Delete Student
+                <i class="fa fa-save mr-2"></i>Delete
               </button>
             </div>
           </form>

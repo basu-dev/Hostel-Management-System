@@ -120,7 +120,7 @@ export class AuthService{
              this.setAuthCredential(decoded);
              this.authCredentials = decoded;
             this.authenticate(decoded.role);
-            this.navigate();
+            
         }catch(e){
             this.logout();
         }
@@ -131,12 +131,15 @@ export class AuthService{
         this.assignRole(authEnum.IsUnauthenticated);
     }
     navigate():void{
-        // if(this.currentUser == authEnum.IsStudent){
-        //     this.router.navigateByUrl("/student")
-        // }
-        // else{
-        //     this.router.navigateByUrl('/admin');
-        // }
+        if(this.currentUser == authEnum.IsStudent){
+            this.router.navigateByUrl("/student")
+        }
+        else if(this.currentUser == authEnum.IsMeshStaff){
+            this.router.navigateByUrl("/staff")
+        }
+        else{
+            this.router.navigateByUrl('/admin');
+        }
     }
 
 }

@@ -1,0 +1,20 @@
+.grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+}
+:host{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    // background-color: red;
+    justify-content: center;
+}
+.notices{
+    display:flex;
+    flex-direction: column;
+}
+
+.student-queries,.notices{
+    height: var(--content-height);
+}

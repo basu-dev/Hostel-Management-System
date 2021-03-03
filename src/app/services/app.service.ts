@@ -71,6 +71,9 @@ export class NoticeService {
     getAllQueries():Observable<any>{
         return this.http.get(Url.studentquery+"/search/latest");
     }
+    getSpecificQueries(status:String):Observable<any>{
+        return this.http.get(Url.studentquery+"/search?resolveStatus="+status)
+    }
     refreshNotices(){
         this.refreshNoticeSub.next(true);
     }

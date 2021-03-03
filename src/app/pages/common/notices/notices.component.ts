@@ -24,7 +24,7 @@ export class NoticesComponent implements OnInit {
     selectedNotice:Notice;
     totalNotices:number=0;
     showPagination=false;
-    dataLenToShow=5;
+    dataLenToShow=10;
     showControls = false;
     page:number=1;
     paginationId:string;
@@ -44,13 +44,13 @@ export class NoticesComponent implements OnInit {
     
     }
     refreshNotice(){
-      this.showControls=true;
+      // this.showControls=true;
       this.noticeService.refreshNoticeSub.subscribe(
         _=>this.fetchNotices()
       )
     }
     fetchNotices(){
-      this.noticeSub= this.noticeService.fetchAllNotices("hostel").subscribe(
+      this.noticeSub= this.noticeService.fetchAllNotices(this.for.toLowerCase()).subscribe(
         (res:any)=>{this.notices=res.data;
           this.totalNotices=this.notices.length;
           console.log(this.notices)
@@ -70,7 +70,7 @@ export class NoticesComponent implements OnInit {
    SeeAll(){
 
    }
-  edit(item:Notice){
+  edit(item:Notice){  
 
   }
   remove(id:String){

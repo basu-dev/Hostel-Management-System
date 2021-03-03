@@ -70,6 +70,8 @@ export class StudentRegisterComponent implements OnInit {
       address: new FormControl('Chitwan',[Validators.required]),
       dob: new FormControl('2054-3-12',[Validators.required]),
       contact: new FormControl("2323232323232222",[Validators.required,Validators.minLength(10)]),
+      parentsName: new FormControl('',[Validators.required]),
+      parentsContact: new FormControl('',[Validators.required,Validators.minLength(10)]),
 
     });
   }
@@ -85,7 +87,8 @@ export class StudentRegisterComponent implements OnInit {
       address: new FormControl(this.student.address,[Validators.required]),
       dob: new FormControl(this.student.dob,[Validators.required]),
       contact: new FormControl(this.student.contact,[Validators.required,Validators.minLength(10)]),
-
+      parentsName: new FormControl(this.student.parentsName,[Validators.required]),
+      parentsContact: new FormControl(this.student.parentsContact,[Validators.required,Validators.minLength(10)]),
     });
   }
 

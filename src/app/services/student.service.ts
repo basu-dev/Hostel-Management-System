@@ -78,7 +78,7 @@ export class StudentsService {
   }
 
   getStudentByUsername(username: String): Observable<Student> {
-
+    console.log(this.singleStudentUrl(username));
     return this.http.get<any>(this.singleStudentUrl(username))
   }
   getStudentByBatch(batch: String): Observable<Student[]> {

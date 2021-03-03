@@ -3,8 +3,7 @@
 </div>
 <app-show-query *ngFor="let item of queries" [query]="item"></app-show-query> -->
 
-<div class="card card-rounded">
-  <h5>Student Queries</h5>
+
   <div class="notice-list">
       <ul class="" *ngIf="queries;else noNotices">
           <li (click)="fullQuery(item)" class="list-group-ite" *ngFor="let item of queries | paginate:{
@@ -20,13 +19,12 @@
     <pagination-controls id="query_pagination" (pageChange)="page = $event"></pagination-controls>
   </div>
 
-</div>
 <ng-template #noNotices>
   <ul>
-      <li class="text-center" *ngIf="!error;else errorTemplate">Loading</li>
+      <li class="text-center">Loading</li>
   </ul>
 </ng-template>
-<ng-template class="text-center" #errorTemplate>
+<ng-template *ngif="error" class="text-center" #errorTemplate>
   <div class="text-center">
     {{error}}
   </div>

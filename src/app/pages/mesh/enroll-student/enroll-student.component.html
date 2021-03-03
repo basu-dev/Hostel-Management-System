@@ -1,0 +1,10 @@
+<app-auth-credentials [fromMesh]="true" [title]="'Search Student'">
+  <div *ngIf="showEnrollBtn">
+    <button *ngIf="!enroll;else remove"  (click)="enrollStudent()">Enroll</button>
+  </div>
+</app-auth-credentials>
+<ng-template #remove>
+  <button   (click)="removeStudent()">Remove</button>
+
+</ng-template>
+

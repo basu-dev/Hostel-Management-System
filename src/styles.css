@@ -10,7 +10,7 @@
     --sidenav-color:#fff;
     --sedenav-text-color:black;
     --tab-active-color:red;
-    --card-height:calc(100vh - var(--nav-height) - 1.5rem);
+    --card-height:calc(100vh - var(--nav-height) - 3rem);
     --half-content-height:calc(var(--content-height) / 2 - 1.5rem);
 }
 
@@ -52,7 +52,7 @@ tr:nth-child(even){
     min-height: var(--card-height) !important;
 }
 .card-rounded{
-    border-radius: 20px !important;
+    border-radius: 9px !important;
 }
 nb-layout{
     margin:0;
@@ -67,4 +67,10 @@ a{
 }
 input{
     outline: none;
+}
+.card-header{
+    color:var(--primary-color)  !important;
+}
+.second-card{
+    padding:1rem;
 }

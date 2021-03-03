@@ -16,8 +16,14 @@ import { StudentRegisterComponent } from './pages/admin/manage-user/student-regi
 import { ChangePasswordUserComponent } from './pages/common/login/change-password-user/change-password-user.component';
 import { LoginComponent } from './pages/common/login/login.component';
 import { MessageComponent } from './pages/common/message/message.component';
+import { QueryMainComponent } from './pages/common/query-main/query-main.component';
+import { EnrollStudentComponent } from './pages/mesh/enroll-student/enroll-student.component';
+import { MessHomeComponent } from './pages/mesh/mess-home/mess-home.component';
+import { AddPriceComponent } from './pages/mesh/price-table/add-price/add-price.component';
+import { PriceTableComponent } from './pages/mesh/price-table/price-table.component';
 import { AddPostComponent } from './pages/student/add-post/add-post.component';
 import { StudentDashboardComponent } from './pages/student/student-dashboard/student-dashboard.component';
+import { StudentNoticesComponent } from './pages/student/student-notices/student-notices.component';
 import { TokenInterceptorService } from './services/token-interceptor';
 import { SharedModule } from './shared.module';
 
@@ -37,11 +43,19 @@ import { SharedModule } from './shared.module';
 
     
     StudentRegisterComponent,
+    QueryMainComponent,
     //admin
 
     //student
     StudentDashboardComponent,
     AddPostComponent,
+    StudentNoticesComponent,
+    //Mess
+
+    EnrollStudentComponent,
+    MessHomeComponent,
+    PriceTableComponent,
+    AddPriceComponent
   ],
 
   imports: [

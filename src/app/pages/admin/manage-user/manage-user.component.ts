@@ -63,7 +63,8 @@ export class ManageUserComponent implements OnInit {
     }
     console.log(value);
     this.studentService.getStudentByUsername(value).subscribe(
-      (data:any) => this.students = [data]
+      (data:any) => this.students = [data],
+      (err:any)=>console.log(err)
     )
   }
   searchByBatch(e:any) {

@@ -1,12 +1,17 @@
 form{
+    padding: 1rem 3rem;
     display:grid;
     grid-template-columns: 1fr 1fr;
+    
     width:100%;
-    justify-content: start;
-    grid-column-gap: 5px;
+    grid-column-gap: 5rem;
 }
 input{
     width:100%;
+}
+button{
+    margin-top: 1.5rem;
+    width: 150px;
 }
 div[formgroupname=assets]{
     display:grid;

@@ -3,9 +3,12 @@ import { CommonModule } from "@angular/common";
 import {NgModule } from "@angular/core"
 import { ReactiveFormsModule } from "@angular/forms";
 import { NgxPaginationModule } from "ngx-pagination";
+import { EditIconComponent } from "./components/edit.component";
 import { FloatingButtonComponent } from "./components/floating-button/floating-button.component";
 import { ModalComponent } from "./components/Modal/Modal.component";
+import { StudentCredentialsComponent } from "./components/student-credentials/student-credentials.component";
 import { AddNoticeComponent } from "./pages/admin/add-notice/add-notice.component";
+import { AuthCredentialsComponent } from "./pages/admin/auth-credentials/auth-credentials.component";
 import { AllQueriesComponent } from "./pages/common/all-queries/all-queries.component";
 import { NoticeDetailComponent } from "./pages/common/notices/notice-detail/notice-detail.component";
 import { NoticesComponent } from "./pages/common/notices/notices.component";
@@ -18,7 +21,12 @@ const components = [
     ShowQueryComponent,
     ModalComponent,
     FloatingButtonComponent,
-    AddNoticeComponent
+    AddNoticeComponent,
+    StudentCredentialsComponent,
+    AuthCredentialsComponent,
+    EditIconComponent,
+
+
 ]
 @NgModule({
     imports:[

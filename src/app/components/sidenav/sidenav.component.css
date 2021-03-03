@@ -57,6 +57,8 @@
     display:flex;
     justify-content: space-between;
     align-items:center;
+    font-weight: 500;
+    font-size:16px;
 
   }
 
@@ -204,10 +206,14 @@ a:hover{
 }
 #page-content-wrapper{
   /* background-color: green; */
-  padding:1rem;
+  padding:2rem;
   height: calc(var(--card-height) + 40px);
   overflow-y: scroll;
 }
 .nav .fas,.nav .far{
+  color:white !important;
+}
+nav .fa-comment-dots{
+  font-size: 24px;
   color:white !important;
 }

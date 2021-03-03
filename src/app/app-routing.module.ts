@@ -11,18 +11,33 @@ import { LoginComponent } from './pages/common/login/login.component';
 import { MessageComponent } from './pages/common/message/message.component';
 import { NoticeDetailComponent } from './pages/common/notices/notice-detail/notice-detail.component';
 import { NoticesComponent } from './pages/common/notices/notices.component';
+import { QueryMainComponent } from './pages/common/query-main/query-main.component';
+import { EnrollStudentComponent } from './pages/mesh/enroll-student/enroll-student.component';
+import { MessHomeComponent } from './pages/mesh/mess-home/mess-home.component';
+import { PriceTableComponent } from './pages/mesh/price-table/price-table.component';
 import { StudentDashboardComponent } from './pages/student/student-dashboard/student-dashboard.component';
 import { StudentDetailComponent } from './pages/student/student-detail/student-detail.component';
+import { StudentNoticesComponent } from './pages/student/student-notices/student-notices.component';
 
 const routes: Routes = [
   {path:"admin", canActivate:[StaffOrAdminGuard] ,loadChildren:()=>import('./pages/admin/admin.module').then(module=>module.AdminModule)
   },
   {path:"student",canActivate:[StudentGuard],children:[
     {path:"",component:StudentDashboardComponent},
-    {path:"allqueries",component:AllQueriesComponent}
+    {path:"allqueries",component:QueryMainComponent},
+    {path:"notices",component:StudentNoticesComponent},
+
   ]},
+  {
+    path:"mess",children:[
+      {
+        path:"",component:MessHomeComponent,
+      },
+      {path:"enrollStudent",component:EnrollStudentComponent},
+      {path:"priceTable",component:PriceTableComponent}
+    ]
+  },
   {path:"messages",component:MessageComponent},
-  {path:"notices",component:NoticesComponent},
   {path:"auth/resetpassword",component:ChangePasswordUserComponent},
   {path:"studentDetail/:username",component:StudentDetailComponent},
   {path:"auth/login",component:LoginComponent},
