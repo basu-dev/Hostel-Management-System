@@ -165,6 +165,12 @@ export class SidenavComponent implements OnInit {
           directory:false,
         },
         {
+          name:"Hostel Info",
+          icon:"fa-home",
+          link:"/hostelinfo",
+          directory:false
+        },
+        {
           name:"Mess",
           icon:"fa-utensils",
           link:"",

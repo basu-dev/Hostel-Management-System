@@ -15,10 +15,13 @@ export class StudentCredentialsComponent implements OnInit {
 passwordShown=false;
 isStudent=true;
 @ViewChild('passwordField') private passwordField: ElementRef;
-
+image = "../../../../assets/icons/avatar.png";
   ngOnInit() {
     if(this.foundUser.role!="student"){
       this.isStudent=false;
+    }
+    if(this.foundUser.imageUrl){
+      this.image=this.foundUser.iamgeUrl
     }
     console.log(this.foundUser);
   }

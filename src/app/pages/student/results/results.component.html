@@ -1,0 +1,14 @@
+<div  class="card">
+  <div class="card-header bg-primary text-white">
+    <h4><i class="fas fa-home mr-2"></i> Student Results</h4>
+  </div>
+  <div *ngIf="currentSudent" class="card-body grid">
+    <div  class="image" *ngFor="let item of images">
+      <img (click)="selectImage(item)" [src]="item" width=400>
+    </div>
+  </div>
+  </div>
+
+  <jw-modal  id="custom-modal-image">
+    <img [src]="currentImage" height=700>
+  </jw-modal>

@@ -32,6 +32,7 @@ export class ChangePasswordUserComponent implements OnInit {
     this.authService.changePasswordByUser(this.passwordForm.get('password')?.value).subscribe(
       data=>{
         console.log(data);
+        this.authService.passowrdNotChanged=false;
         this.authService.startupAuthenticate();
       },
       err=>this.alertify.error(err)

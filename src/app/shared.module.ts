@@ -14,6 +14,7 @@ import { AllQueriesComponent } from "./pages/common/all-queries/all-queries.comp
 import { NoticeDetailComponent } from "./pages/common/notices/notice-detail/notice-detail.component";
 import { NoticesComponent } from "./pages/common/notices/notices.component";
 import { AddPostComponent } from "./pages/student/add-post/add-post.component";
+import { ResultsComponent } from "./pages/student/results/results.component";
 import { ShowQueryComponent } from "./pages/student/show-query/show-query.component";
 const components = [
     
@@ -29,6 +30,7 @@ const components = [
     EditIconComponent,
     NotificationComponent,
     AddPostComponent,
+    
     
 
 ]

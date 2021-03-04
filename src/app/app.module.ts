@@ -14,6 +14,7 @@ import { MessInfoComponent } from './components/mess-info/mess-info.component';
 import { SidenavItemComponent } from './components/sidenav/sidenav-item.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { StudentRegisterComponent } from './pages/admin/manage-user/student-register/student-register.component';
+import { HostelInfoComponent } from './pages/common/hostel-info/hostel-info.component';
 import { ChangePasswordUserComponent } from './pages/common/login/change-password-user/change-password-user.component';
 import { LoginComponent } from './pages/common/login/login.component';
 import { MessageComponent } from './pages/common/message/message.component';
@@ -28,6 +29,7 @@ import { PaymentTableComponent } from './pages/mesh/payment-table/payment-table.
 import { AddPriceComponent } from './pages/mesh/price-table/add-price/add-price.component';
 import { PriceTableComponent } from './pages/mesh/price-table/price-table.component';
 import { AddPostComponent } from './pages/student/add-post/add-post.component';
+import { ResultsComponent } from './pages/student/results/results.component';
 import { StudentDashboardComponent } from './pages/student/student-dashboard/student-dashboard.component';
 import { StudentMeshmenuComponent } from './pages/student/student-meshmenu/student-meshmenu.component';
 import { StudentNoticesComponent } from './pages/student/student-notices/student-notices.component';
@@ -49,7 +51,7 @@ import { SharedModule } from './shared.module';
     LinearLoaderComponent,
     MessageComponent,
     ChangePasswordUserComponent,
-
+    ResultsComponent,
     
     StudentRegisterComponent,
     QueryMainComponent,
@@ -62,6 +64,7 @@ import { SharedModule } from './shared.module';
     StudentPaymentComponent,
     StudentPricetableComponent,
     StudentMeshmenuComponent,
+    HostelInfoComponent,
     //Mess
 
     EnrollStudentComponent,

@@ -8,6 +8,7 @@ import { StudentGuard } from './guard/student.guard';
 import { AdminHomeComponent } from './pages/admin/home/home.component';
 import { AllQueriesComponent } from './pages/common/all-queries/all-queries.component';
 import { ContactAdminComponent } from './pages/common/contact-admin/contact-admin.component';
+import { HostelInfoComponent } from './pages/common/hostel-info/hostel-info.component';
 import { ChangePasswordUserComponent } from './pages/common/login/change-password-user/change-password-user.component';
 import { LoginComponent } from './pages/common/login/login.component';
 import { MessageComponent } from './pages/common/message/message.component';
@@ -21,6 +22,7 @@ import { MessHomeComponent } from './pages/mesh/mess-home/mess-home.component';
 import { MessNoticesComponent } from './pages/mesh/mess-notices/mess-notices.component';
 import { PaymentHistoryComponent } from './pages/mesh/payment-history/payment-history.component';
 import { PriceTableComponent } from './pages/mesh/price-table/price-table.component';
+import { ResultsComponent } from './pages/student/results/results.component';
 import { StudentDashboardComponent } from './pages/student/student-dashboard/student-dashboard.component';
 import { StudentDetailComponent } from './pages/student/student-detail/student-detail.component';
 import { StudentMeshmenuComponent } from './pages/student/student-meshmenu/student-meshmenu.component';
@@ -37,9 +39,11 @@ const routes: Routes = [
     {path:"notices",component:StudentNoticesComponent},
     {path:"payment",component:StudentPaymentComponent},
     {path:"priceTable",component:StudentPricetableComponent},
-    {path:"messMenu",component:StudentMeshmenuComponent}
+    {path:"messMenu",component:StudentMeshmenuComponent},
+    {path:"result",component:ResultsComponent}
 
   ]},
+  {path:"hostelinfo",component:HostelInfoComponent},
   {
     path:"mess",children:[
       {

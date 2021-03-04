@@ -17,4 +17,5 @@ export class Student{
     isInMess?:boolean;
     parentsName:String;
     parentsContact:String;
+    resultImages:String[]
 }

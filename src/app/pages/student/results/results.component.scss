@@ -1,0 +1,17 @@
+.grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1.5rem;
+    
+}
+.image{
+    text-align: center;
+    // height: 100px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    // background-color: red;
+}
+.card{
+    overflow-y: scroll;
+}

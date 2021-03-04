@@ -37,6 +37,7 @@ export class AuthService{
     public authSub = new Subject<{role:authEnum,user:AuthCredentials}>();
     public authCredentialSub = new Subject<AuthCredentials>();
      authUser:any;
+     passowrdNotChanged=false;
     login(credentials:LoginModel):any{
         this.http.post<{token:any}>(Url.login,credentials).subscribe(
           (data:any)=>{
@@ -46,6 +47,7 @@ export class AuthService{
               this.setAuthCredential(decoded);
                  this.authenticate(decoded.role);
               if(!decoded.isPasswordChanged){
+                  this.passowrdNotChanged=true;
                   this.router.navigateByUrl("/auth/resetpassword");
                   return
                 }
@@ -130,14 +132,20 @@ export class AuthService{
     }
     navigate():void{
         console.log("navigating");
-        if(this.currentUser == authEnum.IsStudent){
-            this.router.navigateByUrl("/student")
-        }
-        else if(this.currentUser == authEnum.IsMeshStaff){
-            this.router.navigateByUrl("/mess/enrollStudent")
+        if(this.passowrdNotChanged){
+            this.router.navigateByUrl("/auth/resetpassword");
         }
         else{
-            this.router.navigateByUrl('/admin/notices');
+
+            if(this.currentUser == authEnum.IsStudent){
+                this.router.navigateByUrl("/student")
+            }
+            else if(this.currentUser == authEnum.IsMeshStaff){
+                this.router.navigateByUrl("/mess/enrollStudent")
+            }
+            else{
+                this.router.navigateByUrl('/admin/notices');
+            }
         }
     }
 
