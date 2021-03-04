@@ -2,6 +2,7 @@ import { AuthService } from './../../../services/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-admin-register',
@@ -10,7 +11,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminRegisterComponent implements OnInit {
   showLoader = false;
-  constructor(private router: Router,private authService:AuthService,private builder: FormBuilder) { }
+  constructor(
+    private alerfity:AlertifyService,
+    private router: Router,private authService:AuthService,private builder: FormBuilder) { }
   adminForm: any;
   ngOnInit() {
     this.initAdminForm();
@@ -18,10 +21,10 @@ export class AdminRegisterComponent implements OnInit {
 
   initAdminForm() {
     this.adminForm = new FormGroup({
-      email: new FormControl('a@a.com', [Validators.required, Validators.email]),
-      password: new FormControl('asdf234', [Validators.required, Validators.minLength(6)]),
-      username: new FormControl('animal32',[Validators.required]),
-      contact: new FormControl('5646546546546',[Validators.required,Validators.minLength(10)])
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      username: new FormControl('',[Validators.required]),
+      contact: new FormControl('',[Validators.required,Validators.minLength(10)])
     });
   }
 
@@ -29,8 +32,8 @@ export class AdminRegisterComponent implements OnInit {
     console.log(this.adminForm.value);
     this.authService.registerAdmin(this.adminForm.value)
     .subscribe(
-      data=>console.log(data),
-      err=>console.error(err)
+      data=>this.alerfity.success("Admin Registered Successfully"),
+      err=>this.alerfity.error(err)
     )
     
     

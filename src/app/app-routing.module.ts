@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MessInfoComponent } from './components/mess-info/mess-info.component';
+import { LoginGuard } from './guard/login.guard';
 import { StaffOrAdminGuard } from './guard/staffOrAdmin.guard';
 import { StudentGuard } from './guard/student.guard';
 
@@ -51,10 +53,11 @@ const routes: Routes = [
       {path:"notices",component:MessNoticesComponent}
     ]
   },
+  {path:"messinfo",component:MessInfoComponent},
   {path:"messages",component:MessageComponent},
   {path:"auth/resetpassword",component:ChangePasswordUserComponent},
   {path:"studentDetail/:username",component:StudentDetailComponent},
-  {path:"auth/login",component:LoginComponent},
+  {path:"auth/login",canActivate:[LoginGuard],component:LoginComponent},
   {path:"home",component:AdminHomeComponent},
   {path:'noticeDetail/:id',component:NoticeDetailComponent},
   {path:"createMessage",component:ContactAdminComponent},

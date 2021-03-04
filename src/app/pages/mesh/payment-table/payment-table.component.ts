@@ -11,6 +11,7 @@ export class PaymentTableComponent implements OnInit {
 @Input() paymentHistory:any[];
 page:number=1;
 historyLength=0;
+lenToShow=7;
   ngOnInit() {
     this.historyLength=this.paymentHistory.length;
   }

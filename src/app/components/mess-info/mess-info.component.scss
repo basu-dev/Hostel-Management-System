@@ -1,0 +1,32 @@
+.grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+:host{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    // background-color: red;
+    justify-content: center;
+}
+.card{
+    
+    min-height: var(--half-content-height) !important;
+}
+h5{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color:white;
+}
+b{display: block;}
+
+b div{
+    font-weight: normal;
+    display: inline;
+    padding-left: 1rem;
+}

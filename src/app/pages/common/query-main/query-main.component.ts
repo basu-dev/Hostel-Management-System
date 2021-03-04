@@ -1,5 +1,6 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { iif } from 'rxjs';
 import { Query } from 'src/app/model/query';
 import { NoticeService } from 'src/app/services/app.service';
 
@@ -15,6 +16,13 @@ export class QueryMainComponent implements OnInit {
   error:String;
   ngOnInit() {
     this.showPending();
+    this.noticeService.refreshQuerySub.subscribe(
+      data=>{
+        if(data==true){
+          this.reloadQueries();
+        }
+      }
+    )
   }
   get pending(){
     return this.status=="pending";
@@ -24,6 +32,15 @@ export class QueryMainComponent implements OnInit {
   }
   get all(){
     return this.status=="all";
+  }
+  reloadQueries(){
+    if(this.status=="pending"){
+      this.showPending()
+    }else if(this.status=="resolved"){
+      this.showResolved()
+    }else{
+      this.showResolved();
+    }
   }
     showPending(){
       this.queries=[];

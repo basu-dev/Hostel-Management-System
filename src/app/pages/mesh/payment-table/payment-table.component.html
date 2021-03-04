@@ -1,20 +1,23 @@
 
   <table class="table" *ngIf="paymentHistory">
     <thead>
-      <tr>
-        <td scope="col">Date</td>
-        <td scope="col">Paid Amount</td>
-        <td scope="col">Due Amount</td>
-      </tr>
+     
+        <tr>
+
+          <td scope="col">Date</td>
+          <td scope="col">Paid Amount</td>
+          <td scope="col">Due Amount</td>
+        </tr>
+     
     </thead>
     <tbody>
       <tr *ngFor="let item of paymentHistory | paginate:{
         id:'payment_pagination',
-        itemsPerPage:8,
+        itemsPerPage:lenToShow,
         currentPage:page,
         totalItems:historyLength
       }">
-        <td>{{item.date | date}}</td>
+        <td>{{item.paidDate | date}}</td>
         <td>{{item.paidAmount}}</td>
         <td>{{item.dueAmount}}</td>
       </tr>

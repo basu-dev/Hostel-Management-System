@@ -1,8 +1,3 @@
-<!-- <div class="container">
-  <h4>Open Issues of Students</h4>
-</div>
-<app-show-query *ngFor="let item of queries" [query]="item"></app-show-query> -->
-
 
   <div class="notice-list">
       <ul class="" *ngIf="queries;else noNotices">
@@ -29,7 +24,12 @@
     {{error}}
   </div>
 </ng-template>
-
+<app-floating-button *ngIf="showAddQuery" (click)="openModal('custom-modal-3')">
+  <i class="fa fa-plus" style="font: 15px"></i>
+</app-floating-button>
 <jw-modal  id="custom-modal-3" width="500px">
-  <app-show-query *ngIf="showQueryModal" [query]="selectedQuery"></app-show-query>
+  <app-add-post  [query]="selectedQuery"></app-add-post>
+</jw-modal>
+<jw-modal  id="custom-modal-5" width="500px">
+  <app-show-query  [query]="selectedQuery"></app-show-query>
 </jw-modal>

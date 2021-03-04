@@ -41,7 +41,7 @@ export class StudentsService {
       name:"AutomobileEngineering"
     },
     {
-      id:"BEE",
+      id:"BEL",
       name:"ElectricalEngineering"
     }
   ]

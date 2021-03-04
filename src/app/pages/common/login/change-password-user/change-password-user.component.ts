@@ -8,7 +8,7 @@ import { MustMatch } from 'src/app/validators/mustmatch.validator';
 @Component({
   selector: 'app-change-password-user',
   templateUrl: './change-password-user.component.html',
-  styleUrls: ['./change-password-user.component.scss']
+  styleUrls: ['./change-password-user.component.css']
 })
 export class ChangePasswordUserComponent implements OnInit {
 
@@ -32,7 +32,6 @@ export class ChangePasswordUserComponent implements OnInit {
     this.authService.changePasswordByUser(this.passwordForm.get('password')?.value).subscribe(
       data=>{
         console.log(data);
-        this.router.navigateByUrl("/");
         this.authService.startupAuthenticate();
       },
       err=>this.alertify.error(err)

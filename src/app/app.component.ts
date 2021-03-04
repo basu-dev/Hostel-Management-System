@@ -15,9 +15,6 @@ export class AppComponent{
   constructor(
     private router:Router,
     private authService:AuthService
-
-    
-
     ){}
     private authSub = new Subscription();
   isAuthenticated=false;

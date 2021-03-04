@@ -10,6 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LinearLoaderComponent } from './components/linear-loader/linear-loader.component';
+import { MessInfoComponent } from './components/mess-info/mess-info.component';
 import { SidenavItemComponent } from './components/sidenav/sidenav-item.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { StudentRegisterComponent } from './pages/admin/manage-user/student-register/student-register.component';
@@ -56,7 +57,7 @@ import { SharedModule } from './shared.module';
 
     //student
     StudentDashboardComponent,
-    AddPostComponent,
+    
     StudentNoticesComponent,
     StudentPaymentComponent,
     StudentPricetableComponent,
@@ -71,7 +72,8 @@ import { SharedModule } from './shared.module';
     MakePaymentComponent,
     PaymentHistoryComponent,
     PaymentTableComponent,
-    MessNoticesComponent
+    MessNoticesComponent,
+    MessInfoComponent
   ],
 
   imports: [

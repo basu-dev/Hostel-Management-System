@@ -5,5 +5,6 @@ export interface AuthCredentials{
     _id:String,
     role:string,
     rollNo?:String,
-    isInMess:boolean
+    isInMess:boolean,
+    roomNo:String
 }

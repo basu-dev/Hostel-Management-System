@@ -63,16 +63,15 @@ export class StudentRegisterComponent implements OnInit {
   initStudentForm() {
     this.adminForm = new FormGroup({
       email: new FormControl('a@a.com', [Validators.required, Validators.email]),
-      rollNo: new FormControl('073BEX473',[Validators.required]),
+      rollNo: new FormControl('',[Validators.required]),
       faculty: new FormControl('bex',[Validators.required]),
       batch: new FormControl('073',[Validators.required]),
-      fullName: new FormControl('New User',[Validators.required]),
-      address: new FormControl('Chitwan',[Validators.required]),
+      fullName: new FormControl('',[Validators.required]),
+      address: new FormControl('',[Validators.required]),
       dob: new FormControl('2054-3-12',[Validators.required]),
-      contact: new FormControl("2323232323232222",[Validators.required,Validators.minLength(10)]),
+      contact: new FormControl("9841265233",[Validators.required,Validators.minLength(10)]),
       parentsName: new FormControl('',[Validators.required]),
-      parentsContact: new FormControl('',[Validators.required,Validators.minLength(10)]),
-
+      parentsContact: new FormControl('9841355233',[Validators.required,Validators.minLength(10)]),
     });
   }
   editStudentForm() {

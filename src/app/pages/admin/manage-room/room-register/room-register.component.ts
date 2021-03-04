@@ -58,6 +58,7 @@ export class RoomRegisterComponent implements OnInit {
 initializeForm(){
   if(this.room){
     if (typeof(this.room)){
+      this.isEditform=true;
       this.componentName='Edit Room ';
       this.editRoomForm(this.room);
     }
@@ -77,10 +78,10 @@ initializeForm(){
       ],
       ),
       assets: this.builder.group({
-        table: [],
-        chair: [],
-        wardrobe: [],
-        bed: []
+        table: [2],
+        chair: [2],
+        wardrobe: [2],
+        bed: [2]
       })
     })
   }
@@ -143,10 +144,17 @@ get students() : FormArray {
       this.roomService.registerRoom(this.roomForm.value)
         .subscribe(
           data => this.alertify.success("Room Created Successfully") ,
-          err => console.error(err)
+          err => this.alertify.error(err)
         )
     }
 
+  }
+  deleteRoom(){
+    this.roomService.deleteRoom(this.room.roomName).subscribe(
+      (data:any)=>{
+
+      }
+    )
   }
   ngOnDestroy(): void {
     // this.roomSub.unsubscribe()

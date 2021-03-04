@@ -45,6 +45,8 @@ export class NoticeService {
     public hostelNoticeSub = new Subject<Notice[]>();
     public meshNoticeSub = new Subject<Notice[]>();
     public refreshNoticeSub= new Subject<boolean>();
+    public refreshQuerySub= new Subject<boolean>();
+
     sendNotices(notices:Notice[]):void{
         switch (this.whoseNoticeReq){
             case 'hostel':

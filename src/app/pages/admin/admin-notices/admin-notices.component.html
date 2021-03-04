@@ -1,11 +1,21 @@
 <div class="grid">
-  <div class="student-queries">
-    <app-all-queries></app-all-queries>
-  </div>
+
+    <div class="student-queries">
+      <div class="card card-rounded">
+        <h5 class="text-center"><b>
+
+          Student Issues
+        </b>
+      </h5>
+      <app-all-queries></app-all-queries>
+    </div>
+    </div>
+ 
+  
   <div class="notices">
-    <app-notices [for]="'Hostel'"></app-notices>
+    <app-notices [for]="'Hostel'" [dataLenToShow]=5></app-notices>
     <br>
-    <app-notices [for]="'Mess'"></app-notices>
+    <app-notices [for]="'Mess'" [dataLenToShow]=5></app-notices>
   </div>
 </div>
 <app-floating-button (click)="openModal('custom-modal-2')">
@@ -14,3 +24,4 @@
   <jw-modal id="custom-modal-2"  width="600px">
     <app-add-notice></app-add-notice>
  </jw-modal>
+ 

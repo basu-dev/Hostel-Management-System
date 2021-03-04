@@ -19,7 +19,11 @@ export class NoticeDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.notice)
     
+  }
+  ngOnChanges(){
+    console.log(this.notice)
   }
   editNotice(){}
   deleteNotice(){}

@@ -3,14 +3,14 @@
       <div (click)="editNotice()"><i class="far fa-edit"></i></div>
       <div (click)="deleteNotice()"><i class="far fa-trash-alt"></i></div>
     </div>
-    <h5 >{{notice.noticeTitle}}</h5>
-    <div class='date'>{{notice.publishedDate | date}}</div>
+    <h5 >{{notice?.noticeTitle}}</h5>
+    <div class='date'>{{notice?.publishedDate | date}}</div>
     <div class="card-body">
-      {{notice.noticeContent}}
+      {{notice?.noticeContent}}
     </div>
     <div class="footer">
       <b>Notice By:
-        <div>{{notice.noticeBy}}</div>
+        <div>{{notice?.noticeBy}}</div>
       </b>
     </div>
   </div>

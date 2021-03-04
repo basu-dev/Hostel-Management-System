@@ -33,10 +33,7 @@ export class AuthService{
     studentLogin(student:Student):Observable<any>{  
         return of(true);
     }
-    // registerStudent(student:Student):Observable<any>{
-    //     console.log(student);
-    //     return this.http.post(Url.rootUrl+Url.registerStudent,student)
-    // }
+
     public authSub = new Subject<{role:authEnum,user:AuthCredentials}>();
     public authCredentialSub = new Subject<AuthCredentials>();
      authUser:any;
@@ -120,6 +117,7 @@ export class AuthService{
              this.setAuthCredential(decoded);
              this.authCredentials = decoded;
             this.authenticate(decoded.role);
+            this.navigate();
             
         }catch(e){
             this.logout();
@@ -131,14 +129,15 @@ export class AuthService{
         this.assignRole(authEnum.IsUnauthenticated);
     }
     navigate():void{
+        console.log("navigating");
         if(this.currentUser == authEnum.IsStudent){
             this.router.navigateByUrl("/student")
         }
         else if(this.currentUser == authEnum.IsMeshStaff){
-            this.router.navigateByUrl("/staff")
+            this.router.navigateByUrl("/mess/enrollStudent")
         }
         else{
-            this.router.navigateByUrl('/admin');
+            this.router.navigateByUrl('/admin/notices');
         }
     }
 

@@ -34,17 +34,22 @@ export class AddNoticeComponent implements OnInit {
       }
     }
     submit():void{
+     
       if(this.notice){
         this.noticeService.editNotice(this.notice._id!,this.noticeForm.value).subscribe(
           (data:any)=>{
             this.noticeService.refreshNotices();
             this.alertify.success("Notice Edited Successfully");
+      this.noticeForm.reset();
+
           },
           (err:any)=>this.alertify.error(err)
         )
       }
       this.noticeService.postNotice(this.noticeForm.value).subscribe(
         (data:any)=>{
+      this.noticeForm.reset();
+
           this.noticeService.refreshNotices();
           this.alertify.success("Notice Posted Successfully")
         },

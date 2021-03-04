@@ -29,12 +29,12 @@ export class SidenavComponent implements OnInit {
     currentUser:AuthCredentials; 
     currentAuth = authEnum.IsUnauthenticated;
      adminSidenav:{name:String,link:string,icon:String,directory:boolean,items?:any}[]=[
-       {
-         name:"Home",
-         link:"/admin",
-         icon:"fa-hotel",
-         directory:false,
-       },
+      //  {
+      //    name:"Home",
+      //    link:"/admin",
+      //    icon:"fa-hotel",
+      //    directory:false,
+      //  },
        {name:"Notices",
        link:"admin/notices",
        icon:"fa-envelope",
@@ -48,13 +48,17 @@ export class SidenavComponent implements OnInit {
          link:"",
          items:[
            {
+             name:"Add Student",
+             link:"admin/studentRegister"
+           },
+           {
            name:"Electronices & Communication",
            link:"admin/manageStudents/BEX",
 
            },
            {
             name:"Electrical Engineering",
-            link:"admin/manageStudents/BEE",
+            link:"admin/manageStudents/BEL",
             },
             {
               name:"Computer Engineering",
@@ -87,6 +91,10 @@ export class SidenavComponent implements OnInit {
          icon:"fa-home",
          link:"",
          items:[
+           {
+             name:"Add Room",
+             link:"admin/roomRegister"
+           },
           {
             name:"Block A",
             link:"admin/manageRooms/A",
@@ -111,12 +119,12 @@ export class SidenavComponent implements OnInit {
          link:"/admin/manageStaffs",
          directory:false,
        },
-       {
-         name:"Messages",
-         icon:"fa-comment-dots",
-         link:"/messages",
-         directory:false
-       },
+      //  {
+      //    name:"Messages",
+      //    icon:"fa-comment-dots",
+      //    link:"/messages",
+      //    directory:false
+      //  },
        {
          name:"Credentials",
          icon:"fa-key",
@@ -172,23 +180,19 @@ export class SidenavComponent implements OnInit {
               link:"/student/priceTable"
             },
             {
-              name:"Mess Menu",
-              link:"/student/messMenu"
-            },
-            {
               name:"Mess Info",
-              link:"/student/messInfo"
+              link:"/messinfo"
             }
             
 
           ]
         },
-        {
-          name:"Messages",
-          link:"/messages",
-          icon:"fa-comment-dots",
-          directory:false,
-        },
+        // {
+        //   name:"Messages",
+        //   link:"/messages",
+        //   icon:"fa-comment-dots",
+        //   directory:false,
+        // },
         {
           name:"My Results",
           link:"/student/result",

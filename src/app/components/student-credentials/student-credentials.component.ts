@@ -13,9 +13,13 @@ export class StudentCredentialsComponent implements OnInit {
   constructor() { }
 @Input() foundUser:any;
 passwordShown=false;
+isStudent=true;
 @ViewChild('passwordField') private passwordField: ElementRef;
 
   ngOnInit() {
+    if(this.foundUser.role!="student"){
+      this.isStudent=false;
+    }
     console.log(this.foundUser);
   }
   togglePasswordShow():void{

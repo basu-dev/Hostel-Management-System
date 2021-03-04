@@ -33,7 +33,7 @@ export class AuthCredentialsComponent implements OnInit {
   credentials:any[];
   ngOnInit() {
     this.user = this.fb.group({
-      userName:['073BEX422',Validators.required]
+      userName:['',Validators.required]
     })
 
     if(this.fromMesh){
@@ -52,7 +52,7 @@ export class AuthCredentialsComponent implements OnInit {
     var userName = this.user.get('userName')?.value;
     this.authService.getLoginDetailUser(userName).subscribe(
       (data:any)=>{
-        console.log(data.data)
+        console.log(data)
         this.foundUser= data.data;
       },
       (err:any)=>this.alertify.error(err)
@@ -64,7 +64,7 @@ export class AuthCredentialsComponent implements OnInit {
     var userName = this.user.get('userName')?.value;
     this.studentService.getStudentByUsername(userName).subscribe(
       (data:any)=>{
-        console.log(data.data)
+        console.log(data)
         this.foundUser= data.data;
         this.messService.showEnroll.next(true)
         this.messService.studentSub.next(data.data)

@@ -1,9 +1,11 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { authEnum } from 'src/app/model/auth.enum';
 import { Query } from 'src/app/model/query';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { NoticeService } from 'src/app/services/app.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
@@ -15,6 +17,7 @@ export class AllQueriesComponent implements OnInit {
 
   constructor(private noticeService:NoticeService,
     private router:Router,
+    private authService:AuthService,
     private modalService:ModalService,
     private alertify:AlertifyService) { }
   @Input() queries :Query[];
@@ -26,7 +29,16 @@ export class AllQueriesComponent implements OnInit {
   totalQueries:number=0;
   showPagination=false;
   dataLenToShow=9;
+  showAddQuery=false;
+
   ngOnInit() {
+    if(
+
+      this.authService.currentUser == authEnum.IsStudent
+    ){
+      this.showAddQuery=true;
+    }
+
     if(!this.prop){
       this.noticeService.getAllQueries().subscribe(
         (data:any)=>{
@@ -50,10 +62,10 @@ export class AllQueriesComponent implements OnInit {
   }
 
   fullQuery(query:Query){
-    
+    console.log(query);
     this.selectedQuery=query;
     this.showQueryModal=true;
-    this.openModal("custom-modal-3");
+    this.openModal("custom-modal-5");
   }
   openModal(id: string) {
     this.modalService.open(id);

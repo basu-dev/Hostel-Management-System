@@ -10,7 +10,9 @@ li{
     position: relative;
 }
 .card{
-    min-height: calc(var(--half-content-height) + 100px) !important;
+    padding-top:0 !important;
+    padding-bottom: 1rem;
+    min-height: calc(var(--half-content-height) - 15px) !important;
 }
 .controls{
     position:absolute;
@@ -41,6 +43,13 @@ li{
 }
 .controls div:nth-child(2):hover{
     background: rgb(214, 14, 14);
+}
+h5{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color:white;
 }
 
 

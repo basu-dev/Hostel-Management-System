@@ -24,7 +24,7 @@ export class NoticesComponent implements OnInit {
     selectedNotice:Notice;
     totalNotices:number=0;
     showPagination=false;
-    dataLenToShow=10;
+    @Input() dataLenToShow=10;
     showControls = false;
     page:number=1;
     paginationId:string;
@@ -78,6 +78,6 @@ export class NoticesComponent implements OnInit {
   }
     
     ngOnDestroy():void{
-this.noticeSub.unsubscribe();
+// this.noticeSub.unsubscribe();
     }
 }
